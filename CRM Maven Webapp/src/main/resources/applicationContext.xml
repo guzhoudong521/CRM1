@@ -15,70 +15,10 @@
    
     <context:component-scan base-package="crm.biz,crm.web"/>	
     
-   <!-- <mvc:interceptors>
-       <mvc:interceptor>
-          <mvc:mapping path="/**"/>
-          <bean class="com.web.TimeInterceptor"/>
-       </mvc:interceptor>
-    </mvc:interceptors> -->
-        <!-- 增加验证 -->
-    <!-- <mvc:annotation-driven validator="addValbean"/> -->
-    <mvc:annotation-driven validator="addValbean"/> <!-- conversion-service="myconver" /> -->
-    <bean id="addValbean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-       <property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
-       <property name="validationMessageSource" ref="messageresource"/>
-    </bean>
-    <!-- 全局转换器-->
-   <!--  <bean id="myconver"  class="org.springframework.context.support.ConversionServiceFactoryBean" >
-        <property name="converters">
-          <list>
-            <bean class="google.xxa.util.TimeConver"/>
-          </list>
-        </property>
-    </bean> -->
-    <!-- 异常后跳转 -->
-    <!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-           <props>
-              <prop key="java.lang.Throwable">error</prop>
-           </props>
-        </property>
-    </bean> -->
-    
-    <!-- 引入资源文件 -->
-    <bean id="messageresource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-       <property name="basenames">
-          <list>
-              <value>classpath:message</value>
-          </list>
-       </property>
-       <property name="fileEncodings" value="utf-8"/>
-       <property name="cacheSeconds" value="120"/>
-    </bean>
-    <!-- 文件上传 -->
-    <!-- <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"></bean>
-     -->
-    
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="suffix" value=".jsp"/>
         <property name="prefix" value="/jsp/"/>    
     </bean>
-   <!-- Jackson传递数据 -->
-    <bean id="jsonconverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-        <property name="supportedMediaTypes">
-           <list>
-              <value>application/json;charset=utf-8</value>
-           </list>
-        </property>
-    </bean>
-    
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-       <property name="messageConverters">
-         <list>
-            <ref bean="jsonconverter"/>
-         </list>
-       </property>
-     </bean>
    <!-- 创建数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" scope="singleton">
 	    <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
@@ -101,22 +41,4 @@
      <property name="basePackage" value="crm.dao"/>
      <property name="sqlSessionFactoryBeanName" value="sessionfactory"/>
   </bean>
-  <!-- 声明式事务 -->
-    <bean id="txmm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-     <property name="dataSource" ref="dataSource"/>
-  </bean>
-  
-  <tx:advice id="txadv" transaction-manager="txmm">
-     <tx:attributes>
-         <tx:method name="add*" propagation="REQUIRED"/>
-         <tx:method name="del*" propagation="REQUIRED"/>
-         <tx:method name="mod*" propagation="REQUIRED"/>
-         <tx:method name="*" propagation="REQUIRED"/>
-     </tx:attributes>
-  </tx:advice>
-  
-  <aop:config>
-     <aop:pointcut expression="execution(* CRM.crm.biz.*.*(..))" id="txaop"/>
-     <aop:advisor advice-ref="txadv" pointcut-ref="txaop"/>
-  </aop:config>
 </beans>
