@@ -2,28 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="crm.dao.IUsersDao">
-
     <select id="getAllUser" parameterType="queryParam" resultType="users">
-       select * from  (select u.*,rownum r from users u where 1=1
-        
+       select * from  (select *,rownum r form users 
+        <where>
              <if test="gonghao!=null">
-               and  u.userid=#{gonghao}
+                 userid=#{gonghao}
              </if>
              <if test="name!=null">
-               and  u.uname like #{name}
+                 uname like #{name}
              </if>
-        ) where r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
+        </where>) t.r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
     </select>
     
-    <select id="getCount" parameterType="crm.util.QueryParam" resultType="int">
-       select count(0) from users where 1=1
-  
+    <select id="getCount" parameterType="queryParam" resultType="int">
+       select count(0) from users
+       <where>
              <if test="gonghao!=null">
-               and   userid=#{gonghao}
+                 userid=#{gonghao}
              </if>
              <if test="name!=null">
-              and   uname like #{name}
+                 uname like #{name}
              </if>
-       
+        </where>
     </select>
+    <!-- 123 -->
 </mapper>

@@ -19,7 +19,7 @@
         <property name="suffix" value=".jsp"/>
         <property name="prefix" value="/jsp/"/>    
     </bean>
-   <!-- 创建数据源 -->
+   <!-- 创建数据源1 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" scope="singleton">
 	    <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 	    <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
