@@ -3,7 +3,7 @@ package crm.entity;
 import java.util.List;
 
 public class Users {
-	private int userid;
+	private long userid;
 	private String uname;
 	private String pwd;
 	private long roleid;  
@@ -16,10 +16,10 @@ public class Users {
 	public void setList(List<Authority> list) {
 		this.list = list;
 	}
-	public int getUserid() {
+	public long getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(long userid) {
 		this.userid = userid;
 	}
 	public String getUname() {
