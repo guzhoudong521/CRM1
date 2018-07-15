@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crm.dao.ICustplanDao">
+	
+	<resultMap type="custplan" id="custplanmap">
+		<id column="planid" property="planid"/>
+		<result column="gongsi" property="gongsi"/>
+		<result column="gaiyao" property="gaiyao"/>
+		<result column="lianxiren" property="lianxiren"/>
+		<result column="miaoshu" property="miaoshu"/>		
+		<result column="laiyuan" property="laiyuan"/>
+		<result column="jilv" property="jilv"/>
+		<result column="zhixingshijian" property="zhixingshijian"/>		
+		<result column="dianhua" property="dianhua"/>
+		<result column="chuangjianshijian" property="chuangjianshijian"/>
+		<result column="zhuangtai" property="zhaungtai"/>
+		<association property="chuangjianren" resultMap="cjrmap"/>
+		<association property="zhixingren" resultMap="zxrmap"/>
+	</resultMap>
+	
+		<resultMap type="users" id="cjrmap">
+			<id column="cjrid" property="userid"/>
+			<result column="cjr" property="uname"/>
+		</resultMap>
+		
+		<resultMap type="users" id="zxrmap">
+			<id column="zxrid" property="userid"/>
+			<result column="cjr" property="uname"/>
+		</resultMap>
+	
+	<select id="getAll" resultMap="custplanmap" parameterType="queryParam">
+	select * from (
+ 	 select x.*,rownum r from (
+           select u.uname cjr,u.userid cjrid,c.*,z.userid zxrid,z.uname zxr from users u,custplan c,users z
+           where u.userid(+)=c.chuangjianren
+           and z.userid=c.zhixinren 
+           <if test="name!=null">
+          	    and  c.gongsi like  #{name}       
+           </if>
+           <if test="lianxiren!=null">
+           		and  c.lianxiren like #{lianxiren}
+           </if>
+           <if test="chuangjianshijian!=null">
+           		and  c.chuangjianshijian=#{chuangjianshijian}
+           </if>           
+            order by c.chuangjianshijian
+           ) x)
+           where r>=#{page-1}*#{pageSize} and r&lt;#{page}*#{pageSize}
+	</select>
+	
+	<select id="getById" parameterType="int" resultMap="custplanmap">
+		   select u.uname cjr,u.userid cjrid,c.*,z.userid zxrid,z.uname zxr from users u,custplan c,users z
+           where u.userid(+)=c.chuangjianren
+           and z.userid=c.zhixinren 
+           and c.planid=#{0}
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="queryParam">
+		  select count(1) from users u,custplan c,users z
+           where u.userid(+)=c.chuangjianren
+           and z.userid=c.zhixinren 
+           <if test="name!=null">
+          	    and  c.gongsi like  #{name}       
+           </if>
+           <if test="lianxiren!=null">
+           		and  c.lianxiren like #{lianxiren}
+           </if>
+           <if test="chuangjianshijian!=null">
+           		and  c.chuangjianshijian=#{chuangjianshijian}
+           </if>        
+	</select>
+	
+	<insert id="add" parameterType="custplan">
+		insert into custplan values(quanju_seq.nextval,#{gongsi},#{gaiyao},
+		#{lianxiren},#{miaoshu},#{chuangjianren.userid},#{laiyuan},#{jilv},#{dianhua},#{chuangjianshijian},
+		null,null,#{zhaungtai});
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+</mapper>
