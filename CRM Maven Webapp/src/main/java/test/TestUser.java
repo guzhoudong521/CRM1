@@ -14,6 +14,7 @@ public class TestUser {
 	public void getAll(){
 		ApplicationContext cont=new ClassPathXmlApplicationContext("applicationContext.xml");
 		IUserBiz biz=cont.getBean(IUserBiz.class);
+		
 		QueryParam q=new QueryParam();
 		QueryParam qq=biz.getAllUser(q);
 		System.out.println(qq.getPage());
