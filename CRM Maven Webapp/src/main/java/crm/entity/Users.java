@@ -6,7 +6,7 @@ public class Users {
 	private int userid;
 	private String uname;
 	private String pwd;
-	private long roleid;  
+	private int roleid;  
 	private List<Authority> list;
 	
 	
@@ -34,10 +34,13 @@ public class Users {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public long getRoleid() {
+	public int getRoleid() {
 		return roleid;
 	}
-	public void setRoleid(long roleid) {
+	public void setRoleid(int roleid) {
 		this.roleid = roleid;
 	}
+	
+	
+	
 }
