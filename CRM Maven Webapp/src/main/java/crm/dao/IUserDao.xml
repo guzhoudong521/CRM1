@@ -2,28 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="crm.dao.IUsersDao">
-    <select id="getAllUser" parameterType="queryParam" resultType="users">
-       select * from  (select *,rownum r form users 
-        <where>
-             <if test="gonghao!=null">
-                 userid=#{gonghao}
-             </if>
-             <if test="name!=null">
-                 uname like #{name}
-             </if>
-        </where>) t.r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
+    <select id="getAllUser" parameterType="crm.util.QueryParam" resultType="users">
+        select * from  (select u.*,rownum r from users u  where 1=1
+        <if test="name!=null">
+      and u.uname like #{name}
+      </if>
+      <if test="gonghao!=null">
+       and u.userid=#{gonghao}	
+      </if>
+     
+      ) t 
+	where t.r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
     </select>
     
-    <select id="getCount" parameterType="queryParam" resultType="int">
-       select count(0) from users
-       <where>
-             <if test="gonghao!=null">
-                 userid=#{gonghao}
-             </if>
-             <if test="name!=null">
-                 uname like #{name}
-             </if>
-        </where>
-    </select>
+    
+    <select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
+	        select count(1) from  (select u.*,rownum r from users u  where 1=1
+        <if test="name!=null">
+      and u.uname like #{name}
+      </if>
+      <if test="gonghao!=null">
+       and u.userid=#{gonghao}	
+      </if>     
+	</select>
     <!-- 123 -->
 </mapper>
