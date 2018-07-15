@@ -15,7 +15,7 @@
         ) where r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
     </select>
     
-    <select id="getCount" parameterType="queryParam" resultType="int">
+    <select id="getCount" parameterType="crm.util.QueryParam" resultType="int">
        select count(0) from users where 1=1
   
              <if test="gonghao!=null">
