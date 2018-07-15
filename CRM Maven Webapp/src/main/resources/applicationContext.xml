@@ -13,7 +13,7 @@
 	                    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 	                    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
    
-    <context:component-scan base-package="CRM.crm.biz,CRM.crm.web"/>	
+    <context:component-scan base-package="crm.biz,crm.web"/>	
     
    <!-- <mvc:interceptors>
        <mvc:interceptor>
@@ -57,12 +57,12 @@
     </bean>
     <!-- 文件上传 -->
     <!-- <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver"></bean>
-    
+     -->
     
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="suffix" value=".jsp"/>
         <property name="prefix" value="/jsp/"/>    
-    </bean> -->
+    </bean>
    <!-- Jackson传递数据 -->
     <bean id="jsonconverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
         <property name="supportedMediaTypes">
@@ -98,7 +98,7 @@
   </bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-     <property name="basePackage" value="CRM.crm.dao"/>
+     <property name="basePackage" value="crm.dao"/>
      <property name="sqlSessionFactoryBeanName" value="sessionfactory"/>
   </bean>
   <!-- 声明式事务 -->

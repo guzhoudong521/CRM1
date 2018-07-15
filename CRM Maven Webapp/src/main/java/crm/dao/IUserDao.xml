@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xml-body>
-
-</xml-body>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crm.dao.IUsersDao">
+    <select id="getAllUser" parameterType="queryParam" resultType="users">
+       select * from  (select *,rownum r form users 
+        <where>
+             <if test="gonghao!=null">
+                 userid=#{gonghao}
+             </if>
+             <if test="name!=null">
+                 uname like #{name}
+             </if>
+        </where>) t.r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
+    </select>
+    
+    <select id="getCount" parameterType="queryParam" resultType="int">
+       select count(0) from users
+       <where>
+             <if test="gonghao!=null">
+                 userid=#{gonghao}
+             </if>
+             <if test="name!=null">
+                 uname like #{name}
+             </if>
+        </where>
+    </select>
+</mapper>

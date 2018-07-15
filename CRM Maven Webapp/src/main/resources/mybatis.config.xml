@@ -7,10 +7,9 @@
        <setting name="logImpl" value="LOG4J"/>
    </settings>
    <typeAliases>
-       <package name="CRM.crm.entity"/>
+       <package name="CRM.crm.entity,CRM.crm.util"/>
    </typeAliases>
-   <!-- <mappers>
-       <mapper  resource="com/dao/IDepartmentDao.xml"/>
-       <package name="com.dao"/>
-   </mappers> -->
+   <mappers>
+       <package name="crm.dao"/>
+   </mappers>
 </configuration>
