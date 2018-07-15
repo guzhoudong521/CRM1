@@ -2,13 +2,13 @@ package crm.entity;
 
 public class AuthorDetail {
     
-	private long aid;
+	private int aid;
 	private String descs;
 	
-	public long getAid() {
+	public int getAid() {
 		return aid;
 	}
-	public void setAid(long aid) {
+	public void setAid(int aid) {
 		this.aid = aid;
 	}
 	public String getDescs() {
