@@ -3,7 +3,7 @@ package crm.entity;
 import java.util.List;
 
 public class Authority {
-	private long aid;
+	private int aid;
 	private String aname;
 	private List<AuthorDetail> list;
 	
@@ -13,10 +13,10 @@ public class Authority {
 	public void setList(List<AuthorDetail> list) {
 		this.list = list;
 	}
-	public long getAid() {
+	public int getAid() {
 		return aid;
 	}
-	public void setAid(long aid) {
+	public void setAid(int aid) {
 		this.aid = aid;
 	}
 	public String getAname() {
