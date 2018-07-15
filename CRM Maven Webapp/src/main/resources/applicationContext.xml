@@ -13,7 +13,7 @@
 	                    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 	                    http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
    
-    <context:component-scan base-package="crm.biz,crm.web"/>	
+    <context:component-scan base-package="CRM.crm.biz,CRM.crm.web"/>	
     
    <!-- <mvc:interceptors>
        <mvc:interceptor>
@@ -83,7 +83,7 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" scope="singleton">
 	    <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 	    <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-	    <property name="username" value="oa"/>
+	    <property name="username" value="crm"/>
 	    <property name="password" value="a123"/>
 	    <property name="initialSize" value="5"/>
         <property name="maxActive" value="10"/>
@@ -98,7 +98,7 @@
   </bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-     <property name="basePackage" value="google.xxa.dao"/>
+     <property name="basePackage" value="CRM.crm.dao"/>
      <property name="sqlSessionFactoryBeanName" value="sessionfactory"/>
   </bean>
   <!-- 声明式事务 -->
@@ -116,7 +116,7 @@
   </tx:advice>
   
   <aop:config>
-     <aop:pointcut expression="execution(* google.xxa.biz.*.*(..))" id="txaop"/>
+     <aop:pointcut expression="execution(* CRM.crm.biz.*.*(..))" id="txaop"/>
      <aop:advisor advice-ref="txadv" pointcut-ref="txaop"/>
   </aop:config>
 </beans>
