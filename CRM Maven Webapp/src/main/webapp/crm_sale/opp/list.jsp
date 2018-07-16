@@ -74,15 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td><a href="#">${us.uname }</a></td>
           <td>${ us.pwd}</td>
           <td>${us.role.rolename }</td>
-          <td>
-          	<select>
-            	<option>--请选择--</option>
-                <option>BOSS</option>
-                <option>销售主管</option>
-                <option></option>
-                <option></option>
-            </select>
-           </td>
+          <td><a href="">修改</a>||<a href="">删除</a></td>
           </tr>
          </tbody>
       </c:forEach>
