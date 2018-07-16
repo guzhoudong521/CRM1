@@ -9,7 +9,7 @@ public class QueryParam {
 	private int maxPages;        //总页数
 	private int maxRows;         //总条数
 	private List   list; 
-	private int gonghao;
+	private Integer gonghao;
 	private String name;
 	private String lianxiren;
 	private Date chuangjianshijian;
@@ -62,10 +62,10 @@ public class QueryParam {
 	public void setChuangjianshijian(Date chuangjianshijian) {
 		this.chuangjianshijian = chuangjianshijian;
 	}
-	public int getGonghao() {
+	public Integer getGonghao() {
 		return gonghao;
 	}
-	public void setGonghao(int gonghao) {
+	public void setGonghao(Integer gonghao) {
 		this.gonghao = gonghao;
 	}
 }

@@ -16,14 +16,14 @@
     </select>
     
     
-    <select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
+    <select id="getCount" resultType="int" >
 	       select count(1) from users u  where 1=1
-        <if test="name!=null">
-      and u.uname like #{name}
-      </if>
-      <if test="gonghao!=null">
-       and u.userid=#{gonghao}	
-      </if>     
+         <if test="name!=null">
+         and u.uname like #{name}
+         </if>
+        <if test="gonghao!=null">
+         and u.userid=#{gonghao}	
+        </if>     
 	</select>
     <!-- 123 -->
 </mapper>

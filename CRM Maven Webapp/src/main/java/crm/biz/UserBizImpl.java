@@ -24,7 +24,7 @@ public class UserBizImpl implements IUserBiz {
 			// TODO 自动生成的方法存根
 		QueryParam qq=new QueryParam();
 		qq.setPage(par.getPage());
-		qq.setMaxRows(dao.getCount(par));
+		qq.setMaxRows(dao.getCount(par.getName(),par.getGonghao()));
 		qq.setList(dao.getAllUser(par));
 	    return qq;
     }
