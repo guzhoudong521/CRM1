@@ -26,7 +26,7 @@ public class UsersAction {
 	public ModelAndView getAll(QueryParam par,ModelAndView mav){
 		QueryParam p=biz.getAllUser(par);
 		mav.addObject("par", p);
-		mav.setViewName("index");
+		mav.setViewName("crm_sale/opp/list");
 		return mav;
 	}
   	
