@@ -79,10 +79,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${cus.zhaungtai }</td>
           <td>          
           <c:if test="${cus.zhaungtai=='未开发' }">
-          	 <img title="制定计划" src="images/pencil.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />        	
+          	 <img  title="制定计划" src="images/pencil.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />        	
           </c:if>         
            <c:if test="${cus.zhaungtai=='计划已制定'}">  
-            <img title="执行计划" src="images/right.ico" class="op_button" onclick="to('更新状态')" />
+            <img title="执行计划" src="images/right.ico" class="op_button" onclick="" />
            </c:if>
          <c:if test="${cus.zhaungtai=='开发中'}">        
           <img title="开发成功" src="images/tick.ico" class="op_button" onclick="to('crm_sale/opp/edit.jsp')" />

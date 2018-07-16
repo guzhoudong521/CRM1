@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import crm.biz.ICustplanBiz;
 import crm.entity.Custplan;
@@ -34,7 +35,7 @@ public class CustplanAction {
 	
 		mod.addAttribute("queryp",qq);
 		
-		return "../crm_sale/dev/list";
+		return "crm_sale/dev/list";
 	}
 	
 	@RequestMapping(value="/doadd")
@@ -50,12 +51,18 @@ public class CustplanAction {
 	
 	
 	@RequestMapping(value="/getbyid")
-	public String getById(int id,Model mod){
+	public String getById(@RequestParam("id")int id,Model mod){
 	
 		Custplan cus=biz.getById(id);
-		
 		mod.addAttribute("currplan", cus);
-		return "../crm_sale/opp/dispatch";
+		
+		if(cus.getZhaungtai().equals("计划已制定")){
+			
+			return "crm_sale/opp/dayin";
+		}else{
+			
+			return "crm_sale/opp/dispatch";
+		}
 	}
 	
 	
