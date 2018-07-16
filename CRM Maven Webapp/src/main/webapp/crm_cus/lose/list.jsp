@@ -6,14 +6,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>客户开发计划</title>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../../js/javascript.js"></script>
-<script type="text/javascript" src="../../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 
 </head>
 
@@ -69,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>2013-12-12</td>
           <td></td>
           <td>暂缓流失</td>
-          <td><img title="确认流失" src="../../images/shield.ico" class="op_button" onclick="to('sure.jsp')" /><img title="暂缓流失" src="../../images/clock.ico" class="op_button" onclick="to('retard.jsp')" /></td>
+          <td><img title="确认流失" src="images/shield.ico" class="op_button" onclick="to('sure.jsp')" /><img title="暂缓流失" src="images/clock.ico" class="op_button" onclick="to('retard.jsp')" /></td>
         </tr>
         <tr>
           <td>1</td>
@@ -78,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>2013-12-12</td>
           <td></td>
           <td>暂缓流失</td>
-          <td><img title="确认流失" src="../../images/shield.ico" class="op_button" onclick="to('sure.html')" /><img title="暂缓流失" src="../../images/clock.ico" class="op_button" onclick="to('retard.html')" /></td>
+          <td><img title="确认流失" src="images/shield.ico" class="op_button" onclick="to('sure.jsp')" /><img title="暂缓流失" src="images/clock.ico" class="op_button" onclick="to('retard.html')" /></td>
         </tr>
         <tr>
           <td>1</td>
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>2013-12-12</td>
           <td></td>
           <td>暂缓流失</td>
-          <td><img title="确认流失" src="../../images/shield.ico" class="op_button" onclick="to('sure.html')" /><img title="暂缓流失" src="../../images/clock.ico" class="op_button" onclick="to('retard.html')" /></td>
+          <td><img title="确认流失" src="images/shield.ico" class="op_button" onclick="to('sure.jsp')" /><img title="暂缓流失" src="images/clock.ico" class="op_button" onclick="to('retard.html')" /></td>
         </tr>
         <tr>
           <td>1</td>
@@ -96,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>2013-12-12</td>
           <td></td>
           <td>暂缓流失</td>
-          <td><img title="确认流失" src="../../images/shield.ico" class="op_button" onclick="to('sure.html')" /><img title="暂缓流失" src="../../images/clock.ico" class="op_button" onclick="to('retard.html')" /></td>
+          <td><img title="确认流失" src="images/shield.ico" class="op_button" onclick="to('sure.jsp')" /><img title="暂缓流失" src="images/clock.ico" class="op_button" onclick="to('retard.html')" /></td>
         </tr>
       </tbody>
     </table>

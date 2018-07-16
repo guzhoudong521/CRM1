@@ -5,14 +5,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>客户开发计划列表</title>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../../js/javascript.js"></script>
-<script type="text/javascript" src="../../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 </head>
 
 <body>
@@ -59,8 +60,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>1389675634</td>
           <td>2007-12-6</td>
           <td>未开发</td>
-          <td><img title="制定计划" src="../../images/pencil.ico" class="op_button" onclick="to('../opp/dispatch.html')" /> 
-          <img title="执行并打印计划" src="../../images/right.ico" class="op_button" onclick="to('../opp/edit.html')" /></td>
+          <td><img title="制定计划" src="images/pencil.ico" class="op_button" onclick="to('opp/dispatch.jsp')" /> 
+          <img title="执行并打印计划" src="images/right.ico" class="op_button" onclick="to('opp/edit.jsp')" /></td>
         </tr>
         <tr>
           <td>2</td>
@@ -70,9 +71,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>1389675634</td>
           <td>2007-12-6</td>
           <td>开发中</td>
-          <td><img title="制定计划" src="../../images/pencil.ico" class="op_button" onclick="to('../opp/dispatch.html')" /> 
-          <img title="执行并打印计划" src="../../images/right.ico" class="op_button" onclick="to('../opp/edit.html')" />
-          <img title="开发成功" src="../../images/tick.ico" class="op_button" onclick="to('../opp/edit.html')" /></td>
+          <td><img title="制定计划" src="images/pencil.ico" class="op_button" onclick="to('opp/dispatch.jsp')" /> 
+          <img title="执行并打印计划" src="images/right.ico" class="op_button" onclick="to('opp/edit.jsp')" />
+          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="to(opp/edit.jsp')" /></td>
         </tr>
         <tr>
           <td>3</td>
@@ -82,9 +83,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>1389675634</td>
           <td>2007-12-6</td>
           <td>开发中</td>
-          <td><img title="制定计划" src="../../images/pencil.ico" class="op_button" onclick="to('../opp/dispatch.html')" /> 
-          <img title="执行并打印计划" src="../../images/right.ico" class="op_button" onclick="to('../opp/edit.html')" />
-          <img title="开发成功" src="../../images/tick.ico" class="op_button" onclick="to('../opp/edit.html')" /></td>
+          <td><img title="制定计划" src="images/pencil.ico" class="op_button" onclick="to('opp/dispatch.jsp')" /> 
+          <img title="执行并打印计划" src="images/right.ico" class="op_button" onclick="to('opp/edit.jsp')" />
+          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="to('opp/edit.jsp')" /></td>
         </tr>
         <tr>
           <td>4</td>
@@ -94,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>1389675634</td>
           <td>2007-12-6</td>
           <td>已归档</td>
-          <td><img title="已归档" src="../../images/briefcase.ico" class="op_button" /></td>
+          <td><img title="已归档" src="images/briefcase.ico" class="op_button" /></td>
         </tr>
       </tbody>
     </table>

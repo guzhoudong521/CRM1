@@ -26,6 +26,6 @@ public class CustplanAction {
 		
 		mod.addAttribute("queryp",qq);
 		
-		return "";
+		return "../crm_sale/dev/list";
 	}
 }
