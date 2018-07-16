@@ -54,7 +54,7 @@ public class QueryParam {
 		return lianxiren;
 	}
 	public void setLianxiren(String lianxiren) {
-		this.lianxiren = lianxiren;
+		this.lianxiren = "%"+lianxiren+"%";
 	}
 	public Date getChuangjianshijian() {
 		return chuangjianshijian;

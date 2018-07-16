@@ -36,17 +36,17 @@
  	 select x.*,rownum r from (
            select u.uname cjr,u.userid cjrid,c.*,z.userid zxrid,z.uname zxr from users u,custplan c,users z
            where u.userid(+)=c.chuangjianren
-           and z.userid=c.zhixinren 
+           and z.userid(+)=c.zhixinren 
            <if test="name!=null">
           	    and  c.gongsi like  #{name}       
            </if>
            <if test="lianxiren!=null">
            		and  c.lianxiren like #{lianxiren}
            </if>
-           <if test="chuangjianshijian!=null">
+          <!--  <if test="chuangjianshijian!=null">
            		and  c.chuangjianshijian=#{chuangjianshijian}
-           </if>           
-            order by c.chuangjianshijian
+           </if>   -->         
+            order by c.chuangjianshijian desc
            ) x)
            where r>=(#{page}-1)*#{pageSize} and r&lt;#{page}*#{pageSize}
 	</select>
@@ -54,32 +54,44 @@
 	<select id="getById" parameterType="int" resultMap="custplanmap">
 		   select u.uname cjr,u.userid cjrid,c.*,z.userid zxrid,z.uname zxr from users u,custplan c,users z
            where u.userid(+)=c.chuangjianren
-           and z.userid=c.zhixinren 
+           and z.userid(+)=c.zhixinren 
            and c.planid=#{0}
 	</select>
 	
 	<select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
 		  select count(1) from users u,custplan c,users z
            where u.userid(+)=c.chuangjianren
-           and z.userid=c.zhixinren 
+           and z.userid(+)=c.zhixinren 
            <if test="name!=null">
           	    and  c.gongsi like  #{name}       
            </if>
            <if test="lianxiren!=null">
            		and  c.lianxiren like #{lianxiren}
            </if>
-           <if test="chuangjianshijian!=null">
+           <!-- <if test="chuangjianshijian!=null">
            		and  c.chuangjianshijian=#{chuangjianshijian}
-           </if>        
+           </if> -->        
 	</select>
 	
-	<insert id="add" parameterType="custplan">
+	<insert id="add" parameterType="crm.entity.Custplan">
 		insert into custplan values(quanju_seq.nextval,#{gongsi},#{gaiyao},
 		#{lianxiren},#{miaoshu},#{chuangjianren.userid},#{laiyuan},#{jilv},#{dianhua},#{chuangjianshijian},
-		null,null,#{zhaungtai});
+		null,#{zhixingren.userid},'未开发')
 	</insert>
 	
-	<!-- 123 -->
+	<update id="mod" parameterType="crm.entity.Custplan">
+		
+		update CUSTPLAN set 
+		<if test="zhixingshijian!=null">
+		zhixingshijian=#{zhixingshijian},
+		</if>
+		<if test="zhixingren!=null">
+		zhixinren=#{zhixingren.userid},
+		</if>
+		zhuangtai=#{zhaungtai}
+		where planid=#{planid}
+		
+	</update>
 	
 	
 	

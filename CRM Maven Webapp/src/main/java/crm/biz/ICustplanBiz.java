@@ -13,4 +13,6 @@ public interface ICustplanBiz {
 	public void modPlan(Custplan cus);
 	
 	public Custplan getById(int id);
+	
+	
 }

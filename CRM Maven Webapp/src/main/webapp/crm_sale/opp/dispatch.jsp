@@ -6,11 +6,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>营销管理</title>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/javascript.js"></script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/javascript.js"></script>
 </head>
 
 <body>
@@ -19,64 +20,74 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-  	<a href="#" title="返回" onclick="back()">返回</a>
-    <a href="#" title="保存" onclick="save('list.html');">保存</a>
+  	<!-- <a href="#" title="返回" onclick="back()">返回</a>
+    <a href="#" title="保存" onclick="save('list.html');">保存</a> -->
   </div>
   <div class="out_bg">
     <div class="in_bg">
+    <form action="plan/domod.action" method="post">
       <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
+      <input type="hidden" name="planid" value="${currplan.planid }">
         <tr>
           <td width="126" height="50">编号</td>
-          <td width="411">1</td>
+          <td width="411"><input type="text" name="planid" value="${currplan.planid }" disabled="disabled" /></td>
           <td width="126">机会来源</td>
-          <td width="442">路上碰见</td>
+          <td width="442"><input type="text"  value="${currplan.laiyuan }" disabled="disabled" /></td>
         </tr>
         <tr>
           <td height="50">客户名称</td>
-          <td>睿智数码</td>
+          <td><input type="text" value="${currplan.gongsi }" disabled="disabled" /></td>
           <td>成功几率</td>
-          <td>80%</td>
+          <td><input type="text" value="${currplan.jilv }" disabled="disabled" /></td>
         </tr>
         <tr>
           <td height="50">概要</td>
-          <td>这个客户很重要！</td>
+          <td><input type="text" value="${currplan.gaiyao }" disabled="disabled" /></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td height="50">联系人</td>
-          <td>时先生</td>
+          <td><input type="text" value="${currplan.lianxiren }" disabled="disabled" /></td>
           <td>联系人电话</td>
-          <td>15037715979</td>
+          <td><input type="text" value="${currplan.dianhua }" disabled="disabled" /></td>
         </tr>
         <tr style="padding:0px;">
           <td valign="top">机会描述</td>
-          <td>三天内拿下！</td>
+          <td><textarea rows="6" cols="36" name="miaoshu" disabled="disabled"  />${currplan.miaoshu }</textarea></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
         <tr>
           <td height="50">创建人</td>
-          <td>Mr.Shi</td>
+          <td><input type="text" value="${currplan.chuangjianren.uname }" disabled="disabled" /></td>
           <td>创建时间</td>
-          <td>2013-9-25</td>
+          <td><input type="text" value="${currplan.chuangjianshijian }" disabled="disabled" /></td>
         </tr>
         <tr>
           <td height="50">指派给</td>
           <td>
-          	<select style="width:311px;height:30px;">
-				<option>请选择...</option>
-				<option>小明</option>
-				<option>旺财</option>
-				<option>球球</option>
-				<option>孙小美</option>
-				<option>周洁轮</option>
+          	<select name="zhixingren.userid" style="width:311px;height:30px;">			
+				<option value="0">小明</option>
+				<option value="1">旺财</option>
+				<option value="2">球球</option>
+				<option value="3" selected="selected">孙小美</option>
+				<option value="4">周洁轮</option>
 			</select>
            </td>
-          <td>指派时间</td>
-          <td><input type="text" disabled="disabled"/></td>
+          <td></td>
+          <td></td>
+        </tr>
+          <tr >
+          
+          <td colspan="4" align="center" style="height:60px">
+	          <input style="height:30px;width:120px" type="submit" value="提交" />
+	          <input style="height:30px;width:120px" type="reset" value="重置" />
+          </td>
+          
         </tr>
       </table>
+      </form>
     </div>
   </div>
 </div>
