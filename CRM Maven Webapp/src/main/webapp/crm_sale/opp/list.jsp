@@ -3,17 +3,19 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>营销管理</title>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../../js/javascript.js"></script>
-<script type="text/javascript" src="../../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 
 </head>
 
@@ -53,10 +55,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <th width="20%">操作</th>
         </tr>
       </thead>
+      <c:forEach items="${par.list}" var="us">
+         <tbody>
+        <tr>
+          <td>${us.userid}</td>
+          <td><a href="#">${us.uname }</a></td>
+          <td>******</td>
+          <td>${us.role.rolename }</td>
+          <td>
+          	<select>
+            	<option>--请选择--</option>
+                <option>BOSS</option>
+                <option>销售主管</option>
+                <option></option>
+                <option></option>
+            </select>
+           </td>
+          </tr>
+         </tbody>
+      </c:forEach>
       <tbody>
         <tr>
           <td>5</td>
-          <td><a href="#">吴志远</a></td>
+          <td><a href="#">吴志远${par.page }</a></td>
           <td>******</td>
           <td>客户经理</td>
           <td>
@@ -70,6 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </td>
         </tr>
       </tbody>
+      
     </table>
   </div>
   <div class="position"> 

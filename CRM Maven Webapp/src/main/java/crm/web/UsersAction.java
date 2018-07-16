@@ -2,6 +2,7 @@ package crm.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,11 +24,11 @@ public class UsersAction {
 	}
 	
 	@RequestMapping("/getAll")
-	public ModelAndView getAll(QueryParam par,ModelAndView mav){
+	public String getAll(QueryParam par,Model mav){
 		QueryParam p=biz.getAllUser(par);
-		mav.addObject("par", p);
-		mav.setViewName("crm_sale/opp/list");
-		return mav;
+		System.out.println(p.getPage());
+        mav.addAttribute("par", p);
+		return "../crm_sale/opp/list";
 	}
   	
 }

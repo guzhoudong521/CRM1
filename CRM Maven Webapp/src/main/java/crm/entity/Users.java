@@ -6,7 +6,7 @@ public class Users {
 	private int userid;
 	private String uname;
 	private String pwd;
-	private int roleid;  
+	private Role role;  
 	private List<Authority> list;
 	
 	
@@ -34,13 +34,11 @@ public class Users {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-	public int getRoleid() {
-		return roleid;
+	public Role getRole() {
+		return role;
 	}
-	public void setRoleid(int roleid) {
-		this.roleid = roleid;
+	public void setRole(Role role) {
+		this.role = role;
 	}
-	
-	
 	
 }

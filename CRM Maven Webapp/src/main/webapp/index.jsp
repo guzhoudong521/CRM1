@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="loader"><img src="images/loader.gif"/></div>
     <frame src="left.jsp" scrolling="no" noresize="noresize" marginheight="0" marginwidth="0" />
     <frame src="switch.jsp" scrolling="no" noresize="noresize" marginheight="0" marginwidth="0" />
-    <frame src="crm_sale/opp/list.jsp" noresize="noresize" marginheight="0" marginwidth="0" name="rightFrame" target="_self" />
+    <frame src="us/getAll.action" noresize="noresize" marginheight="0" marginwidth="0" name="rightFrame" target="_self" />
   </frameset>
   <frame src="UntitledFrame-3">
 </frameset>
