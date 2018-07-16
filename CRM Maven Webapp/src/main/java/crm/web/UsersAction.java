@@ -30,7 +30,7 @@ public class UsersAction {
 	public String getAll(QueryParam par,Model mav){
 		QueryParam p=biz.getAllUser(par);
         mav.addAttribute("par", p);
-		return "crm_sale/opp/list";
+		return "crm_sale/opp/listx";
 	}
 	
 	@RequestMapping("/login")

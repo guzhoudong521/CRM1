@@ -10,6 +10,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>营销管理</title>
+<style>	
+	#chaxundiv{
+		
+		position:absolute;
+		top:55px;
+		left:590px;	
+	}	
+</style>
 <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
@@ -21,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        $("#searchForm").submit();
     }
     function page(page){
-       $("#pages").val(page);
+       $("#pages").html(page);
        $("#searchForm").submit();
     }
     function del(id){
@@ -44,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：系统管理&nbsp;&gt;&nbsp;权限分配&nbsp;&gt;&nbsp;
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
+  <div class="operation_button" id="chaxundiv">
     <a href="crm_sale/opp/addUser.jsp" title="添加员工">添加员工</a>
   	<a href="crm_sale/opp/add.jsp" title="新建" onclick="to('crm_sale/opp/add.html')">新建计划</a>
     <a href="javascript:selectSub()" title="查询">查询</a>
@@ -53,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="us/getAll.action" method="post" id="searchForm">
     <ul class="txt">
       <li>工号：
-        <input type="hidden" name="page" id="pages">
+        <input type="hidden" name="page" id="pages" value="1">
         <input type="text" name="gonghao" size="30" />
       </li>
       <li>员工姓名：
