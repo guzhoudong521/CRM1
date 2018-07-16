@@ -17,7 +17,7 @@
     
     
     <select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
-	        select count(1) from  (select u.*,rownum r from users u  where 1=1
+	       select count(1) from users u  where 1=1
         <if test="name!=null">
       and u.uname like #{name}
       </if>
