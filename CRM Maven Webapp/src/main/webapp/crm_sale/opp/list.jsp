@@ -20,6 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function selectSub(){
        $("#searchForm").submit();
     }
+    function page(page){
+       $("#pages").val(page);
+       $("#searchForm").submit();
+    }
 </script>
 </head>
 
@@ -43,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="us/getAll.action" method="post" id="searchForm">
     <ul class="txt">
       <li>工号：
-        <input >
+        <input type="hidden" name="page" id="pages">
         <input type="text" name="gonghao" size="30" />
       </li>
       <li>员工姓名：
@@ -87,7 +91,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="position"> 
   	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
-    <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
+    <a href="javascript:page(1)" title="首页">&laquo;首页</a>
+    <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
+    <c:forEach begin="1" end="${par.maxPages}" var="pp">
+    	 <a href="javascript:page(${pp})" class="${pp==par.page?'number current':'number' }" title="${pp}">${pp}</a> 
+    </c:forEach> 
+    <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
+    <a href="javascript:page(${maxPages})" title="末页">末页&raquo;
+    </a> 转到&nbsp;
     <input value="1" size="2" />
     &nbsp;页<a href="#">GO</a>
     </li>

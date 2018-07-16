@@ -50,4 +50,10 @@ public class UsersAction {
 		session.removeAttribute("curruser");
 		return "redirect:../login";
 	}
+	
+	@RequestMapping("/addUser")
+	public String addUser(Users us){
+		biz.addUser(us);
+		return "redirect:getAll.action";
+	}
 }

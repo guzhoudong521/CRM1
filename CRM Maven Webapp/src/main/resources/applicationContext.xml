@@ -41,4 +41,20 @@
      <property name="basePackage" value="crm.dao"/>
      <property name="sqlSessionFactoryBeanName" value="sessionfactory"/>
   </bean>
+  <!-- JSON -->
+  <bean id="jsonconverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+           <list>
+              <value>application/json;charset=utf-8</value>
+           </list>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+       <property name="messageConverters">
+         <list>
+            <ref bean="jsonconverter"/>
+         </list>
+       </property>
+     </bean>
 </beans>

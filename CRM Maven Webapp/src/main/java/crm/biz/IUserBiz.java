@@ -6,4 +6,5 @@ import crm.util.QueryParam;
 public interface IUserBiz {
 	public QueryParam getAllUser(QueryParam par);
 	public Users login(String name,String pwd);
+	public void addUser(Users us);
 }

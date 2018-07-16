@@ -40,4 +40,8 @@
     <select id="login" resultMap="UsersMap">
         select * from users u, role r where u.roleid=r.roleid  and uname=#{0} and pwd=#{1}
     </select>
+    
+    <insert id="addUser" parameterType="crm.entity.Users">
+        insert into users values(quanju_seq.nextval,#{uname},#{pwd},#{role.roleid})
+    </insert>
 </mapper>

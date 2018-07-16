@@ -35,4 +35,10 @@ public class UserBizImpl implements IUserBiz {
 		// TODO 自动生成的方法存根
 		return dao.login(name, pwd);
 	}
+
+
+	public void addUser(Users us) {
+		// TODO 自动生成的方法存根
+		dao.addUser(us);
+	}
 }
