@@ -16,7 +16,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
-
+<script>
+    function selectSub(){
+       $("#searchForm").submit();
+    }
+</script>
 </head>
 
 <body>
@@ -31,18 +35,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-  	<a href="#" title="新建" onclick="to('add.html')">新建</a>
-    <a href="#" title="查询">查询</a>
+  	<a href="#" title="新建" onclick="to('crm_sale/opp/add.html')">新建</a>
+    <a href="javascript:selectSub()" title="查询">查询</a>
   </div>
   <div class="search_input">
+  <form action="us/getAll.action" method="post" id="searchForm">
     <ul class="txt">
       <li>工号：
-        <input type="text" size="30" />
+        <input type="text" name="gonghao" size="30" />
       </li>
       <li>员工姓名：
-        <input type="text" size="30" />
+        <input type="text" name="name" size="30" />
       </li>
     </ul>
+      </form>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
@@ -60,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
           <td>${us.userid}</td>
           <td><a href="#">${us.uname }</a></td>
-          <td>******</td>
+          <td>${ us.pwd}</td>
           <td>${us.role.rolename }</td>
           <td>
           	<select>
@@ -74,23 +80,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </tr>
          </tbody>
       </c:forEach>
-      <tbody>
-        <tr>
-          <td>5</td>
-          <td><a href="#">吴志远${par.page }</a></td>
-          <td>******</td>
-          <td>客户经理</td>
-          <td>
-          	<select>
-            	<option>--请选择--</option>
-                <option>BOSS</option>
-                <option>销售主管</option>
-                <option></option>
-                <option></option>
-            </select>
-          </td>
-        </tr>
-      </tbody>
       
     </table>
   </div>

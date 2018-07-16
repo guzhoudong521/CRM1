@@ -26,7 +26,6 @@ public class UsersAction {
 	@RequestMapping("/getAll")
 	public String getAll(QueryParam par,Model mav){
 		QueryParam p=biz.getAllUser(par);
-		System.out.println(p.getPage());
         mav.addAttribute("par", p);
 		return "../crm_sale/opp/list";
 	}

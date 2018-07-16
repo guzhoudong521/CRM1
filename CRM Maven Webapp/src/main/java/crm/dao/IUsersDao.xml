@@ -2,8 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="crm.dao.IUsersDao">
-    <select id="getAllUser" parameterType="crm.util.QueryParam" resultType="users">
-        select * from  (select u.*,rownum r from users u  where 1=1
+    <resultMap type="crm.entity.Users" id="UsersMap">
+       <id column="userid" property="userid"/>
+       <result column="uname" property="uname"/>
+       <result column="pwd" property="pwd"/>
+       <association property="role" resultMap="roleMap"/>
+    </resultMap>
+    <resultMap type="crm.entity.Role" id="roleMap">
+        <result column="roleid" property="roleid"/>
+        <result column="rolename" property="rolename"/>
+    </resultMap>
+
+    <select id="getAllUser" parameterType="crm.util.QueryParam" resultMap="UsersMap">
+        select * from  (select u.*,r.rolename, rownum r from users u，role r where u.roleid=r.roleid(+)
         <if test="name!=null">
       and u.uname like #{name}
       </if>
