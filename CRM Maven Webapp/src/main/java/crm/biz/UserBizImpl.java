@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import crm.dao.IUsersDao;
+import crm.entity.Users;
 import crm.util.QueryParam;
 @Service
 public class UserBizImpl implements IUserBiz {
@@ -28,4 +29,10 @@ public class UserBizImpl implements IUserBiz {
 		qq.setList(dao.getAllUser(par));
 	    return qq;
     }
+
+
+	public Users login(String name, String pwd) {
+		// TODO 自动生成的方法存根
+		return dao.login(name, pwd);
+	}
 }

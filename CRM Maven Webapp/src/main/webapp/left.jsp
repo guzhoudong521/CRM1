@@ -18,8 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div>
   <div id="loader"><img src="images/1d_2.gif"/></div>
   <div class="current_user attention"">
-    <div> 欢迎您，<strong>Mr.Shi</strong><br />
-      [系统管理员，<a href="#">退出</a>] </div>
+    <div> 欢迎您，<strong>${sessionScope.curruser.uname }</strong><br />
+      [${sessionScope.curruser.role.rolename }，<a href="us/exit.action">退出</a>] </div>
   </div>
   <div id="sidebar">
     <div id="sidebar-wrapper">

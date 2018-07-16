@@ -35,7 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-  	<a href="crm_sale/opp/add.jsp" title="新建" onclick="to('crm_sale/opp/add.html')">新建</a>
+    <a href="crm_sale/opp/addUser.jsp" title="添加员工">添加员工</a>
+  	<a href="crm_sale/opp/add.jsp" title="新建" onclick="to('crm_sale/opp/add.html')">新建计划</a>
     <a href="javascript:selectSub()" title="查询">查询</a>
   </div>
   <div class="search_input">
