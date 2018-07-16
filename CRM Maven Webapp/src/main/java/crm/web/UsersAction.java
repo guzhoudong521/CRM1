@@ -30,7 +30,7 @@ public class UsersAction {
 	public String getAll(QueryParam par,Model mav){
 		QueryParam p=biz.getAllUser(par);
         mav.addAttribute("par", p);
-		return "../crm_sale/opp/list";
+		return "crm_sale/opp/list";
 	}
 	
 	@RequestMapping("/login")
@@ -42,13 +42,13 @@ public class UsersAction {
 			session.setAttribute("curruser", us);
 			return "redirect:../index.jsp";
 		}else{
-			return "../login";	
+			return "login";	
 		}
 	}
 	@RequestMapping("/exit")
 	public String exit(HttpSession session){
 		session.removeAttribute("curruser");
-		return "redirect:../login";
+		return "redirect:/login";
 	}
 	
 	@RequestMapping("/addUser")
@@ -67,7 +67,7 @@ public class UsersAction {
 	public String getById(int id,Model mm){
 		Users us=biz.getUserById(id);
 		mm.addAttribute("us", us);
-		return "../crm_sale/opp/modUser";
+		return "crm_sale/opp/modUser";
 	}
 	
 	@RequestMapping("/modUser")
