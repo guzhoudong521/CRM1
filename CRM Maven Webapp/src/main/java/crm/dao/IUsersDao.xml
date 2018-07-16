@@ -23,7 +23,7 @@
       </if>
      
       ) t 
-	where t.r between  (#{page}-1)*#{pageSize} and #{page}*#{pageSize}
+	where t.r >(#{page}-1)*#{pageSize} and t.r &lt;= #{page}*#{pageSize}
     </select>
     
     

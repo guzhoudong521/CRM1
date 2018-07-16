@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        $("#searchForm").submit();
     }
     function page(page){
-       $("#pages").html(page);
+       $("#pages").val(page);
        $("#searchForm").submit();
     }
     function del(id){
@@ -61,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="us/getAll.action" method="post" id="searchForm">
     <ul class="txt">
       <li>工号：
-        <input type="hidden" name="page" id="pages" value="1">
-        <input type="text" name="gonghao" size="30" />
+        <input type="hidden" name="page" id="pages" value="${par.page}"/>
+        <input type="text" name="gonghao" size="30"/>
       </li>
       <li>员工姓名：
         <input type="text" name="name" size="30" />
