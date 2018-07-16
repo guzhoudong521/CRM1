@@ -28,7 +28,7 @@
     
     
     <select id="getCount" resultType="int" >
-	       select count(1) from users u  where 1=1
+	    select count(1) from users u  where 1=1
          <if test="name!=null">
          and u.uname like #{name}
          </if>
@@ -48,4 +48,14 @@
     <delete id="delUser">
         delete from users where userid=#{id}
     </delete>
+    
+    <select id="getUserById" resultMap="UsersMap">
+       select u.*,r.rolename from users u，role r 
+       where u.roleid=r.roleid(+)
+       and u.userid=#{id}
+    </select>
+    
+    <update id="modUser" parameterType="crm.entity.Users">
+        update users set uname=#{uname},pwd=#{pwd},roleid=#{role.roleid} where userid=#{userid}
+    </update>
 </mapper>

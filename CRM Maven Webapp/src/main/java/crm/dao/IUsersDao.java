@@ -13,4 +13,6 @@ public interface IUsersDao {
 	public Users login(String name,String pwd);
 	public void addUser(Users us);
 	public void delUser(int id);
+	public Users getUserById(int id);
+	public void modUser(Users us);
 }

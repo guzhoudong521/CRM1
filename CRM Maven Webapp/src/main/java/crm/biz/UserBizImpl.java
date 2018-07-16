@@ -47,4 +47,16 @@ public class UserBizImpl implements IUserBiz {
 		// TODO 自动生成的方法存根
 		dao.delUser(id);
 	}
+
+
+	public Users getUserById(int id) {
+		// TODO 自动生成的方法存根
+		return dao.getUserById(id);
+	}
+
+
+	public void modUser(Users us) {
+		// TODO 自动生成的方法存根
+		dao.modUser(us);
+	}
 }

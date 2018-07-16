@@ -62,4 +62,17 @@ public class UsersAction {
 		biz.delUser(id);
 		return "redirect:getAll.action";
 	}
+	
+	@RequestMapping("/getById")
+	public String getById(int id,Model mm){
+		Users us=biz.getUserById(id);
+		mm.addAttribute("us", us);
+		return "../crm_sale/opp/modUser";
+	}
+	
+	@RequestMapping("/modUser")
+	public String modUser(Users us){
+		biz.modUser(us);
+		return "redirect:getAll.action";
+	}
 }
