@@ -59,6 +59,12 @@ public class CustplanAction {
 		if(cus.getZhaungtai().equals("计划已制定")){
 			
 			return "crm_sale/opp/dayin";
+		}else if(cus.getZhaungtai().equals("开发中"))
+		{
+			Custplan c=biz.getById(id);
+			c.setZhaungtai("开发成功");
+			biz.modPlan(c);
+			return "redirect:/plan/getall.action";
 		}else{
 			
 			return "crm_sale/opp/dispatch";
@@ -76,11 +82,12 @@ public class CustplanAction {
 	}
 	
 	@RequestMapping(value="/zhixing")
-	public String zhixin(){
+	public String zhixin(int id){
 		
-		
-		
-		return "";
+		Custplan c=biz.getById(id);
+		c.setZhaungtai("开发中");
+		biz.modPlan(c);
+		return "redirect:/plan/getall.action";
 	}
 	
 	

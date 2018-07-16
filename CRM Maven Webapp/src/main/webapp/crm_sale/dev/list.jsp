@@ -27,14 +27,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location="plan/getbyid.action?id="+x;
 	}
 </script>
+<style>	
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:570px;
+		
+	}	
+</style>
 </head>
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;客户开发计划&nbsp;&gt;&nbsp;开发计划
+  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;客户开发计划<!-- &nbsp;&gt;&nbsp; -->
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
+  <div id="chaxundiv" class="operation_button">
     <a id="chaxun" href="javascript:void(0)" title="查询">查询</a>
   </div>
   <form id="queryform" action="plan/getall.action" method="post">
@@ -82,10 +91,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	 <img  title="制定计划" src="images/pencil.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />        	
           </c:if>         
            <c:if test="${cus.zhaungtai=='计划已制定'}">  
-            <img title="执行计划" src="images/right.ico" class="op_button" onclick="" />
+            <img title="执行计划" src="images/right.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />
            </c:if>
          <c:if test="${cus.zhaungtai=='开发中'}">        
-          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="to('crm_sale/opp/edit.jsp')" />
+          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />
           </c:if> 
           <c:if test="${cus.zhaungtai=='开发成功'}">
           <img title="已归档" src="images/briefcase.ico" class="op_button" />
