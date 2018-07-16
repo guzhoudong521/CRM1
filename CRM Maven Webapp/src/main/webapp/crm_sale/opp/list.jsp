@@ -35,13 +35,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-  	<a href="#" title="新建" onclick="to('crm_sale/opp/add.html')">新建</a>
+  	<a href="crm_sale/opp/add.jsp" title="新建" onclick="to('crm_sale/opp/add.html')">新建</a>
     <a href="javascript:selectSub()" title="查询">查询</a>
   </div>
   <div class="search_input">
   <form action="us/getAll.action" method="post" id="searchForm">
     <ul class="txt">
       <li>工号：
+        <input >
         <input type="text" name="gonghao" size="30" />
       </li>
       <li>员工姓名：
@@ -84,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </table>
   </div>
   <div class="position"> 
-  	共59条记录&nbsp;每页10条&nbsp;第1页/共5页 
+  	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
     <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
     <input value="1" size="2" />
     &nbsp;页<a href="#">GO</a>
