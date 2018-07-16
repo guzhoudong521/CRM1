@@ -7,4 +7,5 @@ public interface IUserBiz {
 	public QueryParam getAllUser(QueryParam par);
 	public Users login(String name,String pwd);
 	public void addUser(Users us);
+	public void delUser(int id);
 }

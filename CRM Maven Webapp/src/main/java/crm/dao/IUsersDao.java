@@ -12,4 +12,5 @@ public interface IUsersDao {
 	public int getCount(@Param("name")String name,@Param("gonghao")Integer gonghao);
 	public Users login(String name,String pwd);
 	public void addUser(Users us);
+	public void delUser(int id);
 }

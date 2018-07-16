@@ -56,4 +56,10 @@ public class UsersAction {
 		biz.addUser(us);
 		return "redirect:getAll.action";
 	}
+	
+	@RequestMapping("/delUser")
+	public String delUser(int id){
+		biz.delUser(id);
+		return "redirect:getAll.action";
+	}
 }

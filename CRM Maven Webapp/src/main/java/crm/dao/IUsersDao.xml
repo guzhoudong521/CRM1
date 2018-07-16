@@ -44,4 +44,8 @@
     <insert id="addUser" parameterType="crm.entity.Users">
         insert into users values(quanju_seq.nextval,#{uname},#{pwd},#{role.roleid})
     </insert>
+    
+    <delete id="delUser">
+        delete from users where userid=#{id}
+    </delete>
 </mapper>
