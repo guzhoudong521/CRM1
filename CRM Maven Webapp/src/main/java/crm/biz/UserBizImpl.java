@@ -8,7 +8,7 @@ import crm.entity.Users;
 import crm.util.QueryParam;
 @Service
 public class UserBizImpl implements IUserBiz {
-	/*qwewqeq*/
+	
 	
 	@Autowired
    private IUsersDao dao;

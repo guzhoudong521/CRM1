@@ -135,7 +135,7 @@
 		insert into contact values(quanju_seq.nextval,#{customer.custid},#{coname},#{cosex},#{cojob},#{workphone},#{cophone},#{notes})	
 	</insert>
 	
-	
+	<!-- qwewq -->
 	
 	
 	

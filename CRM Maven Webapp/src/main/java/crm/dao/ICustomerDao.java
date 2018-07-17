@@ -9,7 +9,7 @@ import crm.entity.Customer;
 import crm.util.QueryParam;
 
 public interface ICustomerDao {
-
+	/*qwewqeq*/
 	
 	public List<Customer> getAll(QueryParam q);
 	

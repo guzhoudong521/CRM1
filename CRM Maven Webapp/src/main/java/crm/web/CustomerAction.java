@@ -71,7 +71,7 @@ public class CustomerAction {
 		}
 		return "";
 	}
-	
+	/*asdsad*/
 	@RequestMapping("/modcust")
 	public String modCust(Customer cust){
 		biz.modCust(cust);
