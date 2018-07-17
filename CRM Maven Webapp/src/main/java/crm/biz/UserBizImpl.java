@@ -27,6 +27,8 @@ public class UserBizImpl implements IUserBiz {
 		qq.setPage(par.getPage());
 		qq.setMaxRows(dao.getCount(par.getName(),par.getGonghao()));
 		qq.setList(dao.getAllUser(par));
+		qq.setName(par.getName());
+		qq.setGonghao(par.getGonghao());
 	    return qq;
     }
 

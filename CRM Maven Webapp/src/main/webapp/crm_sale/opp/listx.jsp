@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        $("#searchForm").submit();
     }
     function page(page){
-       $("#pages").html(page);
+       $("#pages").val(page);
        $("#searchForm").submit();
     }
     function del(id){
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>-->
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：系统管理&nbsp;&gt;&nbsp;权限分配&nbsp;&gt;&nbsp;
+  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;员工列表&nbsp;&gt;&nbsp;
     <hr class="hr1" />
   </div>
   <div class="operation_button" id="chaxundiv">
@@ -61,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <form action="us/getAll.action" method="post" id="searchForm">
     <ul class="txt">
       <li>工号：
-        <input type="hidden" name="page" id="pages" value="1">
-        <input type="text" name="gonghao" size="30" />
+        <input type="hidden" name="page" id="pages" value="${par.page}"/>
+        <input type="text" name="gonghao" size="30"/>
       </li>
       <li>员工姓名：
         <input type="text" name="name" size="30" />
@@ -103,9 +103,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </c:forEach> 
     <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
     <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;
-    </a> 转到&nbsp;
+    <!-- </a> 转到&nbsp;
     <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a>
+    &nbsp;页<a href="#">GO</a> -->
     </li>
   </div>
 </div>

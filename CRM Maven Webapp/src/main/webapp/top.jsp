@@ -17,18 +17,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="logo"></div>
     <div class="navigation">
   <ul class="shortcut_buttons_set">
-    <li><a class="shortcut_button" href="#"><span> <img src="images/home.ico" alt="icon" /><br />
+    <li><a class="shortcut_button" href="#"><span> <img src="images/home.ico" width="55px" alt="icon" /><br />
       首页 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/calendar.ico" alt="icon" /><br />
+    <li><a class="shortcut_button" href="#"><span> <img src="images/calendar.ico"  width="55px"  alt="icon" /><br />
       日程 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/clipboard.ico" alt="icon" /><br />
+    <li><a class="shortcut_button" href="#"><span> <img src="images/clipboard.ico"  width="55px"  alt="icon" /><br />
       公告栏 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/write.png" alt="icon" /><br />
+    <li><a class="shortcut_button" href="#"><span> <img src="images/write.png"  width="55px"  alt="icon" /><br />
       写消息 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/bubble.ico" alt="icon" /><br />
+    <li><a class="shortcut_button" href="#"><span> <img src="images/bubble.ico"  width="55px"  alt="icon" /><br />
       我的消息 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/trash.ico" alt="icon" /><br />
-      回收站 </span></a></li>
+    <li><a class="shortcut_button" href="crm_sale/opp/edit.jsp" target="rightFrame"><span> <img src="images/gear.ico"  width="55px"  alt="icon" /><br />
+      系统设置 </span></a></li>
   </ul>
   <!-- end shortcut_buttons_set --> 
 </div>
