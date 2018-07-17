@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crm.dao.IServiceDao">
+
+   <insert id="addService" parameterType="crm.entity.Services">
+       insert into service values(quanju_sql.nextval,#{createuser.userid},#{createtime},'新创建',#{customer},#{servicetyle},#{des})
+   </insert>
+</mapper>
