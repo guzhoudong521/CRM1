@@ -13,33 +13,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
 </head>
-<script src="js/jquery-1.12.4.js"></script>
-<script>
-		$(function(){
-		
-		$.post("us/ajaxlist.action","",function(res){
-			
-			$("#selectid").html("");
-				for(var x in res){
-					$("#selectid").append("<option value="+res[x].userid+">"+res[x].uname+"</option>");
-				} 
-				
-			},"json") 
-						
-		})
-	
-</script>
+
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;<a href="list.html">销售机会</a>&nbsp;&gt;&nbsp;指派销售机会
+  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;<a href="list.html">销售机会</a>&nbsp;&gt;&nbsp;执行打印计划
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-
+  	<!-- <a href="#" title="返回" onclick="back()">返回</a>
+    <a href="#" title="保存" onclick="save('list.html');">保存</a> -->
   </div>
   <div class="out_bg">
     <div class="in_bg">
-    <form action="plan/domod.action" method="post">
+    <form action="" method="post">
       <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
       <input type="hidden" name="planid" value="${currplan.planid }">
         <tr>
@@ -81,9 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
           <td height="50">指派给</td>
           <td>
-          	<select id="selectid" name="zhixingren.userid" style="width:311px;height:30px;">			
-				
-			</select>
+          	<input type="text" value="${currplan.zhixingren.uname }" disabled="disabled" />
            </td>
           <td></td>
           <td></td>
@@ -91,8 +75,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <tr >
           
           <td colspan="4" align="center" style="height:60px">
-	          <input style="height:30px;width:120px" type="submit" value="提交" />
-	          <input style="height:30px;width:120px" type="reset" value="重置" />
+	          <button style="height:30px;width:120px"><a title="打印计划并下发任务" href="plan/zhixing.action?id=${currplan.planid}">打印计划</a></button>
+	          <button style="height:30px;width:120px"><a href="plan/getall.action">返回</a></button>
           </td>
           
         </tr>

@@ -8,6 +8,15 @@ public class Customer {
 	private Area area;
 	private Custgrade custgrade;
 	private List<Contact> list;
+	private Users mgr;
+	
+	
+	public Users getMgr() {
+		return mgr;
+	}
+	public void setMgr(Users mgr) {
+		this.mgr = mgr;
+	}
 	public int getCustid() {
 		return custid;
 	}

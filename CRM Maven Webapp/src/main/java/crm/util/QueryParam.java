@@ -13,6 +13,36 @@ public class QueryParam {
 	private String name;
 	private String lianxiren;
 	private Date chuangjianshijian;
+	private String zhuangtai;
+	private Integer areaid;
+	private Integer gradeid;
+	private Integer custid;
+	
+	
+	public Integer getCustid() {
+		return custid;
+	}
+	public void setCustid(Integer custid) {
+		this.custid = custid;
+	}
+	public Integer getGradeid() {
+		return gradeid;
+	}
+	public void setGradeid(Integer gradeid) {
+		this.gradeid = gradeid;
+	}
+	public Integer getAreaid() {
+		return areaid;
+	}
+	public void setAreaid(Integer areaid) {
+		this.areaid = areaid;
+	}
+	public String getZhuangtai() {
+		return zhuangtai;
+	}
+	public void setZhuangtai(String zhuangtai) {
+		this.zhuangtai = zhuangtai;
+	}
 	public int getPage() {
 		return page;
 	}

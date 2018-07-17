@@ -43,12 +43,16 @@
            <if test="lianxiren!=null">
            		and  c.lianxiren like #{lianxiren}
            </if>
+           <if test="zhuangtai!=null and zhuangtai!=''">
+           		and c.zhuangtai=#{zhuangtai}
+           </if>
           <!--  <if test="chuangjianshijian!=null">
            		and  c.chuangjianshijian=#{chuangjianshijian}
            </if>   -->         
             order by c.chuangjianshijian desc
            ) x)
-           where r>=(#{page}-1)*#{pageSize} and r&lt;#{page}*#{pageSize}
+           where <!-- r between (#{page}-1)*#{pageSize} and #{page}*#{pageSize} -->
+           r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize} 
 	</select>
 	
 	<select id="getById" parameterType="int" resultMap="custplanmap">
@@ -68,9 +72,12 @@
            <if test="lianxiren!=null">
            		and  c.lianxiren like #{lianxiren}
            </if>
-           <!-- <if test="chuangjianshijian!=null">
+           <if test="zhuangtai!=null and zhuangtai!=''">
+           		and c.zhuangtai=#{zhuangtai}
+           </if>
+           <if test="chuangjianshijian!=null and chuangjianshijian!=''">
            		and  c.chuangjianshijian=#{chuangjianshijian}
-           </if> -->        
+           </if>     
 	</select>
 	
 	<insert id="add" parameterType="crm.entity.Custplan">

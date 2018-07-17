@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -6,14 +7,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<base href="<%=basePath %>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>客户开发计划</title>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../../js/javascript.js"></script>
-<script type="text/javascript" src="../../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+		$(function(){
+		
+		$.post("us/ajaxlist.action","",function(res){
+			
+			$("#selectid").html("<option value=''>全部</option>");
+				for(var x in res){
+					$("#selectid").append("<option value="+res[x].userid+">"+res[x].uname+"</option>");
+				} 
+				
+			},"json") 
+			
+			$.post("cust/getallarea.action","",function(res){
+				
+				$("#areaid").html("<option value=''>全部</option>");
+				for(var i in res){
+					$("#areaid").append("<option value="+res[i].areaid+">"+res[i].areaname+"</option>");
+				}
+				
+			},"json")
+			
+			
+			$.post("cust/getallgrade.action","",function(res){
+				$("#gradeid").html("<option value=''>全部</option>");
+				for(var i in res){
+					
+					$("#gradeid").append("<option value="+res[i].gid+">"+res[i].gname+"</option>");
+					
+				}
+				
+			},"json");
+			
+			$("#chaxuna").click(function(){
+				$("#queryform").submit();
+			});
+						
+		})
+	
+</script>
+
+<style>	
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:800px;
+		
+	}	
+</style>
 </head>
 
 <body>
@@ -21,48 +73,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;客户信息
     <hr class="hr1" />
   </div>
-  <div class="operation_button"> <a href="#" title="查询">查询</a> </div>
+  <div id="chaxundiv" class="operation_button"> <a id="chaxuna" href="javascript:void(0)" title="查询">查询</a> </div>
   <div class="search_input">
+  <form id="queryform" action="cust/dolist.action" method="post">
     <ul class="txt">
       <li>客户名称：
-        <input type="text" size="30" />
+        <input type="text" name="name" size="30" />
       </li>
       <li>客户经理：
-        <select>
-          <option>全部</option>
-          <option>小明</option>
-          <option>小红</option>
-          <option>小李</option>
-        </select>
+        <select id="selectid" name="gonghao"></select>
       </li>
       <li>地区：
-        <select>
-          <option>全部</option>
-          <option>北京</option>
-          <option>华北</option>
-          <option>中南</option>
-          <option>东北</option>
-          <option>西部</option>
+        <select id="areaid" name="areaid">
+         
         </select>
       </li>
       <li>客户等级：
-        <select>
-          <option>全部</option>
-          <option>战略合作伙伴</option>
-          <option>合作伙伴</option>
-          <option>大客户</option>
-          <option>普通客户</option>
+        <select id="gradeid" name="gradeid">
+          
         </select>
       </li>
     </ul>
+    </form>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
-          <th width="5%">序号</th>
+         
           <th width="15%">客户编号</th>
-          <th width="20%">客户名称</th>
+          <th colspan="2" width="20%">客户名称</th>
           <th width="10%">地区</th>
           <th width="15%">客户经理</th>
           <th width="15%">客户等级</th>
@@ -70,66 +110,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>KH071202001</td>
-          <td><a href="#">聪海信息科技有限公司</a></td>
-          <td>北京</td>
-          <td>小明</td>
-          <td>战略合作伙伴</td>
-          <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="to('edit.html')" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to('linkman.html')" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to('contact.html')" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to('order.html')" /></td>
+      <c:forEach items="${custparam.list }" var="cus">
+      <tr>
+          
+          <td>${cus.custid }</td>
+          <td colspan="2"><a href="#">${cus.cname }</a></td>
+          <td>${cus.area.areaname }</td>
+          <td>${cus.mgr.uname }</td>
+          <td>${cus.custgrade.gname}</td>
+          <td><img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('edit.jsp')" /><img title="联系人" src="images/user.ico" class="op_button" onclick="to('linkman.jsp')" /><img title="交往记录" src="images/bubble.ico" class="op_button" onclick="to('contact.jsp')" /><img title="历史订单" src="images/document.ico" class="op_button" onclick="to('order.jsp')" /></td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>KH071201008</td>
-          <td><a href="#">北京明科科技有限公司</a></td>
-          <td>北京</td>
-          <td>小红</td>
-          <td>普通客户</td>
-          <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="to('edit.html')" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to('linkman.html')" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to('contact.html')" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to('order.html')" /></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>KH071202001</td>
-          <td><a href="#">聪海信息科技有限公司</a></td>
-          <td>北京</td>
-          <td>小明</td>
-          <td>战略合作伙伴</td>
-          <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="to('edit.html')" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to('linkman.html')" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to('contact.html')" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to('order.html')" /></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>KH071201008</td>
-          <td><a href="#">北京明科科技有限公司</a></td>
-          <td>北京</td>
-          <td>小红</td>
-          <td>普通客户</td>
-          <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="to('edit.html')" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to('linkman.html')" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to('contact.html')" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to('order.html')" /></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>KH071202001</td>
-          <td><a href="#">聪海信息科技有限公司</a></td>
-          <td>北京</td>
-          <td>小明</td>
-          <td>战略合作伙伴</td>
-          <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="to('edit.html')" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to('linkman.html')" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to('contact.html')" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to('order.html')" /></td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>KH071201008</td>
-          <td><a href="#">北京明科科技有限公司</a></td>
-          <td>北京</td>
-          <td>小红</td>
-          <td>普通客户</td>
-          <td><img title="编辑" src="../../images/hammer_screwdriver.png" class="op_button" onclick="to('edit.html')" /><img title="联系人" src="../../images/user.ico" class="op_button" onclick="to('linkman.html')" /><img title="交往记录" src="../../images/bubble.ico" class="op_button" onclick="to('contact.html')" /><img title="历史订单" src="../../images/document.ico" class="op_button" onclick="to('order.html')" /></td>
-        </tr>
+      </c:forEach>
       </tbody>
     </table>
   </div>
-  <div class="position"> 共59条记录&nbsp;每页10条&nbsp;第1页/共5页 <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
-    <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a>
+  <div class="position"> 共${custparam.maxRows}条记录&nbsp;每页${custparam.pageSize}条&nbsp;第${custparam.page}页/共${custparam.maxPages}页 
+  <a href="cust/dolist.action?page=1" title="首页">&laquo;首页</a><a href="cust/dolist.action?page=${page-1 }" title="上一页">&laquo; 上一页</a> 
+  <c:forEach begin="1" end="${custparam.maxPages}" var="p">
+ 	 <a href="#" class="${custparam.page==p?'number current':'number' }" title="${p}">${p}</a> 
+  </c:forEach>  
+  <a href="cust/dolist.action?page=${page+1 }" title="下一页">下一页&raquo;</a>
+  <a href="cust/dolist.action?page=${custparam.maxPages}" title="末页">末页&raquo;</a> 
     </li>
   </div>
 </div>

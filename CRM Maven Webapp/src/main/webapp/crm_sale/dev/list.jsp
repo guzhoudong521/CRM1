@@ -27,14 +27,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		location="plan/getbyid.action?id="+x;
 	}
 </script>
+<style>	
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:800px;
+		
+	}	
+</style>
 </head>
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;客户开发计划&nbsp;&gt;&nbsp;开发计划
+  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;客户开发计划<!-- &nbsp;&gt;&nbsp; -->
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
+  <div id="chaxundiv" class="operation_button">
     <a id="chaxun" href="javascript:void(0)" title="查询">查询</a>
   </div>
   <form id="queryform" action="plan/getall.action" method="post">
@@ -45,6 +54,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </li>
       <li>联系人：
         <input type="text" name="lianxiren" size="30" />
+      </li>
+      <li>状态：
+       <!--  <input type="text" name="lianxiren" size="30" /> -->
+        <select  style="width:150px;align:center" name="zhuangtai">
+        	<option value="">全部</option>
+        	<option value="未开发">未开发</option>
+        	<option value="计划已制定">计划已制定</option>
+        	<option value="开发中">开发中</option>
+        	<option value="开发成功">开发成功</option>
+        </select>
       </li>
       <!-- <li>创建时间：
         <input type="text" name="chuangjianshijian" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
@@ -82,10 +101,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	 <img  title="制定计划" src="images/pencil.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />        	
           </c:if>         
            <c:if test="${cus.zhaungtai=='计划已制定'}">  
-            <img title="执行计划" src="images/right.ico" class="op_button" onclick="" />
+            <img title="执行计划" src="images/right.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />
            </c:if>
          <c:if test="${cus.zhaungtai=='开发中'}">        
-          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="to('crm_sale/opp/edit.jsp')" />
+          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />
           </c:if> 
           <c:if test="${cus.zhaungtai=='开发成功'}">
           <img title="已归档" src="images/briefcase.ico" class="op_button" />
@@ -105,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="#" title="首页">&laquo;首页</a>
     <a href="plan/getall.action?page=${page-1}" title="上一页">&laquo; 上一页</a> 
 	    <c:forEach begin="1" end="${queryp.maxPages}" var="pp">
-	    	 <a href="plan/getall.action?page=${pp}" class="number current" title="${pp}">${pp}</a> 
+	    	 <a href="plan/getall.action?page=${pp}" class="${queryp.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
 	    </c:forEach>
     <a href="plan/getall.action?page=${page+1}" title="下一页">下一页&raquo;</a>
     <a href="#" title="末页">末页&raquo;</a>
