@@ -135,10 +135,39 @@
 		insert into contact values(quanju_seq.nextval,#{customer.custid},#{coname},#{cosex},#{cojob},#{workphone},#{cophone},#{notes})	
 	</insert>
 	
-	<!-- qwewq -->
+	<update id="modContact" parameterType="contact" >
+		
+		update  contact <set> 
+		<if test="coname!=null and coname!=''">
+		coname=#{coname},
+		</if>
+		<if test="cosex!=null and cosex!=''">
+		cosex=#{cosex},
+		</if>
+		<if test="cojob!=null and cojob!=''">
+		cojob=#{cojob},
+		</if>
+		<if test="workphone!=null and workphone!=''">
+		workphone=#{workphone},
+		</if>
+		<if test="cophone!=null and cophone!=''">
+		cophone=#{cophone},
+		</if>
+		<if test="notes!=null and notes!=''">
+		notes=#{notes},
+		</if>
+	</set>
+		where CONTCATID=#{contcatid}
+		
+	</update>
 	
+	<select	id="getConById" resultType="contact" parameterType="int">
+		select * from contact where CONTCATID=#{0}
+	</select>
 	
-	
+	<delete id="delCon" parameterType="int">
+		delete from  contact  where CONTCATID=#{0}
+	</delete>
 	
 	
 	

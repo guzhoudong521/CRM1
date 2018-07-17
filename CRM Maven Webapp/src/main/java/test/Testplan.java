@@ -71,7 +71,13 @@ public class Testplan {
 		
 		ICustomerBiz bizx=con.getBean(ICustomerBiz.class);
 		
-		Contact cont=new Contact();
+		/*Contact cont=new Contact();
+		cont.setContcatid(1083);
+		cont.setConame("王先生");
+		bizx.modContact(cont);*/
+		Contact cont= bizx.getConById(1083);
+		System.out.println(cont.getConame());
+		/*Contact cont=new Contact();
 		cont.setCojob("清洁工");
 		cont.setConame("李女士");
 		cont.setCophone("13556333546");
@@ -81,7 +87,7 @@ public class Testplan {
 		cont.setCustomer(c);
 		cont.setWorkphone("030-5556-8885");
 		cont.setNotes("无");
-		bizx.addContact(cont);
+		bizx.addContact(cont);*/
 		
 		/*Customer c=bizx.getById(1087);
 		c.setCname("星辰互联5");
