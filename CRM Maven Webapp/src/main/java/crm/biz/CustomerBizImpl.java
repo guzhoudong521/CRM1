@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import crm.dao.ICustomerDao;
 import crm.entity.Area;
+import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
 import crm.util.QueryParam;
@@ -47,6 +48,16 @@ public class CustomerBizImpl implements ICustomerBiz {
 	public List<Custgrade> getAllGrade() {
 		// TODO 自动生成的方法存根
 		return dao.getAllGrade();
+	}
+
+	public void modCust(Customer cus) {
+		// TODO 自动生成的方法存根
+		dao.modCust(cus);
+	}
+
+	public void addContact(Contact con) {
+		// TODO 自动生成的方法存根
+		dao.addContact(con);
 	}
 
 }

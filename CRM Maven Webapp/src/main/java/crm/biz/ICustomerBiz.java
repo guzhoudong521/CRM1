@@ -3,6 +3,7 @@ package crm.biz;
 import java.util.List;
 
 import crm.entity.Area;
+import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
 import crm.util.QueryParam;
@@ -19,4 +20,8 @@ public interface ICustomerBiz {
 	public List<Area> getAllArea();
 	
 	public List<Custgrade> getAllGrade();
+	
+	public void modCust(Customer cus);
+	
+	public void addContact(Contact con);
 }

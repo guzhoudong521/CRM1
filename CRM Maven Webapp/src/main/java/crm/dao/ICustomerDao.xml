@@ -93,7 +93,7 @@
         where c.areaid=a.areaid(+)
         and c.usersid=u.userid(+)
         and c.gid=g.gid(+)
-        and n.custid=c.custid(+)
+        and n.custid(+)=c.custid
         and c.custid=#{custid}
 		
 	</select>
@@ -112,9 +112,28 @@
 		
 	</insert>
 	
+	<update id="modCust" parameterType="customer">
+		update customer 
+		<set>
+			<if test="cname!=null">
+			cname=#{cname},
+			</if>
+			<if test="area!=null">
+			areaid=#{area.areaid},
+			</if>
+			<if test="custgrade!=null">
+			usersid=#{mgr.userid},
+			</if>
+			<if test="mgr!=null">
+			gid=#{custgrade.gid},
+			</if>
+		</set>
+		where custid=#{custid}
+	</update>
 	
-	
-	
+	<insert id="addContact" parameterType="contact">
+		insert into contact values(quanju_seq.nextval,#{customer.custid},#{coname},#{cosex},#{cojob},#{workphone},#{cophone},#{notes})	
+	</insert>
 	
 	
 	

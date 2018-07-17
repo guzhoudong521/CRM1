@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td></td>
           <td></td>
         </tr>
-          <tr >
+          <tr>
           
           <td colspan="4" align="center" style="height:60px">
 	          <button style="height:30px;width:120px"><a title="打印计划并下发任务" href="plan/zhixing.action?id=${currplan.planid}">打印计划</a></button>

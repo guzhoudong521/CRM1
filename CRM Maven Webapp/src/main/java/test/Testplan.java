@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 import crm.biz.CustplanBizImpl;
+import crm.biz.ICustomerBiz;
 import crm.biz.ICustplanBiz;
 import crm.dao.ICustomerDao;
 import crm.entity.Area;
@@ -68,12 +69,29 @@ public class Testplan {
 		
 		System.out.println(cust.getZhixingren().getUserid());
 		
-		ICustomerDao dao=con.getBean(ICustomerDao.class);
-		List<Custgrade> list=dao.getAllGrade();
+		ICustomerBiz bizx=con.getBean(ICustomerBiz.class);
+		
+		Contact cont=new Contact();
+		cont.setCojob("清洁工");
+		cont.setConame("李女士");
+		cont.setCophone("13556333546");
+		cont.setCosex("女");
+		Customer c=new Customer();
+		c.setCustid(1028);
+		cont.setCustomer(c);
+		cont.setWorkphone("030-5556-8885");
+		cont.setNotes("无");
+		bizx.addContact(cont);
+		
+		/*Customer c=bizx.getById(1087);
+		c.setCname("星辰互联5");
+		bizx.modCust(c);
+		System.out.println(c.getCname());*/
+		/*List<Custgrade> list=dao.getAllGrade();
 		for(Custgrade a:list){
 			
 			System.out.println(a.getGid()+","+a.getGname());
-		}
+		}*/
 		/*Customer cus=new Customer();
 			Area a=new Area();
 			a.setAreaid(1016);

@@ -118,7 +118,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${cus.area.areaname }</td>
           <td>${cus.mgr.uname }</td>
           <td>${cus.custgrade.gname}</td>
-          <td><img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('edit.jsp')" /><img title="联系人" src="images/user.ico" class="op_button" onclick="to('linkman.jsp')" /><img title="交往记录" src="images/bubble.ico" class="op_button" onclick="to('contact.jsp')" /><img title="历史订单" src="images/document.ico" class="op_button" onclick="to('order.jsp')" /></td>
+          <td>
+	          <img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('cust/getbyid.action?id=${cus.custid}&type=bj')" />
+	          <img title="联系人" src="images/user.ico" class="op_button" onclick="to('cust/getbyid.action?id=${cus.custid}&type=lxr')" />
+	          <img title="交往记录" src="images/bubble.ico" class="op_button" onclick="to('crm_cus/info/contact.jsp')" />
+	          <img title="历史订单" src="images/document.ico" class="op_button" onclick="to('crm_cus/info/order.jsp')" />
+          </td>
         </tr>
       </c:forEach>
       </tbody>
