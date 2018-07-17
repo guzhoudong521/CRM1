@@ -18,8 +18,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      $(function(){
         $.getJSON("role/getAll.action","",function(res){
           $("#roleSelect").html("");
+            var xx='${us.role.roleid}';  
             for(var x=0;x<res.length;x++){
-               $("#roleSelect").append("<option  value="+res[x].roleid+">"+res[x].rolename+"</option>")
+               if(res[x].roleid==xx){
+                $("#roleSelect").append("<option value="+res[x].roleid+" selected='selected'>"+res[x].rolename+"</option>")
+               }else{
+               $("#roleSelect").append("<option value="+res[x].roleid+">"+res[x].rolename+"</option>")
+               }
             }
         })
      })

@@ -12,13 +12,22 @@ public class QueryParam {
 	private Integer gonghao;
 	private String name;
 	private String lianxiren;
-	private Date chuangjianshijian;
+	private String createtime;
+	private Date chuangjianshijian1;
+	private Date chuangjianshijian2;
 	private String zhuangtai;
 	private Integer areaid;
 	private Integer gradeid;
 	private Integer custid;
+	private String servicetyle;
 	
 	
+	public String getServicetyle() {
+		return servicetyle;
+	}
+	public void setServicetyle(String servicetyle) {
+		this.servicetyle = servicetyle;
+	}
 	public Integer getCustid() {
 		return custid;
 	}
@@ -86,16 +95,29 @@ public class QueryParam {
 	public void setLianxiren(String lianxiren) {
 		this.lianxiren = "%"+lianxiren+"%";
 	}
-	public Date getChuangjianshijian() {
-		return chuangjianshijian;
-	}
-	public void setChuangjianshijian(Date chuangjianshijian) {
-		this.chuangjianshijian = chuangjianshijian;
-	}
 	public Integer getGonghao() {
 		return gonghao;
 	}
 	public void setGonghao(Integer gonghao) {
 		this.gonghao = gonghao;
 	}
+	public Date getChuangjianshijian1() {
+		return chuangjianshijian1;
+	}
+	public void setChuangjianshijian1(Date chuangjianshijian1) {
+		this.chuangjianshijian1 = chuangjianshijian1;
+	}
+	public Date getChuangjianshijian2() {
+		return chuangjianshijian2;
+	}
+	public void setChuangjianshijian2(Date chuangjianshijian2) {
+		this.chuangjianshijian2 = chuangjianshijian2;
+	}
+	public String getCreatetime() {
+		return createtime;
+	}
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
+	}
+	
 }
