@@ -76,7 +76,6 @@ public class ServiceBizImpl implements IServiceBiz {
 		q.setChuangjianshijian1(par.getChuangjianshijian1());
 		q.setMaxRows(dao.getCountById(par));
 		q.setList(dao.getAllById(par));
-
 		return q;
 	}
 

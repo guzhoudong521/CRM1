@@ -98,7 +98,7 @@ public class ServiceAction {
 	}
 	//通过ID获取服务
 	@RequestMapping("/getAllById")
-	public ModelAndView getAllById(QueryParam par,ModelAndView mm){
+	public ModelAndView getAllById(QueryParam par,ModelAndView mm,HttpSession session){
 		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 	    if(par.getCreatetime()!=null)
 		{
@@ -115,9 +115,11 @@ public class ServiceAction {
 				e.printStackTrace();
 			}
 		}
-		QueryParam pp=biz.getAll(par);
+	    Users userNow=(Users)session.getAttribute("curruser");
+	    par.setCustid(userNow.getUserid());
+		QueryParam pp=biz.getAllById(par);
 		mm.addObject("par", pp);
-		mm.setViewName("crm_service/dispatch");
+		mm.setViewName("crm_service/deal_list");
 		return mm;
 	} 
 }

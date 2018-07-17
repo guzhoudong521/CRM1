@@ -17,7 +17,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
-
+<script type="text/javascript">
+  function page(page){
+      $("#pages").val(page);
+      $("#searchForm").submit();
+  }
+  function sub(){
+      $("#searchForm").submit();
+  }
+  function del(id){
+      location="ser/del.action?id="+id;
+  }
+</script>
 </head>
 
 <body>
@@ -26,25 +37,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-    <a href="#" title="查询">查询</a>
+    <a href="javascript:sub()" title="查询">查询</a>
   </div>
   <div class="search_input">
+    <form action="ser/getAllById.action" method="post" id="searchForm">
     <ul class="txt">
       <li>客户名称：
-        <input type="text" size="30" />
+        <input name="page" type="hidden" id="pages" value="1">
+        <input name="name" type="text" size="30" />
       </li>
-      <li>服务类型：
-        <select>
-            <option>全部...</option>
-            <option>咨询</option>
-            <option>投诉</option>
-            <option>建议</option>
+      <li> 服务类型：
+        <select name="servicetyle">
+          <option value="">全部...</option>
+          <option value="咨询">咨询</option>
+          <option value="投诉">投诉</option>
+          <option value="建议">建议</option>
         </select>
       </li>
-      <li>创建日期：
-        <input type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
+      <li> 创建日期：
+        <input name="createtime" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
       </li>
     </ul>
+    </form>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
@@ -60,7 +74,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
       </thead>
       <tbody>
+        <c:forEach items="${par.list}" var="ser">
         <tr>
+          <td>${ser.id}</td>
+          <td><a href="#">${ser.customer}</a></td>
+          <td>${ser.des}</td>
+          <td>${ser.servicetyle}</td>
+          <td>${ser.createuser.uname }</td>
+          <td><fmt:formatDate value="${ser.createtime}" pattern="yyyy-MM-dd"/></td>
+          <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('deal.jsp')" /></td>
+        </tr>
+       </c:forEach> 
+        <!-- <tr>
           <td>1</td>
           <td><a href="#">太阳药业</a></td>
           <td>询问我公司倒闭时间</td>
@@ -68,16 +93,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>小明</td>
           <td>2007-12-6</td>
           <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('deal.jsp')" /></td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
-  <div class="position"> 
-  	共59条记录&nbsp;每页10条&nbsp;第1页/共5页 
-    <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
+ <div class="position"> 
+  	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
+    <a href="javascript:page(1)" title="首页">&laquo;首页</a>
+    <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
+    <c:forEach begin="1" end="${par.maxPages}" var="pp">
+    	 <a href="javascript:page(${pp})" class="${pp==par.page?'number current':'number' }" title="${pp}">${pp}</a> 
+    </c:forEach> 
+    <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
+    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a>
+    <!-- </a> 转到&nbsp;
     <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a>
-    </li>
+    &nbsp;页<a href="#">GO</a> -->
   </div>
 </div>
 </body>

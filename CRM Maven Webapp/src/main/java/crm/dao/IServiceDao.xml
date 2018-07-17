@@ -84,7 +84,6 @@
          (select t.*,u.uname creatname,rownum r 
           from SERVICE t,users u 
           where t.createuser=u.userid
-          and t.allotuser is null
           and t.allotuser=#{custid}
           <if test="name!=null">
           and t.customer like #{name}
@@ -102,8 +101,7 @@
    <!-- 通过ID找总条数 -->
    <select id="getCountById" resultType="int" parameterType="crm.util.QueryParam">
           select count(0) from SERVICE t
-          where t.allotuser is null
-          and  t.allotuser=#{custid}
+          where  t.allotuser=#{custid}
           <if test="name!=null">
           and t.customer like #{name}
           </if>
