@@ -29,6 +29,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   function allot(){
       $("#fenpeiForm").submit();
   }
+  function del(id){
+      location="ser/del.action?id="+id;
+  }
 </script>
 </head>
 <body>
@@ -94,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <input type="hidden" name="id" value="${ser.id}">
             <a href="javascript:allot()" title="分配" >分配</a></td>
           </form>
-          <td><img title="删除" src="images/cross.png" class="op_button close" /></td>
+          <td><img title="删除" src="images/cross.png" onclick="javascript:del(${ser.id})" class="op_button close" /></td>
         </tr>
        </c:forEach> 
       </tbody>

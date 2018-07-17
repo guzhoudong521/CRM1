@@ -50,7 +50,7 @@ public class ServiceAction {
 		se.setCreatetime(new Date());
 		se.setCreateuser((Users)session.getAttribute("curruser"));
 		biz.addService(se);
-		return "crm_service/add";
+		return "redirect:getAll.action";
 	}
 	//列表服务
 	@RequestMapping("/getAll")
@@ -90,4 +90,34 @@ public class ServiceAction {
 		biz.allot(se);
 		return "redirect:getAll.action";
 	}
+	//删除
+	@RequestMapping("/del")
+	public String del(int id){
+		biz.delete(id);
+		return "redirect:getAll.action";
+	}
+	//通过ID获取服务
+	@RequestMapping("/getAllById")
+	public ModelAndView getAllById(QueryParam par,ModelAndView mm){
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	    if(par.getCreatetime()!=null)
+		{
+	    	try {
+				Date createtime = format.parse(par.getCreatetime());
+				Calendar ca=Calendar.getInstance();	
+				ca.setTime(createtime);
+				par.setChuangjianshijian1(ca.getTime());
+				ca.setTime(createtime);
+				ca.add(ca.DATE, +1);
+				par.setChuangjianshijian2(ca.getTime());	
+			} catch (ParseException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		QueryParam pp=biz.getAll(par);
+		mm.addObject("par", pp);
+		mm.setViewName("crm_service/dispatch");
+		return mm;
+	} 
 }

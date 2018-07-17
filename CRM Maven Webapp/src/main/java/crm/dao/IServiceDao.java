@@ -10,4 +10,7 @@ public interface IServiceDao {
 	public List<Services> getAll(QueryParam par);
 	public int getCount(QueryParam par);
 	public void allot(Services se);
+	public void delete(int id);
+	public List<Services> getAllById(QueryParam par);
+	public int getCountById(QueryParam par);
 }

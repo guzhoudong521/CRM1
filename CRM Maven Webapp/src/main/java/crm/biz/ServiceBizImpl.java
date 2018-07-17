@@ -60,4 +60,24 @@ public class ServiceBizImpl implements IServiceBiz {
 		dao.allot(se);
 	}
 
+
+	public void delete(int id) {
+		// TODO 自动生成的方法存根
+		dao.delete(id);
+	}
+
+
+	public QueryParam getAllById(QueryParam par) {
+		// TODO 自动生成的方法存根
+		QueryParam q=new QueryParam();
+		q.setPage(par.getPage());
+		q.setName(par.getName());
+		q.setServicetyle(par.getServicetyle());
+		q.setChuangjianshijian1(par.getChuangjianshijian1());
+		q.setMaxRows(dao.getCountById(par));
+		q.setList(dao.getAllById(par));
+
+		return q;
+	}
+
 }

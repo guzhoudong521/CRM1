@@ -58,7 +58,7 @@
    <!-- 获取条数 -->
    <select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
           select count(0) from SERVICE t
-          where 1=1
+          where t.allotuser is null
           <if test="name!=null">
           and t.customer like #{name}
           </if>
@@ -74,4 +74,45 @@
    <update id="allot" parameterType="crm.entity.Services">
         update service set allotuser=#{allotuser.userid} where id=#{id}
    </update>
+   <!-- 删除服务 -->
+   <delete id="delete">
+         delete from service where id=#{id}
+   </delete>
+   <!-- 通过ID找服务 -->
+   <select id="getAllById" parameterType="crm.util.QueryParam" resultMap="serMap">
+      select * from 
+         (select t.*,u.uname creatname,rownum r 
+          from SERVICE t,users u 
+          where t.createuser=u.userid
+          and t.allotuser is null
+          and t.allotuser=#{custid}
+          <if test="name!=null">
+          and t.customer like #{name}
+          </if>
+          <if test="chuangjianshijian1!=null">
+          and t.createtime > #{chuangjianshijian1}
+          and t.createtime &lt; #{chuangjianshijian2}
+          </if>
+          <if test="servicetyle!=null and servicetyle!=''">
+          and t.servicetyle=#{servicetyle}
+          </if>
+          ) x 
+       where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
+   </select>
+   <!-- 通过ID找总条数 -->
+   <select id="getCountById" resultType="int" parameterType="crm.util.QueryParam">
+          select count(0) from SERVICE t
+          where t.allotuser is null
+          and  t.allotuser=#{custid}
+          <if test="name!=null">
+          and t.customer like #{name}
+          </if>
+          <if test="chuangjianshijian1!=null">
+          and t.createtime > #{chuangjianshijian1}
+          and t.createtime &lt; #{chuangjianshijian2}
+          </if>
+          <if test="servicetyle!=null and servicetyle!=''">
+          and t.servicetyle=#{servicetyle}
+          </if>
+   </select>
 </mapper>

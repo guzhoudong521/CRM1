@@ -7,4 +7,6 @@ public interface IServiceBiz {
 	public void addService(Services se);
 	public QueryParam getAll(QueryParam par);
 	public void allot(Services se);
+	public void delete(int id);
+	public QueryParam getAllById(QueryParam par);
 }

@@ -12,16 +12,23 @@ public class QueryParam {
 	private Integer gonghao;
 	private String name;
 	private String lianxiren;
+	private Date  chuangjianshijian;
 	private String createtime;
 	private Date chuangjianshijian1;
 	private Date chuangjianshijian2;
 	private String zhuangtai;
 	private Integer areaid;
 	private Integer gradeid;
-	private Integer custid;
+	private Integer custid;   //当前登陆人ID或者其他
 	private String servicetyle;
 	
 	
+	public Date getChuangjianshijian() {
+		return chuangjianshijian;
+	}
+	public void setChuangjianshijian(Date chuangjianshijian) {
+		this.chuangjianshijian = chuangjianshijian;
+	}
 	public String getServicetyle() {
 		return servicetyle;
 	}
