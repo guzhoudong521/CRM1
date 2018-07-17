@@ -36,11 +36,12 @@
        insert into service(id,createuser,createtime,status,customer,servicetyle,des) values(quanju_seq.nextval,#{createuser.userid},#{createtime},'新创建',#{customer},#{servicetyle},#{des})
    </insert>
    <!--列表服务 -->
-   <select id="getAll" resultMap="serMap" parameterType="cem.util.QueryParam">
+   <select id="getAll" resultMap="serMap" parameterType="crm.util.QueryParam">
       select * from 
-         (select t.*,u.uname,rownum r 
+         (select t.*,u.uname creatname,rownum r 
           from SERVICE t,users u 
           where t.createuser=u.userid
+          and t.allotuser is null
           <if test="name!=null">
           and t.customer like #{name}
           </if>
@@ -48,14 +49,14 @@
           and t.createtime > #{chuangjianshijian1}
           and t.createtime &lt; #{chuangjianshijian2}
           </if>
-          <if test="servicetyle!=null">
+          <if test="servicetyle!=null and servicetyle!=''">
           and t.servicetyle=#{servicetyle}
           </if>
           ) x 
        where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
    </select>
    <!-- 获取条数 -->
-   <select id="getCount" resultType="int" parameterType="cem.util.QueryParam">
+   <select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
           select count(0) from SERVICE t
           where 1=1
           <if test="name!=null">
@@ -65,8 +66,12 @@
           and t.createtime > #{chuangjianshijian1}
           and t.createtime &lt; #{chuangjianshijian2}
           </if>
-          <if test="servicetyle!=null">
+          <if test="servicetyle!=null and servicetyle!=''">
           and t.servicetyle=#{servicetyle}
           </if>
    </select>
+   <!-- 指派给谁 -->
+   <update id="allot" parameterType="crm.entity.Services">
+        update service set allotuser=#{allotuser.userid} where id=#{id}
+   </update>
 </mapper>

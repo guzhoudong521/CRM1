@@ -1,6 +1,7 @@
 package crm.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Services {
 	private int id;       
@@ -15,7 +16,7 @@ public class Services {
 	private String dispose;       //服务处理
 	private Date disposetime;  //处理时间
 	private Users disposeuser;   //处理人
-	
+	private List<Users> list;
 	
 	public int getId() {
 		return id;
@@ -89,4 +90,11 @@ public class Services {
 	public void setDisposeuser(Users disposeuser) {
 		this.disposeuser = disposeuser;
 	}
+	public List<Users> getList() {
+		return list;
+	}
+	public void setList(List<Users> list) {
+		this.list = list;
+	}
+	
 }

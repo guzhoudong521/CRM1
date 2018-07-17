@@ -1,9 +1,14 @@
 package crm.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import crm.biz.IServiceBiz;
+import crm.biz.IUserBiz;
 import crm.entity.Services;
 import crm.entity.Users;
 import crm.util.QueryParam;
@@ -20,6 +26,16 @@ import crm.util.QueryParam;
 public class ServiceAction {
 	@Autowired
 	private IServiceBiz biz;
+    @Autowired
+    private IUserBiz ubiz;
+    
+	public IUserBiz getUbiz() {
+		return ubiz;
+	}
+
+	public void setUbiz(IUserBiz ubiz) {
+		this.ubiz = ubiz;
+	}
 
 	public IServiceBiz getBiz() {
 		return biz;
@@ -39,11 +55,39 @@ public class ServiceAction {
 	//列表服务
 	@RequestMapping("/getAll")
 	public ModelAndView getAll(QueryParam par,ModelAndView mm){
-		if(par.getChuangjianshijian1()!=null)
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	    if(par.getCreatetime()!=null)
 		{
-			Date createtime=par.getChuangjianshijian1();
-			
+	    	try {
+				Date createtime = format.parse(par.getCreatetime());
+				Calendar ca=Calendar.getInstance();	
+				ca.setTime(createtime);
+				par.setChuangjianshijian1(ca.getTime());
+				ca.setTime(createtime);
+				ca.add(ca.DATE, +1);
+				par.setChuangjianshijian2(ca.getTime());	
+			} catch (ParseException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
 		}
+		QueryParam pp=biz.getAll(par);
+		List<Services> list=pp.getList();
+		QueryParam userpar=new QueryParam();
+		userpar.setPageSize(99999);
+		QueryParam ux=ubiz.getAllUser(userpar);
+		List<Users> ulist=ux.getList();
+		for(Services ser:list){
+			ser.setList(ulist);
+		}
+		mm.addObject("par", pp);
+		mm.setViewName("crm_service/dispatch");
 		return mm;
+	}
+    //分配给谁
+	@RequestMapping("/allot")
+	public String allot(Services se){
+		biz.allot(se);
+		return "redirect:getAll.action";
 	}
 }

@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li> <a href="#" class="nav-top-item" id="man_nav_3" onclick="list_sub_nav(id)"> 服务管理 </a>
           <ul>
             <li><a href="crm_service/add.jsp" target="rightFrame" id="a_nav_5" onclick="a_sub_nav(id)">服务创建</a></li>
-            <li><a href="crm_service/dispatch.jsp" target="rightFrame" id="a_nav_6" onclick="a_sub_nav(id)">服务分配</a></li>
+            <li><a href="ser/getAll.action" target="rightFrame" id="a_nav_6" onclick="a_sub_nav(id)">服务分配</a></li>
             <li><a href="crm_service/deal_list.jsp" target="rightFrame" id="a_nav_7" onclick="a_sub_nav(id)">服务处理</a></li>
             <li><a href="crm_service/feedback_list.jsp" target="rightFrame" id="a_nav_8" onclick="a_sub_nav(id)">服务反馈</a></li>
             <li><a href="crm_service/file_list.jsp" target="rightFrame" id="a_nav_9" onclick="a_sub_nav(id)">服务归档</a></li>

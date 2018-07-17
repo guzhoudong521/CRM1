@@ -12,6 +12,7 @@ public class QueryParam {
 	private Integer gonghao;
 	private String name;
 	private String lianxiren;
+	private String createtime;
 	private Date chuangjianshijian1;
 	private Date chuangjianshijian2;
 	private String zhuangtai;
@@ -111,6 +112,12 @@ public class QueryParam {
 	}
 	public void setChuangjianshijian2(Date chuangjianshijian2) {
 		this.chuangjianshijian2 = chuangjianshijian2;
+	}
+	public String getCreatetime() {
+		return createtime;
+	}
+	public void setCreatetime(String createtime) {
+		this.createtime = createtime;
 	}
 	
 }

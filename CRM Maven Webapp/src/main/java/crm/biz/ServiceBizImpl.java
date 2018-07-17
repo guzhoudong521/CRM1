@@ -4,13 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import crm.dao.IServiceDao;
+import crm.dao.IUsersDao;
 import crm.entity.Services;
 import crm.util.QueryParam;
 @Service
 public class ServiceBizImpl implements IServiceBiz {
     @Autowired
     private IServiceDao dao;
-      
+    @Autowired
+    private IUsersDao udao;
+    
+    
+	public IUsersDao getUdao() {
+		return udao;
+	}
+
+
+	public void setUdao(IUsersDao udao) {
+		this.udao = udao;
+	}
+
+
 	public IServiceDao getDao() {
 		return dao;
 	}
@@ -36,7 +50,14 @@ public class ServiceBizImpl implements IServiceBiz {
 		q.setChuangjianshijian1(par.getChuangjianshijian1());
 		q.setMaxRows(dao.getCount(par));
 		q.setList(dao.getAll(par));
+
 		return q;
+	}
+
+
+	public void allot(Services se) {
+		// TODO 自动生成的方法存根
+		dao.allot(se);
 	}
 
 }
