@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript">
    function add(){
       $("#addform").submit();
@@ -30,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="out_bg">
     <div class="in_bg">
-    <form action="service/add.action" method="post" id="addform">
+    <form action="ser/add.action" method="post" id="addform">
       <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
         <tr>
           <td width="126">创建人</td>
@@ -53,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<option value="建议">建议</option>
 			</select></td>
 		  <td valign="top">服务请求</td>
-          <td><input  type="submit" value="提交"><textarea rows="6" cols="36" name="des"/></textarea></td>
+          <td><textarea rows="6" cols="36" name="des"/></textarea></td>
         </tr>
       </table>
      </form>
