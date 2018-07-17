@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crm.dao.ICustomerDao">
+
+	<resultMap type="customer" id="customermap">
+		<id column="custid" property="custid"/>
+		<result column="cname" property="cname"/>
+		<association property="area" resultMap="areamap"/>
+		<association property="custgrade" resultMap="custgrademap"/>
+		<association property="mgr" resultMap="usermap"></association>
+		<collection property="list" resultMap="contactmap"/>
+	</resultMap>
+	
+	
+	<resultMap type="area" id="areamap">
+		<id column="areaid" property="areaid"/>
+		<result column="areaname" property="areaname"/>
+	</resultMap>
+	
+	<resultMap type="custgrade" id="custgrademap">
+		<id column="gid" property="gid"/>
+		<result property="gname" column="gname"/>
+	</resultMap>
+	
+	<resultMap type="users" id="usermap">
+		<id column="userid" property="userid"/>
+		<result column="uname" property="uname"/>
+	</resultMap>
+	
+	<resultMap type="contact" id="contactmap">
+		<id column="contcatid" property="contcatid"/>
+		<result column="coname" property="coname"/>
+		<result column="cosex" property="cosex"/>
+		<result column="cojob" property="cojob"/>
+		<result property="workphone" column="workphone"/>
+		<result column="cophone" property="cophone"/>
+		<result column="notes" property="notes"/>
+		<association property="customer" resultMap="customermap"/>
+	</resultMap>
+	
+	
+	<select id="getAll" resultMap="customermap" parameterType="crm.util.QueryParam">		
+		select * from (
+			select x.*,rownum r from (
+        select c.custid,c.cname,a.areaid,a.areaname,g.gid,g.gname,u.userid,u.uname
+        from customer c,area a,users u,custgrade g
+        where c.areaid=a.areaid(+)
+        and c.usersid=u.userid(+)
+        and c.gid=g.gid(+)
+        <if test="name!=null and name!=''">
+		and c.cname like #{name}
+		</if>
+		<if test="gonghao!=null and gonghao!=''">
+		and u.userid=#{gonghao}
+		</if>
+		<if test="areaid!=null and areaid!=''">
+		and a.areaid=#{areaid}
+		</if>
+		<if test="gradeid!=null and gradeid!=''">
+		and g.gid=#{gradeid}
+		</if>
+        order by c.custid desc ) x)
+        where r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize}
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
+		select count(1)
+        from customer c,area a,users u,custgrade g
+        where c.areaid=a.areaid(+)
+        and c.usersid=u.userid(+)
+        and c.gid=g.gid(+)
+        <if test="name!=null and name!=''">
+		and c.cname like #{name}
+		</if>
+		<if test="gonghao!=null and gonghao!=''">
+		and u.userid=#{gonghao}
+		</if>
+		<if test="areaid!=null and areaid!=''">
+		and a.areaid=#{areaid}
+		</if>
+		<if test="gradeid!=null and gradeid!=''">
+		and g.gid=#{gradeid}
+		</if>
+	</select>
+	
+	
+	<select id="getById" resultMap="customermap" parameterType="int">
+		
+		select c.custid,c.cname,a.areaid,a.areaname,g.gid,g.gname,u.userid,u.uname,n.*
+        from customer c,area a,users u,custgrade g,CONTACT  n
+        where c.areaid=a.areaid(+)
+        and c.usersid=u.userid(+)
+        and c.gid=g.gid(+)
+        and n.custid=c.custid(+)
+        and c.custid=#{custid}
+		
+	</select>
+	
+	<select id="getAllArea" resultType="area">
+		select * from area
+	</select>
+	
+	<select id="getAllGrade" resultType="custgrade">
+		select * from custgrade
+	</select>
+	
+	<insert id="addCust" parameterType="customer">
+		
+		insert into customer values(quanju_seq.nextval,#{cname},null,#{mgr.userid},1024)
+		
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

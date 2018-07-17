@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		position:absolute;
 		top:50px;
-		left:570px;
+		left:800px;
 		
 	}	
 </style>
@@ -54,6 +54,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </li>
       <li>联系人：
         <input type="text" name="lianxiren" size="30" />
+      </li>
+      <li>状态：
+       <!--  <input type="text" name="lianxiren" size="30" /> -->
+        <select  style="width:150px;align:center" name="zhuangtai">
+        	<option value="">全部</option>
+        	<option value="未开发">未开发</option>
+        	<option value="计划已制定">计划已制定</option>
+        	<option value="开发中">开发中</option>
+        	<option value="开发成功">开发成功</option>
+        </select>
       </li>
       <!-- <li>创建时间：
         <input type="text" name="chuangjianshijian" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
@@ -114,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="#" title="首页">&laquo;首页</a>
     <a href="plan/getall.action?page=${page-1}" title="上一页">&laquo; 上一页</a> 
 	    <c:forEach begin="1" end="${queryp.maxPages}" var="pp">
-	    	 <a href="plan/getall.action?page=${pp}" class="number current" title="${pp}">${pp}</a> 
+	    	 <a href="plan/getall.action?page=${pp}" class="${queryp.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
 	    </c:forEach>
     <a href="plan/getall.action?page=${page+1}" title="下一页">下一页&raquo;</a>
     <a href="#" title="末页">末页&raquo;</a>

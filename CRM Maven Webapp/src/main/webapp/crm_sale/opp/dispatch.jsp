@@ -13,15 +13,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
 </head>
-
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+		$(function(){
+		
+		$.post("us/ajaxlist.action","",function(res){
+			
+			$("#selectid").html("");
+				for(var x in res){
+					$("#selectid").append("<option value="+res[x].userid+">"+res[x].uname+"</option>");
+				} 
+				
+			},"json") 
+						
+		})
+	
+</script>
 <body>
 <div style="padding:5px;">
   <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;<a href="list.html">销售机会</a>&nbsp;&gt;&nbsp;指派销售机会
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-  	<!-- <a href="#" title="返回" onclick="back()">返回</a>
-    <a href="#" title="保存" onclick="save('list.html');">保存</a> -->
+
   </div>
   <div class="out_bg">
     <div class="in_bg">
@@ -67,12 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
           <td height="50">指派给</td>
           <td>
-          	<select name="zhixingren.userid" style="width:311px;height:30px;">			
-				<option value="0">小明</option>
-				<option value="1">旺财</option>
-				<option value="2">球球</option>
-				<option value="3" selected="selected">孙小美</option>
-				<option value="4">周洁轮</option>
+          	<select id="selectid" name="zhixingren.userid" style="width:311px;height:30px;">			
+				
 			</select>
            </td>
           <td></td>

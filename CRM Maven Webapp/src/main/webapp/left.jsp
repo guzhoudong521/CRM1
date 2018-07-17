@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
         <li> <a href="#" class="nav-top-item" id="man_nav_2" onclick="list_sub_nav(id)"> 客户开发计划 </a>
           <ul>
-            <li><a href="crm_cus/info/list.jsp" target="rightFrame" id="a_nav_3" onclick="a_sub_nav(id)">客户信息管理</a></li>
+            <li><a href="cust/dolist.action" target="rightFrame" id="a_nav_3" onclick="a_sub_nav(id)">客户信息管理</a></li>
             <li><a href="crm_cus/lose/list.jsp" target="rightFrame" id="a_nav_4" onclick="a_sub_nav(id)">客户流失管理</a></li>
           </ul>
         </li>

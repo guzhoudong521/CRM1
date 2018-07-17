@@ -11,7 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import crm.biz.ICustomerBiz;
 import crm.biz.ICustplanBiz;
+import crm.entity.Area;
+import crm.entity.Custgrade;
+import crm.entity.Customer;
 import crm.entity.Custplan;
 import crm.entity.Users;
 import crm.util.QueryParam;
@@ -22,7 +26,8 @@ public class CustplanAction {
 
 	@Autowired
 	private ICustplanBiz biz;
-	
+	@Autowired
+	private ICustomerBiz bizz;
 	
 	@RequestMapping(value="/getall")
 	public String getAll(QueryParam q,Model mod){
@@ -61,9 +66,19 @@ public class CustplanAction {
 			return "crm_sale/opp/dayin";
 		}else if(cus.getZhaungtai().equals("开发中"))
 		{
+			/*
+			 * 确认客户开发成功后，并把客户添加到客户信息表
+			 * 客户默认等级1024（普通客户）
+			 * */
 			Custplan c=biz.getById(id);
 			c.setZhaungtai("开发成功");
 			biz.modPlan(c);
+			Customer cust=new Customer();
+			cust.setCname(c.getGongsi());
+			System.out.println(c.getZhixingren().getUserid());
+			cust.setMgr(c.getZhixingren());	
+			
+			bizz.addCust(cust);
 			return "redirect:/plan/getall.action";
 		}else{
 			

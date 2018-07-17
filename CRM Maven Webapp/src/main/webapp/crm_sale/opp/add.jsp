@@ -11,14 +11,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
 <link href="../../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../../js/javascript.js"></script>
-<script src="js/jquery-1.12.4.js"></script>
+<script src="../../js/jquery-1.12.4.js"></script>
 <script>
 		$(function(){
-			$("#baocun").click(function(){
-			alert("qwe");
-				$("#custplan").submit();
-			});
+		
+		$.post("../../us/ajaxlist.action","",function(res){
+		
+			$("#selectid").html("");
+				for(var x in res){
+					$("#selectid").append("<option value="+res[x].userid+">"+res[x].uname+"</option>");
+				} 
+				
+			},"json") 
+						
 		})
+	
 </script>
 </head>
 
@@ -28,8 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-  	<a href="#" title="返回" onclick="back()">返回</a>
-    <a id="baocun" href="javascript:void(0)" title="保存" >保存</a>
+  	<!-- <a href="#" title="返回" onclick="back()">返回</a>
+    <a id="baocun" href="javascript:void(0)" title="保存" >保存</a> -->
   </div>
   <div class="out_bg">
     <div class="in_bg">
@@ -43,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
           <td>客户名称</td>
-          <td><input type="text" name="gongsi" /></td>
+          <td><input id="changeid" type="text" name="gongsi" /></td>
           <td>成功几率</td>
           <td><input type="text" name="jilv"/></td>
         </tr>
@@ -74,13 +81,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
           <td>指派给</td>
           <td>
-          	<select style="width:311px;height:30px;" name="zhixingren.userid" > <!-- disabled="disabled"> -->
-				<option value="null">请选择...</option>
-				<option value="1">小明</option>
-				<option value="2">旺财</option>
-				<option value="3">球球</option>
-				<option value="4">孙小美</option>
-				<option value="5">周洁轮</option>
+          	<select id="selectid" style="width:311px;height:30px;" name="zhixingren.userid" >
+			
 			</select>
            </td>
           <td>指派时间</td>
