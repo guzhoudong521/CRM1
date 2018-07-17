@@ -4,7 +4,7 @@ import crm.entity.Custplan;
 import crm.util.QueryParam;
 
 public interface ICustplanBiz {
-
+	/*qwewqeq*/
 	
 	public QueryParam getAllByPage(QueryParam q);
 	

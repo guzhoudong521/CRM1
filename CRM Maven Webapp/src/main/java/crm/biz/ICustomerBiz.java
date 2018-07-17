@@ -9,7 +9,7 @@ import crm.entity.Customer;
 import crm.util.QueryParam;
 
 public interface ICustomerBiz {
-
+	/*qwewqeq*/
 	
 	public QueryParam getAllByPage(QueryParam q);
 	

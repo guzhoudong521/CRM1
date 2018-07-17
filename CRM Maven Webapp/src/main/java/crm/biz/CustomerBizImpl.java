@@ -15,6 +15,7 @@ import crm.util.QueryParam;
 @Service
 public class CustomerBizImpl implements ICustomerBiz {
 
+	/*qwewqewqewqe*/
 	@Autowired
 	private ICustomerDao dao;
 	
