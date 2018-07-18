@@ -13,4 +13,5 @@ public interface IServiceDao {
 	public void delete(int id);
 	public List<Services> getAllById(QueryParam par);
 	public int getCountById(QueryParam par);
+	public Services getById(int id);
 }

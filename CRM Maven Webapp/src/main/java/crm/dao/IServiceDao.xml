@@ -113,4 +113,8 @@
           and t.servicetyle=#{servicetyle}
           </if>
    </select>
+   <!-- 通过ID找服务 -->
+   <select id="getById">
+           
+   </select>
 </mapper>
