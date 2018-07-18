@@ -71,7 +71,7 @@ public class CustomerAction {
 		}
 		return "";
 	}
-	/*asdsad*/
+	
 	@RequestMapping("/modcust")
 	public String modCust(Customer cust){
 		biz.modCust(cust);
@@ -88,7 +88,30 @@ public class CustomerAction {
 	}
 	
 	
+	@RequestMapping("/getconbyid")
+	public String getConById(int id,Model mod){
+		
+		Contact con=biz.getConById(id);
+		mod.addAttribute("currcon", con);
+		return "crm_cus/info/linkman_edit";
+	}
 	
+	@RequestMapping("/modcon")
+	public String modContact(Contact con,HttpSession session){
+		
+		biz.modContact(con);
+		Customer c=(Customer)session.getAttribute("bjcus");
+		int id=c.getCustid();
+		return "redirect:/cust/getbyid.action?id="+id+"&type=lxr";
+	}
+	
+	@RequestMapping("/delcon")
+	public String delCon(@RequestParam("id")int id,HttpSession session){
+		biz.delCon(id);
+		Customer c=(Customer)session.getAttribute("bjcus");
+		int idd=c.getCustid();
+		return "redirect:/cust/getbyid.action?id="+idd+"&type=lxr";
+	}
 	
 	
 	

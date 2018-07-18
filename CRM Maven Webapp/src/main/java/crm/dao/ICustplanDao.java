@@ -7,7 +7,7 @@ import crm.util.QueryParam;
 
 public interface ICustplanDao {
 
-	/*qwewqeq*/
+	
 	public void add(Custplan cus);
 	
 	public void mod(Custplan cus);

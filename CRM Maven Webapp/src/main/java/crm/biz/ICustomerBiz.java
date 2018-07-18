@@ -24,4 +24,10 @@ public interface ICustomerBiz {
 	public void modCust(Customer cus);
 	
 	public void addContact(Contact con);
+	
+	public void modContact(Contact con);
+	
+	public Contact getConById(int id);
+	
+	public void delCon(int id);
 }

@@ -61,4 +61,19 @@ public class CustomerBizImpl implements ICustomerBiz {
 		dao.addContact(con);
 	}
 
+	public void modContact(Contact con) {
+		// TODO 自动生成的方法存根
+		dao.modContact(con);
+	}
+
+	public Contact getConById(int id) {
+		// TODO 自动生成的方法存根
+		return dao.getConById(id);
+	}
+
+	public void delCon(int id) {
+		// TODO 自动生成的方法存根
+		dao.delCon(id);
+	}
+
 }

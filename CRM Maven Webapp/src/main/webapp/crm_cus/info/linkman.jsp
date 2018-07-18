@@ -16,6 +16,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+		
+	function del(x){
+	
+		var flag=confirm("确认要删除吗？");
+			if(flag){
+				location="cust/delcon.action?id="+x;
+			}else{
+			
+			}
+		
+	}
+	
+</script>
+
 <style>
 	#nulldiv{
 		position:absolute;
@@ -76,8 +92,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${con.cophone}</td>
           <td>${con.notes}</td>
           <td>
-	          <img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('linkman_edit.html')" />
-	          <img title="删除" src="images/cross.png" class="op_button close" />
+	          <img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('cust/getconbyid.action?id=${con.contcatid}')" />
+	          <img title="删除" src="images/cross.png" class="op_button" onclick="javascript:del(${con.contcatid})"/>
           </td>
         </tr>
       </c:forEach>
@@ -86,13 +102,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </table>
      
   </div>
-  <div class="position"> 
+  <!-- <div class="position"> 
   	共59条记录&nbsp;每页10条&nbsp;第1页/共5页 
     <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
     <input value="1" size="2" />
     &nbsp;页<a href="#">GO</a>
     </li>
-  </div>
+  </div> -->
 </div>
 </c:if>
 </body>

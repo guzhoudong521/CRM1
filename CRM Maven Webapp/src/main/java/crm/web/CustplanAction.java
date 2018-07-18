@@ -34,7 +34,7 @@ public class CustplanAction {
 		
 		
 		QueryParam qq=biz.getAllByPage(q);
-		/*123123*/
+	
 		
 	List<Custplan> list=qq.getList();
 	

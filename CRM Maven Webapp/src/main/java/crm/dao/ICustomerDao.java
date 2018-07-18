@@ -9,7 +9,7 @@ import crm.entity.Customer;
 import crm.util.QueryParam;
 
 public interface ICustomerDao {
-	/*qwewqeq*/
+	
 	
 	public List<Customer> getAll(QueryParam q);
 	
@@ -28,4 +28,18 @@ public interface ICustomerDao {
 	public List<Contact> getContactById(int id);
 	
 	public void addContact(Contact con);
+	
+	public void modContact(Contact con);
+	
+	public Contact getConById(int id);
+	
+	public void delCon(int id);
+	
+	
+	
+	
+	
+	
+	
+	
 }
