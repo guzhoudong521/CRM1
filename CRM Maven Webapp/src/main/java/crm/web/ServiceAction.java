@@ -87,6 +87,7 @@ public class ServiceAction {
     //分配给谁
 	@RequestMapping("/allot")
 	public String allot(Services se){
+		se.setAllottime(new Date());
 		biz.allot(se);
 		return "redirect:getAll.action";
 	}
@@ -122,4 +123,91 @@ public class ServiceAction {
 		mm.setViewName("crm_service/deal_list");
 		return mm;
 	} 
+	//通过ID获取单个服务
+	@RequestMapping("/getServiceById")
+	public ModelAndView getServiceById(int id,ModelAndView mm){
+		Services ser=biz.getById(id);
+		mm.addObject("ser", ser);
+		mm.setViewName("crm_service/deal");
+		return mm;
+	}
+	//提交服务处理
+	@RequestMapping("/dis")
+	public String dis(Services ser,HttpSession sess){
+		Users us=(Users)sess.getAttribute("curruser");
+		ser.setDisposeuser(us);
+		ser.setDisposetime(new Date());
+		biz.dis(ser);
+		return "redirect:getAllById.action?id="+us.getUserid();
+	}
+	//获取所有已处理的服务
+	@RequestMapping("/getAllPro")
+	public ModelAndView getAllPro(QueryParam par,ModelAndView mm){
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	    if(par.getCreatetime()!=null)
+		{
+	    	try {
+				Date createtime = format.parse(par.getCreatetime());
+				Calendar ca=Calendar.getInstance();	
+				ca.setTime(createtime);
+				par.setChuangjianshijian1(ca.getTime());
+				ca.setTime(createtime);
+				ca.add(ca.DATE, +1);
+				par.setChuangjianshijian2(ca.getTime());	
+			} catch (ParseException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		QueryParam pp=biz.getAllPro(par);
+		mm.addObject("par", pp);
+		mm.setViewName("crm_service/feedback_list");
+		return mm;
+	}
+	//获取单个已处理的服务
+	@RequestMapping("/getService2")
+	public ModelAndView getServiceById2(int id,ModelAndView mm){
+		Services ser=biz.getById(id);
+		mm.addObject("ser", ser);
+		mm.setViewName("crm_service/feedback");
+		return mm;
+	}
+	//反馈
+	@RequestMapping("/result")
+	public String result(Services ser){
+		biz.result(ser);
+		return "redirect:getAllPro.action";
+	}
+	//归档列表
+	@RequestMapping("/file")
+	public ModelAndView getAllFile(QueryParam par,ModelAndView mm){
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	    if(par.getCreatetime()!=null)
+		{
+	    	try {
+				Date createtime = format.parse(par.getCreatetime());
+				Calendar ca=Calendar.getInstance();	
+				ca.setTime(createtime);
+				par.setChuangjianshijian1(ca.getTime());
+				ca.setTime(createtime);
+				ca.add(ca.DATE, +1);
+				par.setChuangjianshijian2(ca.getTime());	
+			} catch (ParseException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
+		QueryParam pp=biz.getAllRes(par);
+		mm.addObject("par", pp);
+		mm.setViewName("crm_service/file_list");
+		return mm;
+	}
+	//归档详情
+	@RequestMapping("/getFileById")
+	public ModelAndView getFileById(int id,ModelAndView mm){
+		Services ser=biz.getById(id);
+		mm.addObject("ser", ser);
+		mm.setViewName("crm_service/file_detail");
+		return mm;
+	}
 }

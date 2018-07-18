@@ -14,4 +14,10 @@ public interface IServiceDao {
 	public List<Services> getAllById(QueryParam par);
 	public int getCountById(QueryParam par);
 	public Services getById(int id);
+	public void dis(Services ser);
+	public List<Services> getAllPro(QueryParam par);
+	public int getCountPro(QueryParam par);
+	public void result(Services ser);
+	public List<Services> getAllRes(QueryParam par);
+	public int getCountRes(QueryParam par);
 }

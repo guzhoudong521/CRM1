@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${ser.servicetyle}</td>
           <td>${ser.createuser.uname }</td>
           <td><fmt:formatDate value="${ser.createtime}" pattern="yyyy-MM-dd"/></td>
-          <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('crm_service/deal.jsp')" /></td>
+          <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('ser/getServiceById.action?id=${ser.id}')" /></td>
         </tr>
        </c:forEach> 
         <!-- <tr>

@@ -1,5 +1,7 @@
 package crm.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,4 +81,47 @@ public class ServiceBizImpl implements IServiceBiz {
 		return q;
 	}
 
+
+	public Services getById(int id) {
+		// TODO 自动生成的方法存根
+		return dao.getById(id);
+	}
+
+
+	public void dis(Services ser) {
+		// TODO 自动生成的方法存根
+		dao.dis(ser);
+	}
+
+
+	public QueryParam getAllPro(QueryParam par) {
+		// TODO 自动生成的方法存根
+		QueryParam q=new QueryParam();
+		q.setPage(par.getPage());
+		q.setName(par.getName());
+		q.setServicetyle(par.getServicetyle());
+		q.setChuangjianshijian1(par.getChuangjianshijian1());
+		q.setMaxRows(dao.getCountPro(par));
+		q.setList(dao.getAllPro(par));
+		return q;
+	}
+
+
+	public void result(Services ser) {
+		// TODO 自动生成的方法存根
+		dao.result(ser);
+	}
+
+
+	public QueryParam getAllRes(QueryParam par) {
+		// TODO 自动生成的方法存根
+		QueryParam q=new QueryParam();
+		q.setPage(par.getPage());
+		q.setName(par.getName());
+		q.setServicetyle(par.getServicetyle());
+		q.setChuangjianshijian1(par.getChuangjianshijian1());
+		q.setMaxRows(dao.getCountRes(par));
+		q.setList(dao.getAllRes(par));
+		return q;
+	}
 }

@@ -17,7 +17,8 @@ public class Services {
 	private Date disposetime;  //处理时间
 	private Users disposeuser;   //处理人
 	private List<Users> list;
-	
+	private String result;          //处理结果
+	private String satisfaction;    //满意度
 	public int getId() {
 		return id;
 	}
@@ -95,6 +96,18 @@ public class Services {
 	}
 	public void setList(List<Users> list) {
 		this.list = list;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public String getSatisfaction() {
+		return satisfaction;
+	}
+	public void setSatisfaction(String satisfaction) {
+		this.satisfaction = satisfaction;
 	}
 	
 }

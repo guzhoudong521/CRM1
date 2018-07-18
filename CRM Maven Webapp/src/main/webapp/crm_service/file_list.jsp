@@ -3,17 +3,20 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>服务管理</title>
-<link href="../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../js/javascript.js"></script>
-<script type="text/javascript" src="../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 
 </head>
 
@@ -47,9 +50,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
-       	  <th width="5%"><input type="checkbox" class="check-all"/></th>
-          <th width="5%">编号</th>
-          <th width="10%">客户名称</th>
+       	  <!-- <th width="5%"><input type="checkbox" class="check-all"/></th> -->
+          <th width="8%">编号</th>
+          <th width="12%">客户名称</th>
           <th width="25%">概要</th>
           <th width="10%">服务类型</th>
           <th width="10%">创建人</th>
@@ -59,59 +62,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>1</td>
-          <td><a href="#">太阳药业</a></td>
-          <td>询问我公司倒闭时间</td>
-          <td>咨询</td>
-          <td>小明</td>
-          <td>2007-12-6</td>
-          <td>已处理</td>
-          <td><img title="明细" src="../images/document.ico" class="op_button" onclick="to('file_detail.html')" /></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>2</td>
-          <td><a href="#">太阳药业</a></td>
-          <td>询问我公司倒闭时间</td>
-          <td>咨询</td>
-          <td>小明</td>
-          <td>2007-12-6</td>
-          <td>已处理</td>
-          <td><img title="明细" src="../images/document.ico" class="op_button" onclick="to('file_detail.html')" /></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>3</td>
-          <td><a href="#">太阳药业</a></td>
-          <td>询问我公司倒闭时间</td>
-          <td>咨询</td>
-          <td>小明</td>
-          <td>2007-12-6</td>
-          <td>已处理</td>
-          <td><img title="明细" src="../images/document.ico" class="op_button" onclick="to('file_detail.html')" /></td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>4</td>
-          <td><a href="#">太阳药业</a></td>
-          <td>询问我公司倒闭时间</td>
-          <td>咨询</td>
-          <td>小明</td>
-          <td>2007-12-6</td>
-          <td>已处理</td>
-          <td><img title="明细" src="../images/document.ico" class="op_button" onclick="to('file_detail.html')" /></td>
-        </tr>
+       <c:forEach items="${par.list}" var="ser">
+          <tr>
+          <td>${ser.id }</td>
+          <td><a href="#">${ser.customer }</a></td>
+          <td>${ser.des }</td>
+          <td>${ser.servicetyle }</td>
+          <td>${ser.createuser.uname }</td>
+          <td>${ser.status}</td>
+          <td><img title="明细" src="images/document.ico" class="op_button" onclick="to('file_detail.jsp')" /></td>
+          </tr>
+        </c:forEach>
       </tbody>
     </table>
   </div>
-  <div class="position"> 
-  	共59条记录&nbsp;每页10条&nbsp;第1页/共5页 
-    <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
+    <div class="position"> 
+  	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
+    <a href="javascript:page(1)" title="首页">&laquo;首页</a>
+    <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
+    <c:forEach begin="1" end="${par.maxPages}" var="pp">
+    	 <a href="javascript:page(${pp})" class="${pp==par.page?'number current':'number' }" title="${pp}">${pp}</a> 
+    </c:forEach> 
+    <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
+    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a>
+    <!-- </a> 转到&nbsp;
     <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a>
-    </li>
+    &nbsp;页<a href="#">GO</a> -->
   </div>
 </div>
 </body>

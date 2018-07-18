@@ -12,6 +12,8 @@
         <result column="allottime" property="allottime"/>
         <result column="dispose" property="dispose"/>
         <result column="disposetime" property="disposetime"/>
+        <result column="result" property="result"/>
+        <result column="satisfaction" property="satisfaction"/>
         <association property="createuser" resultMap="createMap"/> 
         <association property="allotuser" resultMap="allotMap"/> 
         <association property="disposeuser" resultMap="disposeMap"/>
@@ -72,7 +74,7 @@
    </select>
    <!-- 指派给谁 -->
    <update id="allot" parameterType="crm.entity.Services">
-        update service set allotuser=#{allotuser.userid} where id=#{id}
+        update service set allotuser=#{allotuser.userid},allottime=#{allottime},status='已分配' where id=#{id}
    </update>
    <!-- 删除服务 -->
    <delete id="delete">
@@ -85,6 +87,7 @@
           from SERVICE t,users u 
           where t.createuser=u.userid
           and t.allotuser=#{custid}
+          and t.status='已分配'
           <if test="name!=null">
           and t.customer like #{name}
           </if>
@@ -102,6 +105,7 @@
    <select id="getCountById" resultType="int" parameterType="crm.util.QueryParam">
           select count(0) from SERVICE t
           where  t.allotuser=#{custid}
+          and t.status='已分配'
           <if test="name!=null">
           and t.customer like #{name}
           </if>
@@ -114,7 +118,91 @@
           </if>
    </select>
    <!-- 通过ID找服务 -->
-   <select id="getById">
-           
+   <select id="getById" resultMap="serMap">
+         select t.*,u1.uname creatname,u2.uname allotname,u3.uname disname
+          from SERVICE t,users u1，users u2 ,users u3
+          where t.createuser=u1.userid
+          and t.allotuser=u2.userid
+          and t.disposeuser=u3.userid(+)
+          and t.id=#{id}  
+   </select>
+   <!-- 服务处理 -->
+   <update id="dis" parameterType="crm.entity.Services">
+      update service set dispose=#{dispose},disposetime=#{disposetime},disposeuser=#{disposeuser.userid},status='已处理' where id=#{id}
+   </update>
+   <!-- 获取全部服务（已处理） -->
+   <select id="getAllPro" resultMap="serMap" parameterType="crm.util.QueryParam">
+      select * from 
+         (select t.*,u.uname creatname,rownum r 
+          from SERVICE t,users u 
+          where t.createuser=u.userid
+          and t.status ='已处理'
+          and t.result is null
+          <if test="name!=null">
+          and t.customer like #{name}
+          </if>
+          <if test="chuangjianshijian1!=null">
+          and t.createtime > #{chuangjianshijian1}
+          and t.createtime &lt; #{chuangjianshijian2}
+          </if>
+          <if test="servicetyle!=null and servicetyle!=''">
+          and t.servicetyle=#{servicetyle}
+          </if>
+          ) x 
+       where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
+   </select>
+   <!-- 获取条数 （已处理）-->
+   <select id="getCountPro" resultType="int" parameterType="crm.util.QueryParam">
+          select count(0) from SERVICE t
+          where t.status ='已处理'
+          and t.result is null
+          <if test="name!=null">
+          and t.customer like #{name}
+          </if>
+          <if test="chuangjianshijian1!=null">
+          and t.createtime > #{chuangjianshijian1}
+          and t.createtime &lt; #{chuangjianshijian2}
+          </if>
+          <if test="servicetyle!=null and servicetyle!=''">
+          and t.servicetyle=#{servicetyle}
+          </if>
+   </select>
+   <!-- 结果处理 -->
+   <update id="result" parameterType="crm.entity.Services" >
+      update service set result=#{result},satisfaction=#{satisfaction}，status='已反馈' where id=#{id}
+   </update>
+   <!-- 归档 -->
+   <select id="getAllRes" parameterType="crm.util.QueryParam" resultMap="serMap">
+       select * from 
+         (select t.*,u.uname creatname,rownum r 
+          from SERVICE t,users u 
+          where t.createuser=u.userid
+          and t.status ='已反馈'
+          <if test="name!=null">
+          and t.customer like #{name}
+          </if>
+          <if test="chuangjianshijian1!=null">
+          and t.createtime > #{chuangjianshijian1}
+          and t.createtime &lt; #{chuangjianshijian2}
+          </if>
+          <if test="servicetyle!=null and servicetyle!=''">
+          and t.servicetyle=#{servicetyle}
+          </if>
+          ) x 
+       where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
+   </select>
+   <select id="getCountRes" parameterType="crm.util.QueryParam" resultType="int">
+        select count(0) from SERVICE t
+          where t.status ='已反馈'
+          <if test="name!=null">
+          and t.customer like #{name}
+          </if>
+          <if test="chuangjianshijian1!=null">
+          and t.createtime > #{chuangjianshijian1}
+          and t.createtime &lt; #{chuangjianshijian2}
+          </if>
+          <if test="servicetyle!=null and servicetyle!=''">
+          and t.servicetyle=#{servicetyle}
+          </if>
    </select>
 </mapper>
