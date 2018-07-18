@@ -17,6 +17,7 @@ import crm.entity.Area;
 import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
+import crm.entity.Meet;
 import crm.util.QueryParam;
 
 @Controller
@@ -112,15 +113,61 @@ public class CustomerAction {
 		int idd=c.getCustid();
 		return "redirect:/cust/getbyid.action?id="+idd+"&type=lxr";
 	}
+	/*
+	 * 交往记录
+	 * */
+	
+	@RequestMapping("/getmeet")
+	public String getMeetById(QueryParam q,Model mod,HttpSession session){
+		
+		Customer cus=biz.getById(q.getCustid());
+		session.setAttribute("bjcus", cus);
+		
+		QueryParam qq=biz.getMeetByCustId(q);
+	
+		mod.addAttribute("currmeet", qq);
+		
+		return "crm_cus/info/contact";
+	}
 	
 	
+	@RequestMapping("/addmeet")
+	public String addMeet(Meet meet,HttpSession session){
+		Customer cus=(Customer)session.getAttribute("bjcus");
+		int id=cus.getCustid();
+		String date=meet.getMeetime();			
+		meet.setMeetime(date.replace("T", "  "));
+		biz.addMeet(meet);
+		
+		return "redirect:/cust/getmeet.action?custid="+id;
+	}
 	
+	@RequestMapping("/getmeetbyid")
+	public String getMeetById(@RequestParam("id")int id,Model mod){
+		
+		Meet meet=biz.getMeetById(id);
+		
+		mod.addAttribute("meet", meet);
+		
+		return "crm_cus/info/contact_edit";
+	}
 	
+	@RequestMapping("/modmeet")
+	public String modMeet(Meet meet,HttpSession session){
+		Customer cus=(Customer)session.getAttribute("bjcus");
+		int id=cus.getCustid();
+		biz.modMeet(meet);
+		
+		return "redirect:/cust/getmeet.action?custid="+id;
+	}
 	
-	
-	
-	
-	
+	@RequestMapping("/delmeet")
+	public String delMeet(int id,HttpSession session){
+		Customer cus=(Customer)session.getAttribute("bjcus");
+		int idd=cus.getCustid();
+		biz.delMeet(id);
+		return "redirect:/cust/getmeet.action?custid="+idd;
+	}
 	
 	
 	

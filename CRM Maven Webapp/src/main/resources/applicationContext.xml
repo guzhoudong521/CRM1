@@ -41,6 +41,9 @@
      <property name="basePackage" value="crm.dao"/>
      <property name="sqlSessionFactoryBeanName" value="sessionfactory"/>
   </bean>
+  
+
+  
   <!-- JSON -->
   <bean id="jsonconverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
         <property name="supportedMediaTypes">

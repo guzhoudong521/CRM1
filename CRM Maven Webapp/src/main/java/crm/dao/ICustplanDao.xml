@@ -28,7 +28,7 @@
 		
 		<resultMap type="users" id="zxrmap">
 			<id column="zxrid" property="userid"/>
-			<result column="cjr" property="uname"/>
+			<result column="zxr" property="uname"/>
 		</resultMap>
 	
 	<select id="getAll" resultMap="custplanmap" parameterType="crm.util.QueryParam">

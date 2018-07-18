@@ -6,6 +6,7 @@ import crm.entity.Area;
 import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
+import crm.entity.Meet;
 import crm.util.QueryParam;
 
 public interface ICustomerDao {
@@ -25,6 +26,9 @@ public interface ICustomerDao {
 	
 	public void modCust(Customer cust);
 	
+	/*
+	 * 客户联系人
+	 * */
 	public List<Contact> getContactById(int id);
 	
 	public void addContact(Contact con);
@@ -34,6 +38,30 @@ public interface ICustomerDao {
 	public Contact getConById(int id);
 	
 	public void delCon(int id);
+	
+	/*
+	 * 交往记录
+	 * */
+	
+	public List<Meet> getMeetByCustId(QueryParam q);
+	
+	public int getMeetCount(QueryParam q);
+	
+	public void addMeet(Meet meet);
+	
+	public Meet getMeetById(int id);
+	
+	public void modMeet(Meet meet);
+	
+	public void delMeet(int id);
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

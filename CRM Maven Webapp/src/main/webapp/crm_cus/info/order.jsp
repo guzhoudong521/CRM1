@@ -3,17 +3,18 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<base href="<%=basePath %>">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>客户开发计划</title>
-<link href="../../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../../js/javascript.js"></script>
-<script type="text/javascript" src="../../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 
 </head>
 
@@ -52,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>2013-12-10</td>
           <td>北京海淀区劳动路205号</td>
           <td>完成</td>
-          <td><img title="查看明细" src="../../images/document.ico" class="op_button" onclick="to('order_detail.html')" /></td>
+          <td><img title="查看明细" src="images/document.ico" class="op_button" onclick="to('crm_cus/info/order_detail.jsp')" /></td>
         </tr>
       </tbody>
     </table>

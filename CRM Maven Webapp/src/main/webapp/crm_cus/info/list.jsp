@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>
 	          <img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('cust/getbyid.action?id=${cus.custid}&type=bj')" />
 	          <img title="联系人" src="images/user.ico" class="op_button" onclick="to('cust/getbyid.action?id=${cus.custid}&type=lxr')" />
-	          <img title="交往记录" src="images/bubble.ico" class="op_button" onclick="to('crm_cus/info/contact.jsp')" />
+	          <img title="交往记录" src="images/bubble.ico" class="op_button" onclick="to('cust/getmeet.action?custid=${cus.custid}')" />
 	          <img title="历史订单" src="images/document.ico" class="op_button" onclick="to('crm_cus/info/order.jsp')" />
           </td>
         </tr>
@@ -132,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="position"> 共${custparam.maxRows}条记录&nbsp;每页${custparam.pageSize}条&nbsp;第${custparam.page}页/共${custparam.maxPages}页 
   <a href="cust/dolist.action?page=1" title="首页">&laquo;首页</a><a href="cust/dolist.action?page=${page-1 }" title="上一页">&laquo; 上一页</a> 
   <c:forEach begin="1" end="${custparam.maxPages}" var="p">
- 	 <a href="#" class="${custparam.page==p?'number current':'number' }" title="${p}">${p}</a> 
+ 	 <a href="cust/dolist.action?page=${p}" class="${custparam.page==p?'number current':'number' }" title="${p}">${p}</a> 
   </c:forEach>  
   <a href="cust/dolist.action?page=${page+1 }" title="下一页">下一页&raquo;</a>
   <a href="cust/dolist.action?page=${custparam.maxPages}" title="末页">末页&raquo;</a> 

@@ -9,8 +9,18 @@ public class Customer {
 	private Custgrade custgrade;
 	private List<Contact> list;
 	private Users mgr;
+	private List<Meet> meetlist;
 	
 	
+	
+	
+	
+	public List<Meet> getMeetlist() {
+		return meetlist;
+	}
+	public void setMeetlist(List<Meet> meetlist) {
+		this.meetlist = meetlist;
+	}
 	public Users getMgr() {
 		return mgr;
 	}

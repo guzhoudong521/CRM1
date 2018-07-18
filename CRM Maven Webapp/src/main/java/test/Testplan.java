@@ -17,6 +17,7 @@ import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
 import crm.entity.Custplan;
+import crm.entity.Meet;
 import crm.entity.Users;
 import crm.util.QueryParam;
 
@@ -27,7 +28,39 @@ public class Testplan {
 		ApplicationContext con=new ClassPathXmlApplicationContext("applicationContext.xml");
 		ICustplanBiz biz=con.getBean(ICustplanBiz.class);
 		
+		ICustomerDao dao=con.getBean(ICustomerDao.class);
+		
+		
+	/*	Meet m=new Meet();
+		Customer c=new Customer();
+		c.setCustid(1086);
+		m.setCust(c);
+		m.setMeetaddress("如家");
+		m.setMeetinfo(".....");
+		m.setMeetnotes("...");
+		m.setSummary("...");
+		dao.addMeet(m);*/
+		
+		Meet m=dao.getMeetById(1103);
+		System.out.println(m.getMeetaddress());
+		
+		
+		
 		/*QueryParam q=new QueryParam();
+		q.setCustid(1086);
+		
+		List<Meet> list=dao.getMeetByCustId(q);
+		
+		for(Meet m:list){
+			System.out.println("**************************************************************");
+			
+			System.out.println(m.getCust().getCustid());
+		}*/
+		
+		/*Custplan cust=biz.getById(1036);
+		System.out.println("**************************************************************");
+		System.out.println(cust.getZhixingren().getUname()+","+cust.getChuangjianren().getUname());
+		*//*QueryParam q=new QueryParam();
 		q.setPage(1);
 		//q.setPageSize(5);
 		q.setName("睿");
@@ -65,9 +98,9 @@ public class Testplan {
 		biz.modPlan(c);
 		*/
 		
-		Custplan cust=biz.getById(1080);
+		/*Custplan cust=biz.getById(1080);
 		
-		System.out.println(cust.getZhixingren().getUserid());
+		System.out.println(cust.getZhixingren().getUserid());*/
 		
 		ICustomerBiz bizx=con.getBean(ICustomerBiz.class);
 		
@@ -75,8 +108,8 @@ public class Testplan {
 		cont.setContcatid(1083);
 		cont.setConame("王先生");
 		bizx.modContact(cont);*/
-		Contact cont= bizx.getConById(1083);
-		System.out.println(cont.getConame());
+		/*Contact cont= bizx.getConById(1083);
+		System.out.println(cont.getConame());*/
 		/*Contact cont=new Contact();
 		cont.setCojob("清洁工");
 		cont.setConame("李女士");

@@ -6,6 +6,7 @@ import crm.entity.Area;
 import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
+import crm.entity.Meet;
 import crm.util.QueryParam;
 
 public interface ICustomerBiz {
@@ -30,4 +31,31 @@ public interface ICustomerBiz {
 	public Contact getConById(int id);
 	
 	public void delCon(int id);
+	
+	/*
+	 * 交往记录
+	 * */
+	
+	public QueryParam getMeetByCustId(QueryParam q);
+	
+	public void addMeet(Meet meet);
+	
+	public Meet getMeetById(int id);
+	
+	public void modMeet(Meet meet);
+	
+	public void delMeet(int id);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

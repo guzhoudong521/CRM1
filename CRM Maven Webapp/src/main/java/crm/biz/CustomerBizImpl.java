@@ -10,6 +10,7 @@ import crm.entity.Area;
 import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
+import crm.entity.Meet;
 import crm.util.QueryParam;
 
 @Service
@@ -22,10 +23,11 @@ public class CustomerBizImpl implements ICustomerBiz {
 	public QueryParam getAllByPage(QueryParam q) {
 		// TODO 自动生成的方法存根
 		QueryParam qq=new QueryParam();
+		qq.setPageSize(q.getPageSize());
 		qq.setPage(q.getPage());
 		qq.setMaxRows(dao.getCount(q));
 		qq.setList(dao.getAll(q));
-		qq.setPageSize(q.getPageSize());
+		
 		
 		return qq;
 	}
@@ -75,5 +77,37 @@ public class CustomerBizImpl implements ICustomerBiz {
 		// TODO 自动生成的方法存根
 		dao.delCon(id);
 	}
+
+	public QueryParam getMeetByCustId(QueryParam q) {
+		// TODO 自动生成的方法存根
+		QueryParam qq=new QueryParam();
+		qq.setPageSize(q.getPageSize());
+		qq.setPage(q.getPage());
+		qq.setMaxRows(dao.getMeetCount(q));
+		qq.setList(dao.getMeetByCustId(q));			
+		return qq;
+	}
+
+	public void addMeet(Meet meet) {
+		// TODO 自动生成的方法存根
+		dao.addMeet(meet);
+	}
+
+	public Meet getMeetById(int id) {
+		// TODO 自动生成的方法存根
+		return dao.getMeetById(id);
+	}
+
+	public void modMeet(Meet meet) {
+		// TODO 自动生成的方法存根
+		dao.modMeet(meet);
+	}
+
+	public void delMeet(int id) {
+		// TODO 自动生成的方法存根
+		dao.delMeet(id);
+	}
+
+	
 
 }

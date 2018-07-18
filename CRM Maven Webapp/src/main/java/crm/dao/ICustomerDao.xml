@@ -169,17 +169,69 @@
 		delete from  contact  where CONTCATID=#{0}
 	</delete>
 	
+	<!-- 交往记录 -->
+	
+	<!-- <resultMap type="meet" id="meetmap">
+		<id column="mid" property="mid"/>
+		<association property="cust" >
+			<id column="custid" property="custid"/>
+		</association>
+	</resultMap> -->
+	
+	<select id="getMeetByCustId" resultType="meet" parameterType="crm.util.QueryParam">
+		select * from (
+			select x.*,rownum r from (
+			  select m.* from meet m,customer c
+			  where m.custid=c.custid(+)
+			  and m.custid=#{custid}
+			  order by m.meetime desc) x)
+			  where r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize}
+	</select>
+	
+	<select id="getMeetCount" resultType="int" parameterType="crm.util.QueryParam">
+		
+		select count(1) from meet m,customer c
+		where m.custid=c.custid(+)
+		and m.custid=#{custid}
+		
+	</select>
+	
+	<insert id="addMeet" parameterType="meet">
+		insert into meet values(quanju_seq.nextval,#{cust.custid},#{meetime},#{meetaddress},#{summary},#{meetinfo},#{meetnotes})	
+	</insert>
+	
+	<select id="getMeetById" resultType="meet" parameterType="int">
+		
+		select * from meet where mid=#{0}
+		
+	</select>
 	
 	
+	<update id="modMeet" parameterType="meet">
+		update meet  
+		<set>
+			<if test="meetime!=null">
+			meetime=#{meetime},
+			</if>
+			<if test="meetaddress!=null">
+			meetaddress=#{meetaddress},
+			</if>
+			<if test="summary!=null">
+			summary=#{summary},
+			</if>
+			<if test="meetinfo!=null">
+			meetinfo=#{meetinfo},
+			</if>
+			<if test="meetnotes!=null">
+			meetnotes=#{meetnotes}
+			</if>
+			</set>
+		where mid=#{mid}
+	</update>
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	<delete id="delMeet" parameterType="int">
+		delete from meet where mid=#{0}
+	</delete>
 	
 	
 	
