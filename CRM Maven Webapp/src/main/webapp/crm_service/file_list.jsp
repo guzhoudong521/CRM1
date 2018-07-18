@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${ser.servicetyle }</td>
           <td>${ser.createuser.uname }</td>
           <td>${ser.status}</td>
-          <td><img title="明细" src="images/document.ico" class="op_button" onclick="to('file_detail.jsp')" /></td>
+          <td><img title="明细" src="images/document.ico" class="op_button" onclick="to('ser/getFileById.action?id=${ser.id }')" /></td>
           </tr>
         </c:forEach>
       </tbody>
