@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li> <a href="#" class="nav-top-item" id="man_nav_2" onclick="list_sub_nav(id)"> 客户开发计划 </a>
           <ul>
             <li><a href="cust/dolist.action" target="rightFrame" id="a_nav_3" onclick="a_sub_nav(id)">客户信息管理</a></li>
-            <li><a href="crm_cus/lose/list.jsp" target="rightFrame" id="a_nav_4" onclick="a_sub_nav(id)">客户流失管理</a></li>
+            <!-- <li><a href="crm_cus/lose/list.jsp" target="rightFrame" id="a_nav_4" onclick="a_sub_nav(id)">客户流失管理</a></li> -->
           </ul>
         </li>
         <li> <a href="#" class="nav-top-item" id="man_nav_3" onclick="list_sub_nav(id)"> 服务管理 </a>
@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li><a href="stat/getsale.action" target="rightFrame" id="a_nav_10" onclick="a_sub_nav(id)">客户贡献分析</a></li>
             <li><a href="stat/getgrade.action" target="rightFrame" id="a_nav_11" onclick="a_sub_nav(id)">客户构成分析</a></li>
             <li><a href="stat/getsertype.action" target="rightFrame" id="a_nav_12" onclick="a_sub_nav(id)">客户服务分析</a></li>
-            <li><a href="crm_rep/lose.jsp" target="rightFrame" id="a_nav_13" onclick="a_sub_nav(id)">客户流失分析</a></li>
+            <!-- <li><a href="crm_rep/lose.jsp" target="rightFrame" id="a_nav_13" onclick="a_sub_nav(id)">客户流失分析</a></li> -->
           </ul>
         </li>
         <li> <a href="#" class="nav-top-item" id="man_nav_5" onclick="list_sub_nav(id)"> 基础数据 </a>

@@ -23,25 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：统计报表&nbsp;&gt;&nbsp;客户贡献分析
     <hr class="hr1" />
   </div>
-  <!--  <div class="operation_button"> <a href="#" title="查询">查询</a> </div>
-  <div class="search_input">
-    <ul class="txt">
-      <li>客户名称：
-        <input type="text" size="30" />
-      </li>
-      <li>年份：
-        <select>
-          <option>全部</option>
-          <option>2005</option>
-          <option>2006</option>
-          <option>2007</option>
-          <option>2008</option>
-          <option>2009</option>
-          <option>2010</option>
-        </select>
-      </li>
-    </ul>
-  </div>-->
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
