@@ -22,7 +22,7 @@
    
    <!-- 添加消息 -->
    <insert id="addMess" parameterType="crm.entity.Message">
-      insert into message values(quanju_seq.nextval,#{suser.userid},#{ruser.userid},#{title},#{content},#{createtime},'新创建')
+      insert into message values(quanju_seq.nextval,#{suser.userid},#{ruser.userid},#{title},#{content},#{createtime},'未读')
    </insert>
    
    <!-- 删除消息 -->

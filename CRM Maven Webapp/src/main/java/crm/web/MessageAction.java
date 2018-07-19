@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import crm.biz.IMessageBiz;
 import crm.entity.Message;
+import crm.entity.Users;
 import crm.util.QueryParam;
 
 @Controller
@@ -31,13 +32,17 @@ public class MessageAction {
 	}
 	@RequestMapping("/getReMessage")
 	public ModelAndView getReMessage(QueryParam pa,ModelAndView mm,HttpSession sess){
+		Users us=(Users)sess.getAttribute("curruser");
+		pa.setCustid(us.getUserid());
 		QueryParam par=biz.getRecevieMessage(pa);
 		mm.addObject("par", par);
-		mm.setViewName("");
+		mm.setViewName("crm_message/remessage_list");
 		return mm;
 	}
 	@RequestMapping("/getSdMessage")
 	public ModelAndView getSdMessage(QueryParam pa,ModelAndView mm,HttpSession sess){
+		Users us=(Users)sess.getAttribute("curruser");
+		pa.setCustid(us.getUserid());
 		QueryParam par=biz.getSendMessage(pa);
 		mm.addObject("par", par);
 		mm.setViewName("");

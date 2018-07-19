@@ -35,7 +35,7 @@ public class MessageBizImpl implements IMessageBiz {
 		qq.setPage(par.getPage());
 		qq.setMaxRows(dao.getReceiveCount(par));
 		qq.setList(dao.getReceiveMessageById(par));
-		return par;
+		return qq;
 	}
 
 	public QueryParam getSendMessage(QueryParam par) {

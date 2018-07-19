@@ -33,26 +33,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：客户服务管理&nbsp;&gt;&nbsp;服务处理列表
+  <div class="txt" style="padding-top:3px;" >当前位置：消息管理&nbsp;&gt;&nbsp;收到的消息
     <hr class="hr1" />
   </div>
   <div class="operation_button">
     <a href="javascript:sub()" title="查询">查询</a>
   </div>
   <div class="search_input">
-    <form action="ser/getAllById.action" method="post" id="searchForm">
+    <form action="message/getReMessage.action" method="post" id="searchForm">
     <ul class="txt">
-      <li>客户名称：
-        <input name="page" type="hidden" id="pages" value="1">
-        <input name="name" type="text" size="30" />
-      </li>
-      <li> 服务类型：
-        <select name="servicetyle">
-          <option value="">全部...</option>
-          <option value="咨询">咨询</option>
-          <option value="投诉">投诉</option>
-          <option value="建议">建议</option>
-        </select>
+      <li>
+        <input type="radio" name="stauts" value="已读"/>已读
+        <input type="radio" name="stauts" value="未读"/>未读
       </li>
       <li> 创建日期：
         <input name="createtime" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
@@ -64,36 +56,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
-          <th width="10%">编号</th>
-          <th width="10%">客户名称</th>
-          <th width="25%">概要</th>
-          <th width="10%">服务类型</th>
-          <th width="10%">创建人</th>
-          <th width="15%">创建日期</th>
+          <th width="10%">状态</th>
+          <th width="10%">发送人</th>
+          <th width="20%">标题</th>
+          <th width="15%">接受时间</th>
           <th width="10%">操作</th>
         </tr>
       </thead>
       <tbody>
         <c:forEach items="${par.list}" var="ser">
         <tr>
-          <td>${ser.id}</td>
-          <td><a href="#">${ser.customer}</a></td>
-          <td>${ser.des}</td>
-          <td>${ser.servicetyle}</td>
-          <td>${ser.createuser.uname }</td>
-          <td><fmt:formatDate value="${ser.createtime}" pattern="yyyy-MM-dd"/></td>
+          <td>
+             <c:if test="${ser.status=='新创建'}">【<span style="color:red">未读</span>】</c:if>
+            <c:if test="${ser.status=='已读'}">【<span >已读</span>】</c:if>
+          </td>
+          <td>${ser.suser.uname}</td>
+          <td>${ser.title}</td>
+          <td><fmt:formatDate value="${ser.createtime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
           <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('ser/getServiceById.action?id=${ser.id}')" /></td>
         </tr>
        </c:forEach> 
-        <!-- <tr>
-          <td>1</td>
-          <td><a href="#">太阳药业</a></td>
-          <td>询问我公司倒闭时间</td>
-          <td>咨询</td>
-          <td>小明</td>
-          <td>2007-12-6</td>
-          <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('deal.jsp')" /></td>
-        </tr> -->
       </tbody>
     </table>
   </div>
