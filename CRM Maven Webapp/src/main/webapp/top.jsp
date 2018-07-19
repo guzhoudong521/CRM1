@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       日程 </span></a></li>
     <li><a class="shortcut_button" href="#"><span> <img src="images/clipboard.ico"  width="55px"  alt="icon" /><br />
       公告栏 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/write.png"  width="55px"  alt="icon" /><br />
+    <li><a class="shortcut_button" href="crm_message/add_message.jsp" target="rightFrame"><span> <img src="images/write.png"  width="55px"  alt="icon" /><br />
       写消息 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/bubble.ico"  width="55px"  alt="icon" /><br />
+    <li><a class="shortcut_button" href="message/getReMessage.action" target="rightFrame"><span> <img src="images/bubble.ico"  width="55px"  alt="icon" /><br />
       我的消息 </span></a></li>
     <li><a class="shortcut_button" href="crm_sale/opp/edit.jsp" target="rightFrame"><span> <img src="images/gear.ico"  width="55px"  alt="icon" /><br />
       系统设置 </span></a></li>

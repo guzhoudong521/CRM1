@@ -30,7 +30,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
 </script>
 </head>
-
+<style>
+#chaxundiv{
+		
+		position:absolute;
+		top:55px;
+		left:590px;	
+	}	
+</style>
 <body>
 <div style="padding:5px;">
   <div class="txt" style="padding-top:3px;" >当前位置：消息管理&nbsp;&gt;&nbsp;收到的消息
@@ -38,6 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="operation_button">
     <a href="javascript:sub()" title="查询">查询</a>
+    <a href="message/getSdMessage.action">我发出的消息</a>
   </div>
   <div class="search_input">
     <form action="message/getReMessage.action" method="post" id="searchForm">
@@ -67,14 +75,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <c:forEach items="${par.list}" var="ser">
         <tr>
           <td>
-             <c:if test="${ser.status=='新创建'}">【<span style="color:red">未读</span>】</c:if>
+             <c:if test="${ser.status=='未读'}">【<span style="color:red">未读</span>】</c:if>
             <c:if test="${ser.status=='已读'}">【<span >已读</span>】</c:if>
           </td>
           <td>${ser.suser.uname}</td>
           <td>${ser.title}</td>
           <td><fmt:formatDate value="${ser.createtime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-          <td><img title="操作" src="images/gear.ico" class="op_button" onclick="to('ser/getServiceById.action?id=${ser.id}')" /></td>
-        </tr>
+          <td>
+          <img title="阅读" src="images/ad.gif" class="op_button" onclick="to('message/getById.action?id=${ser.id}')" />
+          <img title="删除" src="images/delete.ico" class="op_button" onclick="to('message/del1.action?id=${ser.id}')" />
+          </td>
+         </tr>
        </c:forEach> 
       </tbody>
     </table>

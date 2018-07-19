@@ -13,4 +13,5 @@ public interface IMessageDao {
 	public int getReceiveCount(QueryParam par);
 	public int getSendCount(QueryParam par);
 	public void changeMessageStatuts(int id);
+	public Message getById(int id);
 }

@@ -50,4 +50,9 @@ public class MessageBizImpl implements IMessageBiz {
 		dao.changeMessageStatuts(id);
 	}
 
+	public Message getById(int id) {
+		// TODO 自动生成的方法存根
+		return dao.getById(id);
+	}
+
 }

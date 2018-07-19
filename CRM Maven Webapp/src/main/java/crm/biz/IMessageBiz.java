@@ -9,4 +9,5 @@ public interface IMessageBiz {
 	public  QueryParam getRecevieMessage(QueryParam par);
 	public  QueryParam getSendMessage(QueryParam par);
 	public void changeMessageStatuts(int id);
+	public Message getById(int id);
 }

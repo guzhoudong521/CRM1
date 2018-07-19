@@ -82,4 +82,13 @@
    <update id="changeMessageStatuts" parameterType="int">
       update message set status='已读' where id=#{id}
    </update>
+   
+   <!-- getById -->
+   <select id="getById" resultMap="messageMap" parameterType="int">
+      select t.*,u1.uname sname, u2.uname rname
+      from MESSAGE t，users u1,users u2
+      where t.sid=u1.userid
+      and t.rid=u2.userid
+      and t.id=#{id}
+   </select>
 </mapper>
