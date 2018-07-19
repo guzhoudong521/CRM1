@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：统计报表&nbsp;&gt;&nbsp;客户贡献分析
     <hr class="hr1" />
   </div>
-  <div class="operation_button"> <a href="#" title="查询">查询</a> </div>
+  <!--  <div class="operation_button"> <a href="#" title="查询">查询</a> </div>
   <div class="search_input">
     <ul class="txt">
       <li>客户名称：
@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </select>
       </li>
     </ul>
-  </div>
+  </div>-->
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
