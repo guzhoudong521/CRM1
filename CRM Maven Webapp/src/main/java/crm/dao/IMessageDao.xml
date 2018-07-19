@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="crm.dao.IMessageDao">
+   <resultMap type="crm.entity.Message" id="messageMap">
+      <id column="id" property="id"/>
+      <result column="title" property="title"/>
+      <result column="content" property="content"/>
+      <result column="createtime" property="createtime"/>
+      <result column="status" property="status"/>
+      <association property="suser" resultMap="suserMap"/>
+      <association property="ruser" resultMap="ruserMap"/>
+   </resultMap>
+   <resultMap type="crm.entity.Users" id="ruserMap">
+      <result column="rid" property="userid"/>
+      <result column="rname" property="uname"/>
+   </resultMap>
+   <resultMap type="crm.entity.Users" id="suserMap">
+      <result column="sid" property="userid"/>
+      <result column="sname" property="uname"/>
+   </resultMap>
+   
+   <!-- 添加消息 -->
+   <insert id="addMess" parameterType="crm.entity.Message">
+      insert into message values(quanju_seq.nextval,#{suser.userid},#{ruser.userid},#{title},#{content},#{createtime},'未读')
+   </insert>
+   
+   <!-- 删除消息 -->
+   <delete id="delMess" parameterType="int">
+      delete from message where id=#{id}
+   </delete>
+   
+   <!-- 获取该用户收到的消息 -->
+   <select id="getReceiveMessageById" parameterType="crm.util.QueryParam" resultMap="messageMap">
+      select * from (select t.*,u1.uname sname, u2.uname rname,rownum r
+      from MESSAGE t，users u1,users u2
+      where t.sid=u1.userid
+      and t.rid=u2.userid
+      and t.rid=#{custid}
+      <if test="chuangjianshijian1!=null">
+      and createtime > #{chuangjianshijian1}
+      and createtime &lt; #{chuangjianshijian1}
+      </if>) x 
+      where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
+   </select>
+   
+   <!-- 获取该用户收到的消息条数 -->
+   <select id="getReceiveCount" parameterType="crm.util.QueryParam" resultType="int">
+      select count(0) from MESSAGE 
+      where  rid=#{custid}
+      <if test="chuangjianshijian1!=null">
+      and createtime > #{chuangjianshijian1}
+      and createtime &lt; #{chuangjianshijian1}
+      </if>
+   </select>
+   
+   <!-- 获取该用户发出的消息 -->
+   <select id="getSendMessageById" parameterType="crm.util.QueryParam" resultMap="messageMap">
+      select * from (select t.*,u1.uname sname, u2.uname rname,rownum r
+      from MESSAGE t，users u1,users u2
+      where t.sid=u1.userid
+      and t.rid=u2.userid
+      and t.sid=#{custid}
+      <if test="chuangjianshijian1!=null">
+      and createtime > #{chuangjianshijian1}
+      and createtime &lt; #{chuangjianshijian1}
+      </if>) x 
+      where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
+   </select>
+   
+   <!-- 获取该用户发出的消息条数 -->
+   <select id="getSendCount" parameterType="crm.util.QueryParam" resultType="int">
+      select count(0) from MESSAGE
+      where  sid=#{custid}
+      <if test="chuangjianshijian1!=null">
+      and createtime > #{chuangjianshijian1}
+      and createtime &lt; #{chuangjianshijian1}
+      </if>
+   </select>
+   
+   <!-- 改变消息状态 -->
+   <update id="changeMessageStatuts" parameterType="int">
+      update message set status='已读' where id=#{id}
+   </update>
+   
+   <!-- getById -->
+   <select id="getById" resultMap="messageMap" parameterType="int">
+      select t.*,u1.uname sname, u2.uname rname
+      from MESSAGE t，users u1,users u2
+      where t.sid=u1.userid
+      and t.rid=u2.userid
+      and t.id=#{id}
+   </select>
+</mapper>

@@ -84,9 +84,7 @@ public class UsersAction {
 	public List<Users> getAllAjax(){
 		QueryParam q=new QueryParam();
 		q.setPageSize(1000);
-		QueryParam qq=biz.getAllUser(q);
-		
-		
+		QueryParam qq=biz.getAllUser(q);	
 		return qq.getList();
 	}
 	

@@ -19,7 +19,7 @@ public class QueryParam {
 	private String zhuangtai;
 	private Integer areaid;
 	private Integer gradeid;
-	private Integer custid;   //当前登陆人ID或者其他
+	private Integer custid;   //当前登陆人ID、接收人ID、发送人ID或者其他
 	private String servicetyle;
 	
 	
