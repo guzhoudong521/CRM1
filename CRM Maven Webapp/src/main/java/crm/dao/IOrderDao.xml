@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crm.dao.IOrderDao">
+
+	
+	
+	
+	<select id="getById" resultType="orders" parameterType="crm.util.QueryParam">
+	select * from (
+	 select o.*,rownum r from orders o 
+	  where o.custid=#{custid})
+	  where r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize}
+	</select>
+	
+	<select id="getCount" parameterType="int" resultType="int">
+	 select count(1)from orders o 
+	  where o.custid=#{0}
+	</select>
+	
+	<select id="getOrderById" resultType="orders" parameterType="int">
+		select * from orders o 
+		  where o.oid=#{0}
+	</select>
+	
+	
+	<select id="getSumByOrder" parameterType="int" resultType="long">
+		select sum(sumprice) from
+		(select d.oid oidd,p.price*d.pnum sumprice from orderdetail d,product p where d.pid=p.pid and d.oid=#{0}) 
+		
+	</select>
+	
+	
+	<resultMap type="orderDetail" id="detailmap">
+		<id column="odid" property="odid"/>
+		<result column="pnum" property="pnum"/>
+		<result column="sumprice" property="sumprice"/>
+		<association property="pro" resultMap="promap"/>
+	</resultMap>
+	
+	<resultMap type="product" id="promap">
+		<id column="proid" property="pid"/>
+		<result column="pname" property="pname"/>
+		<result column="unit" property="unit"/>
+		<result column="price" property="price"/>
+	</resultMap>
+	
+
+	<select id="getDetailById" resultMap="detailmap" parameterType="crm.util.QueryParam">
+		select * from (select x.*,rownum r from (
+	    select d.odid,p.pname,d.pnum,p.pid proid,p.unit,p.price,p.price*d.pnum sumprice from orderdetail d,product p
+	    where d.pid=p.pid
+	    and d.oid=#{gonghao}
+	    order by sumprice desc ) x)
+	    where r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize}
+	</select>
+
+	<select id="getDetailCount" parameterType="int" resultType="int">
+		select count(1) from orderdetail d,product p
+		where d.pid=p.pid
+		and d.oid=#{gonghao}
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

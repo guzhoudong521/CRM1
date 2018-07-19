@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import crm.biz.ICustomerBiz;
+import crm.biz.IOrderBiz;
 import crm.entity.Area;
 import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
 import crm.entity.Meet;
+import crm.entity.Orders;
 import crm.util.QueryParam;
 
 @Controller
@@ -26,7 +28,8 @@ public class CustomerAction {
 
 	@Autowired
 	private ICustomerBiz biz;
-	
+	@Autowired
+	private IOrderBiz obiz;
 	
 	@RequestMapping(value="/dolist")
 	public String getAll(QueryParam q,Model mod){
@@ -169,8 +172,47 @@ public class CustomerAction {
 		return "redirect:/cust/getmeet.action?custid="+idd;
 	}
 	
+	/*
+	 * 客户-->订单
+	 * */
+	@RequestMapping("/getallorder")
+	public String getAllOrder(QueryParam q,Model mod,HttpSession session){
+		if(q.getCustid()==null){
+			
+			Customer cust=(Customer)session.getAttribute("bjcus");
+			q.setCustid(cust.getCustid());
+			
+		}else{
+			Customer cus=biz.getById(q.getCustid());
+			session.setAttribute("bjcus", cus);		
+		}
+		
+		
+		QueryParam qq=obiz.getOrderByCustI(q);
+		mod.addAttribute("orderparam", qq);
+		
+		return "crm_cus/info/order";
+	}
 	
-	
+	@RequestMapping("/getalldetail")
+	public String getDetail(QueryParam q,Model mod,HttpSession session){
+		
+		if(q.getGonghao()==null){
+			Integer oid=(Integer)session.getAttribute("oid");
+			q.setGonghao(oid);
+			
+		}else{
+			
+			session.setAttribute("oid", q.getGonghao());
+		}
+		Orders o=obiz.getOrderById(q.getGonghao());
+		mod.addAttribute("currorder", o);
+		long sum=obiz.getSumByOrder(q.getGonghao());
+		mod.addAttribute("sum", sum);
+		QueryParam qq=obiz.getDetailById(q);
+		mod.addAttribute("currdetail", qq);
+		return "crm_cus/info/order_detail";
+	}
 	
 	
 	

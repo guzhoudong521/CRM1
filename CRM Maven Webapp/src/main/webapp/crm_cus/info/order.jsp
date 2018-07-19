@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -29,9 +31,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
         <tr>
           <td width="100" align="center">客户编号：</td>
-          <td width="200">KH071202001</td>
+          <td width="200">${bjcus.custid }</td>
           <td width="100" align="center">客户名称：</td>
-          <td width="200">聪海信息科技有限公司</td>
+          <td width="200">${bjcus.cname}</td>
         </tr>
   </table>
   <div>
@@ -47,22 +49,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
       </thead>
       <tbody>
+      <c:forEach items="${orderparam.list}" var="ord">
         <tr>
           <td><input type="checkbox" /></td>
-          <td>13445</td>
-          <td>2013-12-10</td>
-          <td>北京海淀区劳动路205号</td>
-          <td>完成</td>
-          <td><img title="查看明细" src="images/document.ico" class="op_button" onclick="to('crm_cus/info/order_detail.jsp')" /></td>
+          <td>${ord.oid }</td>
+          <td>${ord.ordtime }</td>
+          <td>${ord.address }</td>
+          <td>${ord.status }</td>
+          <td><img title="查看明细" src="images/document.ico" class="op_button" onclick="to('cust/getalldetail.action?gonghao=${ord.oid}')" /></td>
         </tr>
+        </c:forEach>
       </tbody>
     </table>
   </div>
-  <div class="position"> 
-  	共59条记录&nbsp;每页10条&nbsp;第1页/共5页 
-    <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
-    <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a>
+  <div class="position"> 共${orderparam.maxRows}条记录&nbsp;每页${orderparam.pageSize}条&nbsp;第${orderparam.page}页/共${orderparam.maxPages}页 
+  <a href="cust/getallorder.action?page=1" title="首页">&laquo;首页</a><a href="cust/getallorder.action?page=${page-1 }" title="上一页">&laquo; 上一页</a> 
+  <c:forEach begin="1" end="${orderparam.maxPages}" var="p">
+ 	 <a href="cust/getallorder.action?page=${p}" class="${orderparam.page==p?'number current':'number' }" title="${p}">${p}</a> 
+  </c:forEach>  
+  <a href="cust/getallorder.action?page=${page+1 }" title="下一页">下一页&raquo;</a>
+  <a href="cust/getallorder.action?page=${orderparam.maxPages}" title="末页">末页&raquo;</a> 
     </li>
   </div>
 </div>

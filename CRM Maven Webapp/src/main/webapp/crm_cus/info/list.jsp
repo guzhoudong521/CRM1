@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	          <img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('cust/getbyid.action?id=${cus.custid}&type=bj')" />
 	          <img title="联系人" src="images/user.ico" class="op_button" onclick="to('cust/getbyid.action?id=${cus.custid}&type=lxr')" />
 	          <img title="交往记录" src="images/bubble.ico" class="op_button" onclick="to('cust/getmeet.action?custid=${cus.custid}')" />
-	          <img title="历史订单" src="images/document.ico" class="op_button" onclick="to('crm_cus/info/order.jsp')" />
+	          <img title="历史订单" src="images/document.ico" class="op_button" onclick="to('cust/getallorder.action?custid=${cus.custid}')" />
           </td>
         </tr>
       </c:forEach>

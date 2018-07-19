@@ -47,9 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
         <li> <a href="#" class="nav-top-item" id="man_nav_4" onclick="list_sub_nav(id)"> 统计报表 </a>
           <ul>
-            <li><a href="crm_rep/contribution.jsp" target="rightFrame" id="a_nav_10" onclick="a_sub_nav(id)">客户贡献分析</a></li>
-            <li><a href="crm_rep/constitute.jsp" target="rightFrame" id="a_nav_11" onclick="a_sub_nav(id)">客户构成分析</a></li>
-            <li><a href="crm_rep/service.jsp" target="rightFrame" id="a_nav_12" onclick="a_sub_nav(id)">客户服务分析</a></li>
+            <li><a href="stat/getsale.action" target="rightFrame" id="a_nav_10" onclick="a_sub_nav(id)">客户贡献分析</a></li>
+            <li><a href="stat/getgrade.action" target="rightFrame" id="a_nav_11" onclick="a_sub_nav(id)">客户构成分析</a></li>
+            <li><a href="stat/getsertype.action" target="rightFrame" id="a_nav_12" onclick="a_sub_nav(id)">客户服务分析</a></li>
             <li><a href="crm_rep/lose.jsp" target="rightFrame" id="a_nav_13" onclick="a_sub_nav(id)">客户流失分析</a></li>
           </ul>
         </li>

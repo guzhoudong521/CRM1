@@ -11,6 +11,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import crm.biz.CustplanBizImpl;
 import crm.biz.ICustomerBiz;
 import crm.biz.ICustplanBiz;
+import crm.biz.IOrderBiz;
+import crm.biz.IStatBiz;
 import crm.dao.ICustomerDao;
 import crm.entity.Area;
 import crm.entity.Contact;
@@ -18,6 +20,9 @@ import crm.entity.Custgrade;
 import crm.entity.Customer;
 import crm.entity.Custplan;
 import crm.entity.Meet;
+import crm.entity.OrderDetail;
+import crm.entity.Orders;
+import crm.entity.Stat;
 import crm.entity.Users;
 import crm.util.QueryParam;
 
@@ -27,8 +32,48 @@ public class Testplan {
 	public void aaaa(){
 		ApplicationContext con=new ClassPathXmlApplicationContext("applicationContext.xml");
 		ICustplanBiz biz=con.getBean(ICustplanBiz.class);
-		
+		IStatBiz sbiz=con.getBean(IStatBiz.class);
 		ICustomerDao dao=con.getBean(ICustomerDao.class);
+		IOrderBiz obiz=con.getBean(IOrderBiz.class);
+		
+		
+		/*List<Stat> list= sbiz.getGradeStat();
+		for(Stat s:list){
+			System.out.println(s.getGradename()+","+s.getSum());
+		}*/
+		
+		/*List<Stat> list= sbiz.getSerType();
+		for(Stat s:list){
+			System.out.println(s.getId()+","+s.getSertype()+","+s.getSum());
+		}*/
+		QueryParam q=new QueryParam();
+		q.setPageSize(10);
+		QueryParam qq=sbiz.getSale(q);
+		List<Stat> list= qq.getList();
+		for(Stat s:list){
+			System.out.println(s.getId()+","+s.getName()+","+s.getSum());
+		}
+		
+		
+		/*QueryParam q=new QueryParam();
+		q.setCustid(1086);
+		QueryParam  qq=obiz.getOrderByCustI(q);
+		List<Orders> list=qq.getList();
+		for(Orders o:list){
+			
+			System.out.println(o.getOid());
+		}*/
+		/*Orders o=obiz.getOrderById(1142);
+		System.out.println(o.getAddress());*/
+		
+		/*QueryParam q=new QueryParam();
+		q.setGonghao(1142);
+		QueryParam qq=obiz.getDetailById(q);
+		List<OrderDetail> list=qq.getList();
+		for(OrderDetail o:list){
+			System.out.println(o.getPro().getPname());
+		}*/
+		
 		
 		
 	/*	Meet m=new Meet();
@@ -40,9 +85,9 @@ public class Testplan {
 		m.setMeetnotes("...");
 		m.setSummary("...");
 		dao.addMeet(m);*/
-		
+	/*	
 		Meet m=dao.getMeetById(1103);
-		System.out.println(m.getMeetaddress());
+		System.out.println(m.getMeetaddress());*/
 		
 		
 		

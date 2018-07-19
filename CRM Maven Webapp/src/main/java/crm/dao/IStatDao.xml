@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crm.dao.IStatDao">
+
+	<resultMap type="stat" id="grademap">
+		<id column="r" property="id"/>
+		<result column="gname" property="gradename"/>
+		<result column="gsum" property="sum"/>
+	</resultMap>
+	<select id="getGradeStat" resultMap="grademap">
+	select rownum r,g.gname,x.gsum from custgrade g,
+	(select count(1) gsum,c.gid gid from  customer  c group by c.gid) x
+	where x.gid(+)=g.gid
+	</select>
+	
+	<resultMap type="stat" id="sertypemap">
+		<id column="r" property="id"/>
+		<result column="servicetyle" property="sertype"/>
+		<result column="sss" property="sum"/>
+	</resultMap>
+			
+	<select id="getSerType" resultMap="sertypemap">
+		select x.*,rownum r from (
+		select t.servicetyle,count(1) sss from SERVICE t  group by t.servicetyle
+		order by sss
+		)x
+	</select>
+	
+	<resultMap type="stat" id="salemap">
+			<id column="r" property="id"/>
+			<result column="cname" property="name"/>
+			<result column="sumprice" property="sum"/>
+	</resultMap>
+	
+	<select id="getSale" resultMap="salemap" parameterType="crm.util.QueryParam">
+	select * from (
+		select x.*,rownum r from (
+		  select c.cname,dd.sumprice from customer c,
+		  (select d.custid ids,sum(d.sumprice) sumprice from orders  d  group by d.custid   ) dd
+		  where c.custid=dd.ids(+)
+		  order by dd.sumprice) x)
+		  where r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize}
+	
+	</select>
+	
+	
+	<select id="getCount"  resultType="int">
+		  select count(1) from customer c,
+	      (select d.custid ids,sum(d.sumprice) sumprice from orders  d  group by d.custid   ) dd
+		   where c.custid=dd.ids(+)
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>
