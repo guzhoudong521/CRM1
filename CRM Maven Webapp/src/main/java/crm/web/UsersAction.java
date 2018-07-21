@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import crm.biz.IUserBiz;
 import crm.entity.Users;
@@ -37,15 +38,16 @@ public class UsersAction {
 	}
 	
 	@RequestMapping("/login")
-	public String login(String uname,String pwd,HttpSession session){
+	public String login(String uname,String pwd,HttpSession session,Model mm){
 		System.out.println(uname+","+pwd);
 		Users us=biz.login(uname, pwd);
-		System.out.println(us.getUname()+"**********************");
 		if(us!=null){
 			session.setAttribute("curruser", us);
 			return "redirect:../index.jsp";
 		}else{
-			return "login";	
+			String mess="登录失败！请检查用户账号密码后重试";
+			mm.addAttribute("message", mess);
+			return "redirect:../login.jsp";
 		}
 	}
 	@RequestMapping("/exit")
