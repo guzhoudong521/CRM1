@@ -18,6 +18,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 <style>	
+#nulldiv{
+		position:absolute;
+		top:200px;
+		left:300px;
+		font-size: 20px;
+	}
+
 	#chaxundiv{
 		
 		position:absolute;
@@ -34,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-   	<a href="javascript:void(0)" title="增加订单" >增加订单</a>
+   	<a href="crm_cus/info/order_add.jsp" title="增加订单" >增加订单</a>
     <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -45,7 +52,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td width="200">${bjcus.cname}</td>
         </tr>
   </table>
+  <c:if test="${empty orderparam.list}">
+	 
+          <div id="nulldiv">
+             	还没有订单，<a href="crm_cus/info/order_add.jsp" title="增加订单">去添加</a>
+          </div>
+          	
+  </c:if>
+   <c:if test="${not empty bjcus.list}"> 
   <div>
+  
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
@@ -87,5 +103,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </li>
   </div>
 </div>
+</c:if>
 </body>
 </html>
