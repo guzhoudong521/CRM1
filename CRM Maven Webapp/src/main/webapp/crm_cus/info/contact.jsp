@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="adddiv" class="operation_button">
-    <a href="#" title="返回" onclick="back()">返回</a>
+  <!--   <a href="#" title="返回" onclick="back()">返回</a> -->
     <a href="crm_cus/info/contact_add.jsp" title="新建">新建</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -100,13 +100,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tbody>
     </table>
   </div>
-  < <div class="position"> 共${currmeet.maxRows}条记录&nbsp;每页${currmeet.pageSize}条&nbsp;第${currmeet.page}页/共${currmeet.maxPages}页 
-  <a href="cust/getmeet.action?page=1" title="首页">&laquo;首页</a><a href="cust/getmeet.action?page=${page-1 }&custid=${bjcus.custid}" title="上一页">&laquo; 上一页</a> 
-  <c:forEach begin="1" end="${currmeet.maxPages}" var="p">
- 	 <a href="cust/getmeet.action?page=${p}&custid=${bjcus.custid}" class="${currmeet.page==p?'number current':'number' }" title="${p}">${p}</a> 
-  </c:forEach>  
-  <a href="cust/getmeet.action?page=${page+1 }&custid=${bjcus.custid}" title="下一页">下一页&raquo;</a>
-  <a href="cust/getmeet.action?page=${currmeet.maxPages}&custid=${bjcus.custid}" title="末页">末页&raquo;</a> 
+    <div class="position"> 
+  	共${currmeet.maxRows}条记录&nbsp;每页${currmeet.pageSize}条&nbsp;第${currmeet.page}页/共${currmeet.maxPages}页 
+    <a href="cust/getmeet.action?page=1&custid=${bjcus.custid}" title="首页">&laquo;首页</a>
+    <c:if test="${currmeet.page>1}">  
+    <a href="cust/getmeet.action?page=${currmeet.page-1}&custid=${bjcus.custid}" title="上一页">&laquo; 上一页</a> 
+    </c:if>
+	    <c:forEach begin="1" end="${currmeet.maxPages}" var="pp">
+	    	 <a href="cust/getmeet.action?page=${pp}&custid=${bjcus.custid}" class="${currmeet.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
+	    </c:forEach>
+	<c:if test="${currmeet.page<currmeet.maxPages}">
+    <a href="cust/getmeet.action?page=${currmeet.page+1}&custid=${bjcus.custid}" title="下一页">下一页&raquo;</a>
+    </c:if>
+    <a href="cust/getmeet.action?page=${currmeet.maxPages}&custid=${bjcus.custid}" title="末页">末页&raquo;</a>
     </li>
   </div>
 </div>

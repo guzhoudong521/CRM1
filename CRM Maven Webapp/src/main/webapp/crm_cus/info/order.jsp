@@ -61,14 +61,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </c:forEach>
       </tbody>
     </table>
-  </div>
-  <div class="position"> 共${orderparam.maxRows}条记录&nbsp;每页${orderparam.pageSize}条&nbsp;第${orderparam.page}页/共${orderparam.maxPages}页 
-  <a href="cust/getallorder.action?page=1" title="首页">&laquo;首页</a><a href="cust/getallorder.action?page=${page-1 }" title="上一页">&laquo; 上一页</a> 
-  <c:forEach begin="1" end="${orderparam.maxPages}" var="p">
- 	 <a href="cust/getallorder.action?page=${p}" class="${orderparam.page==p?'number current':'number' }" title="${p}">${p}</a> 
-  </c:forEach>  
-  <a href="cust/getallorder.action?page=${page+1 }" title="下一页">下一页&raquo;</a>
-  <a href="cust/getallorder.action?page=${orderparam.maxPages}" title="末页">末页&raquo;</a> 
+
+  <div class="position"> 
+  	共${orderparam.maxRows}条记录&nbsp;每页${orderparam.pageSize}条&nbsp;第${orderparam.page}页/共${orderparam.maxPages}页 
+    <a href="cust/getallorder.action?page=1" title="首页">&laquo;首页</a>
+    <c:if test="${orderparam.page>1}">  
+    <a href="cust/getallorder.action?page=${orderparam.page-1}" title="上一页">&laquo; 上一页</a> 
+    </c:if>
+	    <c:forEach begin="1" end="${orderparam.maxPages}" var="pp">
+	    	 <a href="cust/getallorder.action?page=${pp}" class="${orderparam.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
+	    </c:forEach>
+	<c:if test="${orderparam.page<orderparam.maxPages}">
+    <a href="cust/getallorder.action?page=${orderparam.page+1}" title="下一页">下一页&raquo;</a>
+    </c:if>
+    <a href="cust/getallorder.action?page=${orderparam.maxPages}" title="末页">末页&raquo;</a>
     </li>
   </div>
 </div>

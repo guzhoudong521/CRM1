@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <ul id="main-nav">
         <li> <a href="#" class="nav-top-item current" id="man_nav_1" onclick="list_sub_nav(id)"> 营销管理 </a>
           <ul>
-            <li><a href="us/getAll.action" target="rightFrame" id="a_nav_1" onclick="a_sub_nav(id)">销售机会管理</a></li>
+            <li><a href="us/getAll.action" target="rightFrame" id="a_nav_1" onclick="a_sub_nav(id)">员工管理</a></li>
             <li><a href="plan/getall.action" target="rightFrame" id="a_nav_2" onclick="a_sub_nav(id)">客户开发计划</a></li>
           </ul>
         </li>
@@ -54,8 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </ul>
         </li>
         <li> <a href="#" class="nav-top-item" id="man_nav_5" onclick="list_sub_nav(id)"> 基础数据 </a>
-          <ul>
-            <li><a href="crm_base/dict.jsp" target="rightFrame" id="a_nav_14" onclick="a_sub_nav(id)">数据字典管理</a></li>
+          <ul>          
             <li><a href="pro/getall.action" target="rightFrame" id="a_nav_15" onclick="a_sub_nav(id)">查询产品信息</a></li>
             <li><a href="pro/getallkucun.action" target="rightFrame" id="a_nav_16" onclick="a_sub_nav(id)">查询库存</a></li>
           </ul>

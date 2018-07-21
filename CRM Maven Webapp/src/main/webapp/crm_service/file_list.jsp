@@ -69,25 +69,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${ser.des }</td>
           <td>${ser.servicetyle }</td>
           <td>${ser.createuser.uname }</td>
+          <td><fmt:formatDate value="${ser.createtime}"/></td>
           <td>${ser.status}</td>
           <td><img title="明细" src="images/document.ico" class="op_button" onclick="to('ser/getFileById.action?id=${ser.id }')" /></td>
           </tr>
         </c:forEach>
       </tbody>
     </table>
-  </div>
-    <div class="position"> 
+  <div class="position"> 
   	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
     <a href="javascript:page(1)" title="首页">&laquo;首页</a>
+     <c:if test="${par.page>1}"> 
     <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
+     </c:if>
     <c:forEach begin="1" end="${par.maxPages}" var="pp">
     	 <a href="javascript:page(${pp})" class="${pp==par.page?'number current':'number' }" title="${pp}">${pp}</a> 
     </c:forEach> 
+    <c:if test="${par.page<par.maxPages}">
     <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
-    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a>
-    <!-- </a> 转到&nbsp;
-    <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a> -->
+    </c:if>
+    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;
+   
+    </li>
   </div>
 </div>
 </body>

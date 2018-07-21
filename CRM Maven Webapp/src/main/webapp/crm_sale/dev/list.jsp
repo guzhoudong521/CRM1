@@ -121,13 +121,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="position"> 
   	共${queryp.maxRows}条记录&nbsp;每页${queryp.pageSize}条&nbsp;第${queryp.page}页/共${queryp.maxPages}页 
-    <a href="#" title="首页">&laquo;首页</a>
-    <a href="plan/getall.action?page=${page-1}" title="上一页">&laquo; 上一页</a> 
+    <a href="plan/getall.action?page=1" title="首页">&laquo;首页</a>
+    <c:if test="${queryp.page>1}">  
+    <a href="plan/getall.action?page=${queryp.page-1}" title="上一页">&laquo; 上一页</a> 
+    </c:if>
 	    <c:forEach begin="1" end="${queryp.maxPages}" var="pp">
 	    	 <a href="plan/getall.action?page=${pp}" class="${queryp.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
 	    </c:forEach>
-    <a href="plan/getall.action?page=${page+1}" title="下一页">下一页&raquo;</a>
-    <a href="#" title="末页">末页&raquo;</a>
+	<c:if test="${queryp.page<queryp.maxPages}">
+    <a href="plan/getall.action?page=${queryp.page+1}" title="下一页">下一页&raquo;</a>
+    </c:if>
+    <a href="plan/getall.action?page=${queryp.maxPages}" title="末页">末页&raquo;</a>
     </li>
   </div>
 </div>

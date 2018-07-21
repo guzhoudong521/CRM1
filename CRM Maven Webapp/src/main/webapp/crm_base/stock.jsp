@@ -104,15 +104,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tbody>
     </table>
   </div>
-   <div class="position"> 
+  <div class="position"> 
   	共${kucunparam.maxRows}条记录&nbsp;每页${kucunparam.pageSize}条&nbsp;第${kucunparam.page}页/共${kucunparam.maxPages}页 
-    <a href="#" title="首页">&laquo;首页</a>
+    <a href="pro/getallkucun.action?page=1" title="首页">&laquo;首页</a>
+    <c:if test="${kucunparam.page>1}">  
     <a href="pro/getallkucun.action?page=${kucunparam.page-1}" title="上一页">&laquo; 上一页</a> 
+    </c:if>
 	    <c:forEach begin="1" end="${kucunparam.maxPages}" var="pp">
 	    	 <a href="pro/getallkucun.action?page=${pp}" class="${kucunparam.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
 	    </c:forEach>
+	<c:if test="${kucunparam.page<kucunparam.maxPages}">
     <a href="pro/getallkucun.action?page=${kucunparam.page+1}" title="下一页">下一页&raquo;</a>
-    <a href="#" title="末页">末页&raquo;</a>
+    </c:if>
+    <a href="pro/getallkucun.action?page=${kucunparam.maxPages}" title="末页">末页&raquo;</a>
     </li>
   </div>
 </div>
