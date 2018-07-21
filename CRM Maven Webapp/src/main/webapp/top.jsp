@@ -29,6 +29,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       我的消息 </span></a></li>
     <li><a class="shortcut_button" href="crm_sale/opp/edit.jsp" target="rightFrame"><span> <img src="images/gear.ico"  width="55px"  alt="icon" /><br />
       系统设置 </span></a></li>
+      <li><a class="shortcut_button" href="login.jsp" target="_parent"><span> <img src="images/login.png"  width="55px"  alt="icon" /><br />
+      登录 </span></a></li>
   </ul>
   <!-- end shortcut_buttons_set --> 
 </div>

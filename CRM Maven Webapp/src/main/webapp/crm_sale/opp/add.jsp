@@ -68,25 +68,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr style="padding:0px;">
           <td valign="top">机会描述</td>
-          <td><textarea rows="6" cols="36" name="miaoshu" /></textarea></td>
+          <td><textarea rows="6" cols="40" name="miaoshu" /></textarea></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
-        <tr>
-          <td>创建人</td>
-          <td><input type="text" value="登录人"/></td>
-          <td>创建时间</td>
-          <td><input type="text" value="当前时间" /></td>
-        </tr>
-        <tr>
-          <td>指派给</td>
+       <tr>
+       <td>指派给</td>
           <td>
-          	<select id="selectid" style="width:311px;height:30px;" name="zhixingren.userid" >
-			
-			</select>
-           </td>
-          <td>指派时间</td>
-          <td><input type="text" disabled="disabled"/></td>
+          	<select id="selectid" style="width:311px;height:30px;" name="zhixingren.userid" ></select>
+           </td>          
+        </tr>
+        <tr>
+          
+         <!--  <td>指派时间</td>
+          <td><input type="text" disabled="disabled"/></td> -->
         </tr>
         <tr >
           
