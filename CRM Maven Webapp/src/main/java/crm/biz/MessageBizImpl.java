@@ -40,9 +40,11 @@ public class MessageBizImpl implements IMessageBiz {
 
 	public QueryParam getSendMessage(QueryParam par) {
 		// TODO 自动生成的方法存根
-		par.setMaxPages(dao.getSendCount(par));
-		par.setList(dao.getSendMessageById(par));
-		return par;
+		QueryParam qq=new QueryParam();
+		qq.setPage(par.getPage());
+		qq.setMaxRows(dao.getSendCount(par));
+		qq.setList(dao.getSendMessageById(par));
+		return qq;
 	}
 
 	public void changeMessageStatuts(int id) {

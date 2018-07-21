@@ -88,16 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <div class="position"> 
   	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
     <a href="javascript:page(1)" title="首页">&laquo;首页</a>
-    <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
-    <c:forEach begin="1" end="${par.maxPages}" var="pp">
-    	 <a href="javascript:page(${pp})" class="${pp==par.page?'number current':'number' }" title="${pp}">${pp}</a> 
-    </c:forEach> 
-    <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
-    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a>
-  </div>
- <%--  <div class="position"> 
-  	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
-    <a href="javascript:page(1)" title="首页">&laquo;首页</a>
      <c:if test="${par.page>1}">  
     <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
     </c:if>
@@ -108,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
      </c:if>
     <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a>
-  </div> --%>
+  </div>
 </div>
 </body>
 </html>
