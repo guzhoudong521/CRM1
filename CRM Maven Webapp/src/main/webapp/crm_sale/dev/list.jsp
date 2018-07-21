@@ -26,6 +26,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function jihua(x){
 		location="plan/getbyid.action?id="+x;
 	}
+	
+	function succ(x){
+		var flag=confirm("确定该计划已完成？");
+		if(flag){
+			location="plan/getbyid.action?id="+x;
+		}else{
+		
+		}
+		
+	}
+	
 </script>
 <style>	
 	#chaxundiv{
@@ -104,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img title="执行计划" src="images/right.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />
            </c:if>
          <c:if test="${cus.zhaungtai=='开发中'}">        
-          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="javascript:jihua(${cus.planid})" />
+          <img title="开发成功" src="images/tick.ico" class="op_button" onclick="javascript:succ(${cus.planid})" />
           </c:if> 
           <c:if test="${cus.zhaungtai=='开发成功'}">
           <img title="已归档" src="images/briefcase.ico" class="op_button" />

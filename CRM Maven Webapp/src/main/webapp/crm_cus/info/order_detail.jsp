@@ -16,7 +16,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
+<style>
 
+
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:900px;
+		
+	}	
+
+</style>
 </head>
 
 <body>
@@ -24,8 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;<a href="order.html">历史订单</a>&nbsp;&gt;&nbsp;订单明细
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
-    <a href="#" title="返回" onclick="back()">返回</a>
+  <div id="chaxundiv" class="operation_button">
+    <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
         <tr>

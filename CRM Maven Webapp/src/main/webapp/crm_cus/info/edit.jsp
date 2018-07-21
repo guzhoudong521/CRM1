@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           
           <td colspan="4" align="center" style="height:60px">
 	          <input style="height:30px;width:120px" type="submit" value="提交" />
-	          <input style="height:30px;width:120px" type="reset" value="重置" />
+	          <input style="height:30px;width:120px" type="button" onclick="back()" value="取消" />
           </td>
           
         </tr>

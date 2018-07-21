@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <style>
    .ii{
-        display: none;
+      
         background: #f00;
         border-radius: 50%;
         width: 10px;
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li><a class="shortcut_button" href="crm_message/add_message.jsp" target="rightFrame"><span> <img src="images/write.png"  width="55px"  alt="icon" /><br />
       写消息 </span></a></li>
     <li><a class="shortcut_button" href="message/getReMessage.action" target="rightFrame"><span> <img src="images/bubble.ico"  width="55px"  alt="icon" /><br />
-      我的消息 </span><span id="msgNum" class="ii">4</span></a></li>
+      我的消息 </span><span id="msgNum" class="ii">0</span></a></li>
     <li><a class="shortcut_button" href="crm_sale/opp/edit.jsp" target="rightFrame"><span> <img src="images/gear.ico"  width="55px"  alt="icon" /><br />
       系统设置 </span></a></li>
       <li><a class="shortcut_button" href="login.jsp" target="_parent"><span> <img src="images/login.png"  width="55px"  alt="icon" /><br />

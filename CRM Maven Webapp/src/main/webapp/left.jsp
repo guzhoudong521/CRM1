@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <ul>
             <li><a href="us/getAll.action" target="rightFrame" id="a_nav_1" onclick="a_sub_nav(id)">员工管理</a></li>
             <li><a href="plan/getall.action" target="rightFrame" id="a_nav_2" onclick="a_sub_nav(id)">客户开发计划</a></li>
-          </ul>
+          </ul> 
         </li>
         <li> <a href="#" class="nav-top-item" id="man_nav_2" onclick="list_sub_nav(id)"> 客户开发计划 </a>
           <ul>

@@ -50,6 +50,7 @@
 			<mvc:mapping path="/role/*"/>
 			<mvc:mapping path="/ser/*"/>
 			<mvc:mapping path="/stat/*"/>
+			<mvc:mapping path="/pro/*"/>
 			<mvc:mapping path="/message/*"/>
 			<mvc:mapping path="/crm_message/*"/>
 			<mvc:mapping path="/crm_sale/opp/edit.jsp"/>

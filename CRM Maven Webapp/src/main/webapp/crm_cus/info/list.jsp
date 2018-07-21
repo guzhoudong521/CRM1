@@ -73,7 +73,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;客户信息
     <hr class="hr1" />
   </div>
-  <div id="chaxundiv" class="operation_button"> <a id="chaxuna" href="javascript:void(0)" title="查询">查询</a> </div>
+  <div id="chaxundiv" class="operation_button"> 
+  <a id="chaxuna" href="javascript:void(0)" title="查询">查询</a> 
+  </div>
   <div class="search_input">
   <form id="queryform" action="cust/dolist.action" method="post">
     <ul class="txt">

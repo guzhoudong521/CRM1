@@ -27,6 +27,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		})
 	
 </script>
+<!-- <style>	
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:800px;
+		
+	}	
+</style> -->
 </head>
 
 <body>
@@ -34,9 +43,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;<a href="list.html">销售机会</a>&nbsp;&gt;&nbsp;新建销售机会
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
-  	<!-- <a href="#" title="返回" onclick="back()">返回</a>
-    <a id="baocun" href="javascript:void(0)" title="保存" >保存</a> -->
+  <div id="chaxundiv" class="operation_button">
+  	<a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
+    <!-- <a id="baocun" href="javascript:void(0)" title="保存" >保存</a> -->
   </div>
   <div class="out_bg">
     <div class="in_bg">

@@ -39,6 +39,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		left:300px;
 		font-size: 20px;
 	}
+
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:600px;
+		
+	}	
+
 </style>
 </head>
 
@@ -47,9 +56,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;<a href="list.html">客户信息</a>&nbsp;&gt;&nbsp;联系人
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
-    <a href="#" title="返回" onclick="back()">返回</a>
-    <a href="#" title="新建" onclick="to('linkman_add.html')">新建</a>
+  <div id="chaxundiv" class="operation_button">
+      <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
+    <a href="javascript:void(0)" title="新建" onclick="to('crm_cus/info/linkman_add.jsp')">新建</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
         <tr>

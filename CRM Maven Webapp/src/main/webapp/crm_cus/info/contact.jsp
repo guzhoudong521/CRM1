@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="adddiv" class="operation_button">
-  <!--   <a href="#" title="返回" onclick="back()">返回</a> -->
+ 	<a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
     <a href="crm_cus/info/contact_add.jsp" title="新建">新建</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -93,7 +93,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${m.meetnotes}</td>
           <td>
           <img title="编辑" src="images/hammer_screwdriver.png" class="op_button" onclick="to('cust/getmeetbyid.action?id=${m.mid}')" />
-          <img title="删除" src="images/cross.png" class="op_button close"  onclick="javascript:del(${m.mid})" />
+          <img title="删除" src="images/cross.png" class="op_button"  onclick="javascript:del(${m.mid})" />
           </td>
         </tr>
       </c:forEach>       

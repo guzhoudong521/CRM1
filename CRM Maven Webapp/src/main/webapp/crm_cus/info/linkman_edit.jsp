@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$("input[value="+sex+"]").attr("checked","checked");		
 		})
 </script>
+
 </head>
 
 <body>
@@ -26,7 +27,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;<a href="list.html">客户信息</a>&nbsp;&gt;&nbsp;联系人&nbsp;&gt;&nbsp;编辑联系人
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
+  <div id="chaxundiv" class="operation_button">
+   <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
   </div>
   
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -69,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           
           <td colspan="4" align="center" style="height:60px">
 	          <input style="height:30px;width:120px" type="submit" value="提交" />
-	          <input style="height:30px;width:120px" type="reset" value="重置" />
+	          <input style="height:30px;width:120px" type="button"  onclick="back()" value="取消" />
           </td>
           
         </tr>
