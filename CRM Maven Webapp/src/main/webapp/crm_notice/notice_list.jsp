@@ -1,3 +1,4 @@
+<%@page import="org.hamcrest.core.SubstringMatcher"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -30,58 +31,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
 </script>
 </head>
-
+<style>
+#chaxundiv{
+		
+		position:absolute;
+		top:55px;
+		left:590px;	
+	}	
+</style>
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：消息管理&nbsp;&gt;&nbsp;发出的消息
+  <div class="txt" style="padding-top:3px;" >当前位置：公告管理&nbsp;&gt;&nbsp;公告列表
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-    <a href="javascript:sub()" title="查询">查询</a>
-    <a href="message/getReMessage.action">我的消息</a>
-  </div>
-  <div class="search_input">
-     <form action="message/getSdMessage.action" method="post" id="searchForm">
-    <ul class="txt">
-      <li>
+    <form action="message/getSdMessage.action" method="post" id="searchForm">
         <input type="hidden" name="page" id="pages" value="${par.page}"/>
-        <input type="radio" name="stauts" value="已读"/>已读
-        <input type="radio" name="stauts" value="未读"/>未读
-      </li>
-      <li> 创建日期：
-        <input name="createtime" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
-      </li>
-    </ul>
+     
     </form>
+    <a href="crm_notice/add_notice.jsp">发布公告</a>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
-          <th width="10%">状态</th>
-          <th width="10%">接收人</th>
-          <th width="20%">标题</th>
-          <th width="15%">接受时间</th>
+          <th width="10%">时间</th>
+          <th width="10%">发送人</th>
+          <th width="10%">标题</th>
+          <th width="25%">内容</th>
           <th width="10%">操作</th>
         </tr>
       </thead>
       <tbody>
         <c:forEach items="${par.list}" var="ser">
         <tr>
-          <td>
-             <c:if test="${ser.status=='未读'}">【<span style="color:red">未读</span>】</c:if>
-            <c:if test="${ser.status=='已读'}">【<span >已读</span>】</c:if>
-          </td>
-          <td>${ser.ruser.uname}</td>
+          <td>【<fmt:formatDate value="${ser.createtime}" pattern="MM-dd hh:mm"/>】</td>
+          <td>${ser.createuser.uname}</td>
           <td>${ser.title}</td>
-          <td><fmt:formatDate value="${ser.createtime}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+          <td title="${ser.content}">${ser.content}</td>
           <td>
-          <c:if test="${ser.status=='未读'}">
-             <img title="删除" src="images/delete.ico" class="op_button" onclick="to('message/del2.action?id=${ser.id}')" />
-          </c:if>
-              <img title="阅读" src="images/ad.gif" class="op_button" onclick="to('message/getById2.action?id=${ser.id}')" />
+         <%--  <img title="阅读" src="images/ad.gif" class="op_button" onclick="to('notice/getById.action?id=${ser.id}')" /> --%>
+          <img title="删除" src="images/delete.ico" class="op_button" onclick="to('notice/del.action?id=${ser.id}')" />
           </td>
-        </tr>
+         </tr>
        </c:forEach> 
       </tbody>
     </table>

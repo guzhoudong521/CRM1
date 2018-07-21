@@ -51,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="message/getReMessage.action" method="post" id="searchForm">
     <ul class="txt">
       <li>
+        <input type="hidden" name="page" id="pages" value="${par.page}"/>
         <input type="radio" name="stauts" value="已读"/>已读
         <input type="radio" name="stauts" value="未读"/>未读
       </li>

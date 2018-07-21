@@ -19,9 +19,9 @@
         insert into notice values(quanju_seq.nextval,#{title},#{content},#{createtime},#{createuser.userid})
      </insert>
    <!-- 列表 -->
-     <select id="getAll" resultMap="noticeMap">
+     <select id="getAll" resultMap="noticeMap" parameterType="crm.util.QueryParam">
         select * from (select n.*,u.uname,rownum r from notice n,users u where n.createuser=u.userid) x
-        where x.r>#{page} and x.r &lt;=#{pageSize}
+         where x.r >(#{page}-1)*#{pageSize} and x.r &lt; =#{page}*#{pageSize}
      </select>
    <!-- 获取条数 -->
      <select id="getCount" resultType="int">

@@ -31,7 +31,8 @@ public class NoticeAction {
 	@RequestMapping("/add")
 	public String addNotice(Notice ne,HttpSession sess){
 		ne.setCreatetime(new Date());
-		ne.setCreateuser((Users)sess.getAttribute("curruser"));
+		Users us=(Users)sess.getAttribute("curruser");
+		ne.setCreateuser(us);
 		biz.addNotice(ne);
 		return "redirect:getAll.action";
 	}
@@ -44,8 +45,9 @@ public class NoticeAction {
 	
 	@RequestMapping("/getAll")
 	public ModelAndView getAll(QueryParam pp,ModelAndView mm){
-		mm.addObject("par", biz.getAll(pp));
-		mm.setViewName("");
+		QueryParam par=biz.getAll(pp);
+		mm.addObject("par", par);
+		mm.setViewName("crm_notice/notice_list");
 		return mm;
 	}
 }

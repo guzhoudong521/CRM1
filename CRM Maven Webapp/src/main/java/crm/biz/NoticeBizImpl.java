@@ -50,7 +50,7 @@ public class NoticeBizImpl implements INoticeBiz {
 		QueryParam par=new QueryParam();
 		par.setPage(qp.getPage());
 		par.setMaxRows(dao.getCount());
-		par.setList(dao.getAll(qp.getPage(), qp.getPageSize()));
+		par.setList(dao.getAll(qp));
 		return par;
 	}
 
@@ -66,6 +66,7 @@ public class NoticeBizImpl implements INoticeBiz {
 		mess.setCreatetime(ne.getCreatetime());
 		mess.setSuser(ne.getCreateuser());
 		for(Users us:list){
+			System.out.println("______________________________________________");
 			mess.setRuser(us);
 			biz.addMess(mess);
 		}
