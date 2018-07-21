@@ -44,12 +44,13 @@
   
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/au"/>
-			<mvc:mapping path="/cust"/>
-			<mvc:mapping path="/plan"/>
-			<mvc:mapping path="/role"/>
-			<mvc:mapping path="/ser"/>
-			<mvc:mapping path="/stat"/>
+			<mvc:mapping path="/au/*"/>
+			<mvc:mapping path="/cust/*"/>
+			<mvc:mapping path="/plan/*"/>
+			<mvc:mapping path="/role/*"/>
+			<mvc:mapping path="/ser/*"/>
+			<mvc:mapping path="/stat/*"/>
+			<mvc:mapping path="/message/*"/>
 			<mvc:mapping path="/us/getAll.action"/>
 			<mvc:mapping path="/us/addUser.action"/>
 			<mvc:mapping path="/us/delUser.action"/>
