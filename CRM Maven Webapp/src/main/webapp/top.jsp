@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -30,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <style>
    .ii{
-      
+        display: none;
         background: #f00;
         border-radius: 50%;
         width: 10px;
@@ -51,18 +52,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <ul class="shortcut_buttons_set">
     <li><a class="shortcut_button" href="index.jsp" target="_parent"><span> <img src="images/home.ico" width="55px" alt="icon" /><br />
       首页 </span></a></li>
-    <li><a class="shortcut_button" href="#"><span> <img src="images/calendar.ico"  width="55px"  alt="icon" /><br />
-      日程 </span></a></li>
+   <!--  <li><a class="shortcut_button" href="#"><span> <img src="images/calendar.ico"  width="55px"  alt="icon" /><br />
+      日程 </span></a></li> -->
     <li><a class="shortcut_button" href="#"><span> <img src="images/clipboard.ico"  width="55px"  alt="icon" /><br />
       公告栏 </span></a></li>
     <li><a class="shortcut_button" href="crm_message/add_message.jsp" target="rightFrame"><span> <img src="images/write.png"  width="55px"  alt="icon" /><br />
       写消息 </span></a></li>
     <li><a class="shortcut_button" href="message/getReMessage.action" target="rightFrame"><span> <img src="images/bubble.ico"  width="55px"  alt="icon" /><br />
-      我的消息 </span><span id="msgNum" class="ii">0</span></a></li>
-    <li><a class="shortcut_button" href="crm_sale/opp/edit.jsp" target="rightFrame"><span> <img src="images/gear.ico"  width="55px"  alt="icon" /><br />
-      系统设置 </span></a></li>
-      <li><a class="shortcut_button" href="login.jsp" target="_parent"><span> <img src="images/login.png"  width="55px"  alt="icon" /><br />
-      登录 </span></a></li>
+      我的消息 </span><span id="msgNum" class="ii">4</span></a></li>
+   <!--  <li><a class="shortcut_button" href="crm_sale/opp/edit.jsp" target="rightFrame"><span> <img src="images/gear.ico"  width="55px"  alt="icon" /><br />
+      系统设置 </span></a></li> -->
+   <c:if test="${sessionScope.curruser.uname==null}"><li><a class="shortcut_button" href="login.jsp" target="_parent"><span> <img src="images/login.png"  width="55px"  alt="icon" /><br />
+      登录 </span></a></li></c:if>
+   <c:if test="${sessionScope.curruser.uname!=null}"><li><a class="shortcut_button" href="us/exit.action" target="_parent"><span> <img src="images/error.png"  width="55px"  alt="icon" /><br />
+      退出 </span></a></li></c:if> 
   </ul>
   <!-- end shortcut_buttons_set --> 
 </div>
