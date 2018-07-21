@@ -12,6 +12,7 @@ import crm.biz.CustplanBizImpl;
 import crm.biz.ICustomerBiz;
 import crm.biz.ICustplanBiz;
 import crm.biz.IOrderBiz;
+import crm.biz.IProductBiz;
 import crm.biz.IStatBiz;
 import crm.dao.ICustomerDao;
 import crm.entity.Area;
@@ -19,9 +20,11 @@ import crm.entity.Contact;
 import crm.entity.Custgrade;
 import crm.entity.Customer;
 import crm.entity.Custplan;
+import crm.entity.Kucun;
 import crm.entity.Meet;
 import crm.entity.OrderDetail;
 import crm.entity.Orders;
+import crm.entity.Product;
 import crm.entity.Stat;
 import crm.entity.Users;
 import crm.util.QueryParam;
@@ -35,6 +38,34 @@ public class Testplan {
 		IStatBiz sbiz=con.getBean(IStatBiz.class);
 		ICustomerDao dao=con.getBean(ICustomerDao.class);
 		IOrderBiz obiz=con.getBean(IOrderBiz.class);
+		IProductBiz pbiz=con.getBean(IProductBiz.class);
+		
+		
+		/*QueryParam q=new QueryParam();
+		QueryParam qq=pbiz.getAllPro(q);
+		List<Product> list=qq.getList();
+		
+		for(Product p:list){
+			
+			System.out.println(p.getPname()+","+p.getPrice()+","+p.getPdesc()+","+p.getPgrade()+","+p.getPtype());
+		
+		}
+		*/
+		/*List<String> list=pbiz.getAllType();
+		for(String s:list){
+			
+			System.out.println(s);
+		}*/
+		QueryParam q=new QueryParam();
+		QueryParam qq=pbiz.getAllKucun(q);
+		List<Kucun> list=qq.getList();
+		for(Kucun k:list){
+				
+		System.out.println(k.getR());
+		}
+		
+		
+		
 		
 		
 		/*List<Stat> list= sbiz.getGradeStat();
@@ -46,13 +77,13 @@ public class Testplan {
 		for(Stat s:list){
 			System.out.println(s.getId()+","+s.getSertype()+","+s.getSum());
 		}*/
-		QueryParam q=new QueryParam();
+		/*QueryParam q=new QueryParam();
 		q.setPageSize(10);
 		QueryParam qq=sbiz.getSale(q);
 		List<Stat> list= qq.getList();
 		for(Stat s:list){
 			System.out.println(s.getId()+","+s.getName()+","+s.getSum());
-		}
+		}*/
 		
 		
 		/*QueryParam q=new QueryParam();

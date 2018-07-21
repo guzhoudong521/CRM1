@@ -21,8 +21,39 @@ public class QueryParam {
 	private Integer gradeid;
 	private Integer custid;   //当前登陆人ID、接收人ID、发送人ID或者其他
 	private String servicetyle;
+	private String type;
+	private String grade;
+	private Integer id;
+	private Integer wid;
 	
 	
+	
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public Integer getWid() {
+		return wid;
+	}
+	public void setWid(Integer wid) {
+		this.wid = wid;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public Date getChuangjianshijian() {
 		return chuangjianshijian;
 	}

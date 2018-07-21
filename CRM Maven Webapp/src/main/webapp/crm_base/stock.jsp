@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -6,15 +7,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>基础数据</title>
-<link href="../css/stylesheet.css" rel="stylesheet" type="text/css" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="../js/simpla.jquery.configuration.js"></script>
-<script type="text/javascript" src="../js/javascript.js"></script>
-<script type="text/javascript" src="../datepicker/WdatePicker.js"> </script>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	$(function(){
 
+		$.post("pro/getallcangku.action","",function(res){
+	
+			$("#select_cangku").append("<option value=''>全部</option>");
+			
+			for(var i in res){
+				
+				$("#select_cangku").append("<option value='"+res[i].wareid+"'>"+res[i].warename+"</option>");
+				
+			}
+		
+		},"json")
+		
+		
+	})
+	function query(){
+		
+		$("#queryform").submit();
+		
+	}
+
+	
+</script>
+<style>	
+	#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:800px;
+		
+	}	
+</style>
 </head>
 
 <body>
@@ -22,77 +58,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：基础数据&nbsp;&gt;&nbsp;查询库存
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
-    <a href="#" title="查询">查询</a>
+  <div id="chaxundiv" class="operation_button">
+    <a href="javascript:query()" title="查询">查询</a>
   </div>
+  <form id="queryform" action="pro/getallkucun.action" method="post">
   <div class="search_input">
     <ul class="txt">
-      <li>产品：
-        <input type="text" size="30" />
+      <li>产品编号：
+        <input type="text" name="id" style="width:150px" size="30" />
+      </li>
+      <li>产品名称：
+        <input type="text" name="name" style="width:150px" size="30" />
       </li>
       <li>仓库：
-        <input type="text" size="30" />
+        <select id="select_cangku" style="width:150px" name="wid"></select>
       </li>
     </ul>
   </div>
+  </form>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
-          <th width="5%"><input type="checkbox" class="check-all"/></th>
           <th width="5%">序号</th>
-          <th width="15%">名称</th>
+          <th width="10%">商品编号</th>
+          <th width="20%">名称</th>
           <th width="15%">仓库</th>
-          <th width="15%">货位</th>
-          <th width="10%">件数</th>
+          <th width="10%">货位</th>
+          <th width="5%">件数</th>
           <th width="25%">备注</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>1</td>
-          <td>幸福牌电视机-818 FFT-2388 EA03</td>
-          <td>北京-西直门库</td>
-          <td>EC-D2</td>
-          <td>16</td>
-          <td>产品库存过少</td>
+      <c:forEach items="${kucunparam.list }" var="ku">
+      <tr>
+          <td>${ku.r }</td>
+          <td>${ku.pro.pid }</td>
+          <td>${ku.pro.pname }</td>
+          <td>${ku.cangku.warename }</td>
+          <td>${ku.huowei.placename }</td>
+          <td>${ku.knum }</td>
+          <td>${ku.kdesc }</td>
         </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>2</td>
-          <td>幸福牌电视机-818 FFT-2388 EA03</td>
-          <td>北京-西直门库</td>
-          <td>EC-D2</td>
-          <td>16</td>
-          <td>产品库存过少</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>3</td>
-          <td>幸福牌电视机-818 FFT-2388 EA03</td>
-          <td>北京-西直门库</td>
-          <td>EC-D2</td>
-          <td>16</td>
-          <td>产品库存过少</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>4</td>
-          <td>幸福牌电视机-818 FFT-2388 EA03</td>
-          <td>北京-西直门库</td>
-          <td>EC-D2</td>
-          <td>16</td>
-          <td>产品库存过少</td>
-        </tr>
+      </c:forEach>      
       </tbody>
     </table>
   </div>
-  <div class="position"> 
-  	共59条记录&nbsp;每页10条&nbsp;第1页/共5页 
-    <a href="#" title="首页">&laquo;首页</a><a href="#" title="上一页">&laquo; 上一页</a> <a href="#" class="number current" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number" title="3">3</a> <a href="#" class="number" title="4">4</a> <a href="#" title="下一页">下一页&raquo;</a><a href="#" title="末页">末页&raquo;</a> 转到&nbsp;
-    <input value="1" size="2" />
-    &nbsp;页<a href="#">GO</a>
+   <div class="position"> 
+  	共${kucunparam.maxRows}条记录&nbsp;每页${kucunparam.pageSize}条&nbsp;第${kucunparam.page}页/共${kucunparam.maxPages}页 
+    <a href="#" title="首页">&laquo;首页</a>
+    <a href="pro/getallkucun.action?page=${kucunparam.page-1}" title="上一页">&laquo; 上一页</a> 
+	    <c:forEach begin="1" end="${kucunparam.maxPages}" var="pp">
+	    	 <a href="pro/getallkucun.action?page=${pp}" class="${kucunparam.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
+	    </c:forEach>
+    <a href="pro/getallkucun.action?page=${kucunparam.page+1}" title="下一页">下一页&raquo;</a>
+    <a href="#" title="末页">末页&raquo;</a>
     </li>
   </div>
 </div>

@@ -56,8 +56,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li> <a href="#" class="nav-top-item" id="man_nav_5" onclick="list_sub_nav(id)"> 基础数据 </a>
           <ul>
             <li><a href="crm_base/dict.jsp" target="rightFrame" id="a_nav_14" onclick="a_sub_nav(id)">数据字典管理</a></li>
-            <li><a href="crm_base/product.jsp" target="rightFrame" id="a_nav_15" onclick="a_sub_nav(id)">查询产品信息</a></li>
-            <li><a href="crm_base/stock.jsp" target="rightFrame" id="a_nav_16" onclick="a_sub_nav(id)">查询库存</a></li>
+            <li><a href="pro/getall.action" target="rightFrame" id="a_nav_15" onclick="a_sub_nav(id)">查询产品信息</a></li>
+            <li><a href="pro/getallkucun.action" target="rightFrame" id="a_nav_16" onclick="a_sub_nav(id)">查询库存</a></li>
           </ul>
         </li>
       </ul>

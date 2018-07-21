@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="crm.dao.IProductDao">
+	
+	
+	<select id="getAllPro" resultType="product" parameterType="crm.util.QueryParam">
+	
+				select * from (
+					select x.*,rownum r from 
+						( select * from product p
+						<where>
+							<if test="name!=null and name!=''">
+							and p.pname like #{name}
+							</if>
+							<if test="type!=null and type!=''">
+							and p.ptype = #{type}
+							</if>
+							<if test="grade!=null and grade!=''">
+							and p.pgrade=#{grade}
+							</if>
+						</where>
+						 order by p.price desc) x
+					 )
+				where r>(#{page}-1)*#{pageSize} and r&lt;= #{page}*#{pageSize}
+	
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
+					select count(1) from product p
+						<where>
+							<if test="name!=null and name!=''">
+							and p.pname like #{name}
+							</if>
+							<if test="type!=null and type!=''">
+							and p.ptype = #{type}
+							</if>
+							<if test="grade!=null and grade!=''">
+							and p.pgrade=#{grade}
+							</if>
+						</where>
+	</select>
+	
+	
+	<select id="getAllType" resultType="java.lang.String">
+		select distinct  p.ptype from product p
+	</select>
+	
+	<select id="getAllGrade" resultType="java.lang.String">
+		select distinct  p.pgrade from product p
+	</select>
+	
+	
+	
+	<resultMap type="kucun" id="kucunmap">
+		<id column="kid" property="kid"/>
+		<result column="r" property="r"/>
+		<result column="knum" property="knum"/>
+		<result column="kdesc" property="kdesc"/>
+		<association property="pro" resultMap="promap"/>
+		<association property="cangku" resultMap="warehousemap"/>
+		<association property="huowei" resultMap="huoweimap"/>
+	</resultMap>
+	
+	<resultMap type="product" id="promap">
+		<id column="pid" property="pid"/>
+		<result column="pname" property="pname"/>
+	</resultMap>
+	
+	<resultMap type="warehouse" id="warehousemap">
+		<id property="wareid" column="wareid"/>
+		<result column="warename" property="warename"/>
+	</resultMap>
+	
+	<resultMap type="place" id="huoweimap">
+		<id column="placeid" property="placeid"/>
+		<result column="placename" property="placename"/>
+	</resultMap>
+	
+	<select id="getAllKucun" resultMap="kucunmap" parameterType="crm.util.QueryParam">
+	select * from (
+	select rownum r,x.* from(
+	select k.kid,p.pid,p.pname,w.wareid,w.warename,e.placeid,e.placename,k.knum,k.kdesc from product p,kucun k,place e,warehouse w
+	where p.pid=k.pid
+	and k.warehouseid=w.wareid
+	and k.placeid=e.placeid 
+	<if test="id!=null and id!=''">
+	and p.pid=#{id}
+	</if>
+	<if test="name!=null and name!=''">
+	and p.pname like #{name}
+	</if>
+	<if test="wid!=null and wid!=''">
+	and w.wareid=#{wid}
+	</if>
+	order by k.knum)x
+	) 
+	where r>(#{page}-1)*#{pageSize} and r&lt;= #{page}*#{pageSize}
+	</select>
+	
+	<select id="getKucunCount" resultType="int" parameterType="crm.util.QueryParam">
+		select count(1) from product p,kucun k,place e,warehouse w
+		where p.pid=k.pid
+		and k.warehouseid=w.wareid
+		and k.placeid=e.placeid 
+		<if test="id!=null and id!=''">
+		and p.pid=#{id}
+		</if>
+		<if test="name!=null and name!=''">
+		and p.pname like #{name}
+		</if>
+		<if test="wid!=null and wid!=''">
+		and w.wareid=#{wid}
+		</if>
+	</select>
+	
+	
+	
+	<select id="getAllCangKu" resultMap="warehousemap">
+		select * from warehouse
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>

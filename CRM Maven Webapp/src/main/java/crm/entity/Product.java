@@ -7,7 +7,31 @@ public class Product {
 	private String pname;
 	private String unit;
 	private Double price;
-	private Integer kucun;
+	private String ptype;
+	private String pgrade;
+	private String pdesc;
+	private Kucun kucun;
+	
+	
+	
+	public String getPtype() {
+		return ptype;
+	}
+	public void setPtype(String ptype) {
+		this.ptype = ptype;
+	}
+	public String getPgrade() {
+		return pgrade;
+	}
+	public void setPgrade(String pgrade) {
+		this.pgrade = pgrade;
+	}
+	public String getPdesc() {
+		return pdesc;
+	}
+	public void setPdesc(String pdesc) {
+		this.pdesc = pdesc;
+	}
 	public Integer getPid() {
 		return pid;
 	}
@@ -32,12 +56,13 @@ public class Product {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	public Integer getKucun() {
+	public Kucun getKucun() {
 		return kucun;
 	}
-	public void setKucun(Integer kucun) {
+	public void setKucun(Kucun kucun) {
 		this.kucun = kucun;
 	}
+	
 	
 	
 }
