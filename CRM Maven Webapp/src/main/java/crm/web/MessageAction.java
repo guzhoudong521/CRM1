@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import crm.biz.IMessageBiz;
@@ -83,5 +84,10 @@ public class MessageAction {
 		mm.addObject("mess", me);
 		mm.setViewName("crm_message/message");
 		return mm;
+	}
+	@RequestMapping("/getMessageNum")
+	@ResponseBody
+	public int 	getMessageNum(HttpSession sess){
+		return biz.getMessageNum(((Users)sess.getAttribute("curruser")).getUserid());
 	}
 }

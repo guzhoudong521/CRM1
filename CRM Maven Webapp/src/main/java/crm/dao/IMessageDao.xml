@@ -91,4 +91,9 @@
       and t.rid=u2.userid
       and t.id=#{id}
    </select>
+   
+   <!-- getMessageNum -->
+   <select id="getMessageNum" parameterType="int" resultType="int">
+     select count(0) from message where status='未读' and rid=#{id}
+   </select>
 </mapper>
