@@ -53,7 +53,7 @@ public class UsersAction {
 	@RequestMapping("/exit")
 	public String exit(HttpSession session){
 		session.removeAttribute("curruser");
-		return "redirect:/login";
+		return "redirect:/login.jsp";
 	}
 	
 	@RequestMapping("/addUser")
