@@ -20,4 +20,8 @@ public interface IOrderDao {
 	public List<OrderDetail> getDetailById(QueryParam q);
 	
 	public int getDetailCount(int oid);
+	
+	public void addOrder(Orders o); 
+	
+	
 }

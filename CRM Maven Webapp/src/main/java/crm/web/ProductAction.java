@@ -7,9 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import crm.biz.IProductBiz;
+import crm.entity.Product;
 import crm.entity.Warehouse;
 import crm.util.QueryParam;
 
@@ -62,6 +64,39 @@ public class ProductAction {
 	}
 	
 	
+	/*
+	 * 异步交互获得所有商品
+	 * */	
+	@RequestMapping("/ajaxgetall")
+	@ResponseBody
+	public List<Product> getAllPros(){
+		
+		QueryParam q=new QueryParam();
+		q.setPageSize(100);
+		QueryParam qq=biz.getAllPro(q);
+		
+		return qq.getList();
+	}
+	
+	@RequestMapping("/getpricbyid")
+	@ResponseBody
+	public Product getPriceById(int pid){
+		QueryParam q=new QueryParam();
+		q.setPageSize(100);
+		QueryParam qq=biz.getAllPro(q);
+		List<Product> list=qq.getList();
+		Product pp=null;
+		for(Product p:list){
+			
+			if(p.getPid()==pid){								
+				pp=p;	
+			}
+		}
+
+		return pp;
+	}
+	
+
 	
 	
 	

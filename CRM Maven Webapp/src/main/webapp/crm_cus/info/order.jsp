@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-   	<a href="crm_cus/info/order_add.jsp" title="增加订单" >增加订单</a>
+   	<a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单" >增加订单</a>
     <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <c:if test="${empty orderparam.list}">
 	 
           <div id="nulldiv">
-             	还没有订单，<a href="crm_cus/info/order_add.jsp" title="增加订单">去添加</a>
+             	还没有订单，<a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单">去添加</a>
           </div>
           	
   </c:if>
@@ -74,13 +74,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
       </thead>
       <tbody>
-      <c:forEach items="${orderparam.list}" var="ord">
+      <c:forEach items="${orderparam.list}" var="ords">
         <tr>
           <td><input type="checkbox" /></td>
-          <td>${ord.oid }</td>
-          <td>${ord.ordtime }</td>
-          <td>${ord.address }</td>
-          <td>${ord.status }</td>
+          <td>${ords.oid }</td>
+          <td>${ords.ordtime }</td>
+          <td>${ords.address }</td>
+          <td>${ords.status }</td>
           <td><img title="查看明细" src="images/document.ico" class="op_button" onclick="to('cust/getalldetail.action?gonghao=${ord.oid}')" /></td>
         </tr>
         </c:forEach>

@@ -3,6 +3,7 @@ package crm.biz;
 import java.util.List;
 
 import crm.entity.Kucun;
+import crm.entity.Product;
 import crm.entity.Warehouse;
 import crm.util.QueryParam;
 
@@ -18,4 +19,6 @@ public interface IProductBiz {
 	public QueryParam getAllKucun(QueryParam q);
 	
 	public List<Warehouse> getAllCangKu();
+	
+	public Product getBuId(int id);
 }

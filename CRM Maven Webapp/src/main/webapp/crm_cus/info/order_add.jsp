@@ -16,7 +16,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery-1.12.4.js"></script>
 <script>
 
-			/* $(function(){
+			$(function(){
+			
+				
+			
+				$.post("pro/ajaxgetall.action","",function(res){
+					
+						for(var i in res){
+							$("#select").append("<option value='"+res[i].pid+"'>"+res[i].pname+"</option>");
+						}
+						
+						var pidx=$("#select").val();									
+						getprice(pidx);
+					
+				},"json")
+				
+				
+				
+				
+				
+				
+				$("#select").change(function(){
+				
+					var pid=$(this).val();					
+					getprice(pid);
+				})
+				
+				
+				
+				
+				$("#addimg").click(function(){
+					$("#cdlistform").submit();
+				});
 			
 				$(".delimg").click(function(){
 					var x=$(this).next("input").val();
@@ -24,28 +55,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					location="cla/deldetail.action?id="+x;
 				});
 				
-				$("#addsave").click(function(){
-					$("#cdlistform").submit();
-				});
 				
-				$("#buttonsave").click(function(){
+				
+				/* $("#buttonsave").click(function(){
 				
 					$("#eventform").submit();
 				
-				});
+				}); */
 				
 			})
-		 */
+			
+			function getprice(pid){
+			
+				$.post("pro/getpricbyid.action","pid="+pid,function(res){
+					
+						$("#price").val(res.price);
+						
+					},"json")
+			}
+			
+			function del(xx){
+			
+				location="cust/deldetail.action?id="+xx;
+			}
+			
+			function submits(){
+				$("#eventform").submit();
+			}
+		 
 </script>
 
 <style>
-#chaxundiv{
-		
-		position:absolute;
-		top:340px;
-		left:300px;
-		
-	}	
+
+
 	#actiondiv{
 	
 		position: absolute;
@@ -53,7 +95,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		left:5px;
 	
 	}
-	
+	#chaxundiv{
+		
+		position:relative;
+		top:20px;
+		left:-400px;
+		
+	}	
 
 </style>
 </head>
@@ -71,70 +119,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <table width="90%" border="0" cellspacing="0" cellpadding="0" class="addform-base">
                   <caption>基本信息</caption>
                   <tr>
-                    <td width="36%">客户：${bjcus.cname}</td>
-                    <td width="64%">创建时间：${claim.create_time }</td>
+                    <td width="36%">客户：${currorder.cust.cname}</td>
+                    <td width="64%">创建时间：${currorder.ordtime }</td>
                   </tr>
                   <tr>
-                    <td>总金额：￥${claim.total_account}</td>
-                    <td>状态：${claim.status}</td>
+                    <td>总金额：￥${currorder.sum}</td>
+                    <td>状态：${currorder.status}</td>
                   </tr>
                 </table>
                 <p>&nbsp;</p>
-                <table  width="90%" border="0" cellspacing="0" cellpadding="0" class="addform-item">
+                <table   width="100%" border="0" cellspacing="0" cellpadding="0" class="addform-item">
                
                   <thead>
 	                  <tr>
-	                    <td align="center">商品</td>
-	                    <td align="center">数量</td>
-	                    <td align="center">价格</td>
-	                    <td>&nbsp;</td>
+	                    <td  width="30%" align="center">选择商品</td>
+	                    <td width="30%"  align="center">单价</td>
+	                    <td width="20%"  align="center">数量</td>
+	                    <td width="20%"  align="left">&nbsp;</td>
 	                  </tr>
                   </thead>
-                  <c:forEach items="${list }" var="cd">
+                  <c:forEach items="${listDetail}" var="det">
                   <tr>
-                    <td>${cd.item }</td>
-                    <td>￥${cd.account }</td>
-                    <td>${cd.desc }</td>
-                    <td>
-                    	 <img  title="保存" src="images2/edit.gif" class="op_button" onclick="javascript:jihua(${cus.planid})" />  
-                    	 <img  title="删除" src="images2/delete.gif" class="op_button" onclick="javascript:jihua(${cus.planid})" />  
-                    	<input type="hidden" value="${cd.listid}">                   	
+                    <td align="center"> ${det.pro.pname }</td>
+                    <td align="center">￥${det.pro.price }</td>
+                    <td align="center">${det.pnum }</td>
+                    <td align="left">                  	
+                    	 <img  title="删除" src="images2/delete.png" class="op_button" onclick="javascript:del(${det.id})" />                     	                	
                     </td>
                   </tr>
                   </c:forEach>
               
-                  <form  id="cdlistform" action="cla/befor2.action" method="post">
+                  <form  id="cdlistform" action="cust/adddetail.action" method="post">
 	                  <tr>
-						<td align="center">
-		                    <select name="item" id="select"  class="input_01">
-		                      <option value="基本通讯费用">笔记本</option>
-		                      <option value="住宿费">电脑</option>
-		                      <option value="伙食费">电视</option>
+						<td align="center" >
+		                    <select name="pro.pid" id="select" style="width:300px;height:30px"  class="input_01">		                      
 		                    </select>
 						</td>
+						<td align="center">
+							<input id="price" class="input_01"  type="text"  disabled="disabled"  name="pro.price"/>
+						</td>	                
 		                <td align="center">
-		               		 <input type="number"  name="account" id="textfield2" class="input_01" />
-		               		
-		               		 	<span>${account}<span>
-		               	
+		                 <input type="number"   name="pnum" id="textfield2" class="input_01" />		
+		               		              		 		               		 		               	
 		                </td>
-		                <td align="center">
-		               		 <input type="text"  name="desc" id="textfield" class="input_01" />
-		               		 
-		               		 	<span>${desc}<span>
-		               	
-		                </td>
-		                <td >		              		
-		              		  <img title="增加" src="images/add_detail.png" class="op_button" onclick="javascript:jihua(${cus.planid})" />  
+		                <td>		              		
+		              		  <img id="addimg" title="增加" src="images/add_detail.png" class="op_button" />  
 		                </td>
 	                  </tr>
                   </form>
                 
                    <tr>
-                   <form id="eventform" action="cla/addcla.action" method="post">
+                   <form id="eventform" action="cust/addorder.action" method="post">
                   	 <td colspan="4" class="event">
                   		    <label>收货地址：</label>                   
-                   	 		<textarea  style="resize:none;" name="event" id="textarea" cols="60" rows="10"></textarea>
+                   	 		<textarea  style="resize:none;" name="address" id="textarea" cols="60" rows="10"></textarea>
                   	 </td>
                   	</form>
                    </tr>    
@@ -142,9 +180,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </table>   
                 
                     <div  id="chaxundiv" class="operation_button">
-					      <a href="javascript:void(0)" title="返回" onclick="to('')">保 存</a>
-					      <a href="javascript:void(0)" title="新建" onclick="to('')">保存并提交</a>
-					      <a href="javascript:void(0)" title="新建" onclick="to('')">添加明细</a>
+					      <a href="javascript:submits()" title="提交" >提交</a> 
+					      <a href="cust/addorder1.action?id=1" title="取消" >取消</a>
 					</div>
                 
                       

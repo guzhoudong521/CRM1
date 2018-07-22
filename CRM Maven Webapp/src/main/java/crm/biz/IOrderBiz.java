@@ -16,4 +16,6 @@ public interface IOrderBiz {
 	public Orders getOrderById(int id);
 	
 	public long getSumByOrder(int oid);
+	
+	public void addOrder(Orders o); 
 }

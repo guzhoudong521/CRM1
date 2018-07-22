@@ -10,15 +10,16 @@ public class Orders {
 	private String ordtime;
 	private String address;
 	private String status;
-	private long sum;
+	private double sum;
 	private List<OrderDetail> list;
 	
 	
 	
-	public long getSum() {
+	
+	public double getSum() {
 		return sum;
 	}
-	public void setSum(long sum) {
+	public void setSum(double sum) {
 		this.sum = sum;
 	}
 	public List<OrderDetail> getList() {

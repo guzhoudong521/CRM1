@@ -47,4 +47,10 @@ public class OrderBizImpl implements IOrderBiz {
 		return dao.getSumByOrder(oid);
 	}
 
+
+	public void addOrder(Orders o) {
+		// TODO 自动生成的方法存根
+		dao.addOrder(o);
+	}
+
 }

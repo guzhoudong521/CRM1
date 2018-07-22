@@ -41,6 +41,18 @@ public class Testplan {
 		IProductBiz pbiz=con.getBean(IProductBiz.class);
 		
 		
+		QueryParam q=new QueryParam();
+		q.setCustid(1100);
+		QueryParam qq=obiz.getOrderByCustI(q);
+		List<Orders> list=qq.getList();
+		for(Orders o:list){
+			
+			System.out.println(o.getAddress());
+		}
+		
+		/*Product pp= pbiz.getBuId(1137);
+		
+		System.out.println(pp.getPid()+"."+pp.getPrice()+","+pp.getPname());*/
 		/*QueryParam q=new QueryParam();
 		QueryParam qq=pbiz.getAllPro(q);
 		List<Product> list=qq.getList();
@@ -56,13 +68,13 @@ public class Testplan {
 			
 			System.out.println(s);
 		}*/
-		QueryParam q=new QueryParam();
+		/*QueryParam q=new QueryParam();
 		QueryParam qq=pbiz.getAllKucun(q);
 		List<Kucun> list=qq.getList();
 		for(Kucun k:list){
 				
 		System.out.println(k.getR());
-		}
+		}*/
 		
 		
 		

@@ -27,6 +27,10 @@
 	
 	</select>
 	
+	<select id="getById" parameterType="int" resultType="product">
+		select * from product p where p.pid=#{0}
+	</select>
+	
 	<select id="getCount" resultType="int" parameterType="crm.util.QueryParam">
 					select count(1) from product p
 						<where>

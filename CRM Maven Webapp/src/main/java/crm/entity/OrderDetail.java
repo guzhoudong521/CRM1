@@ -8,7 +8,17 @@ public class OrderDetail {
 	private Integer pnum;
 	private Product pro;
 	private Double sumprice;
+	private Integer id;
+
 	
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Integer getOdid() {
 		return odid;
 	}

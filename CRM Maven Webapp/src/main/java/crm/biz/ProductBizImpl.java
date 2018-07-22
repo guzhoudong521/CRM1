@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import crm.dao.IProductDao;
+import crm.entity.Product;
 import crm.entity.Warehouse;
 import crm.util.QueryParam;
 
@@ -51,6 +52,11 @@ public class ProductBizImpl implements IProductBiz {
 	public List<Warehouse> getAllCangKu() {
 		// TODO 自动生成的方法存根
 		return dao.getAllCangKu();
+	}
+
+	public Product getBuId(int id) {
+		// TODO 自动生成的方法存根
+		return dao.getById(id);
 	}
 
 }

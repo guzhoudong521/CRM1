@@ -62,6 +62,18 @@
 		and d.oid=#{gonghao}
 	</select>
 
+	<insert id="addOrder" parameterType="orders">
+	
+		begin
+			
+			insert into orders values(order_seq.nextval+3333,#{cust.custid},#{ordtime},#{address},#{status},#{sum});
+			<foreach collection="list" item="odt">
+				insert into orderdetail values(quanju_seq.nextval+1111,order_seq.currval+3333,#{odt.pro.pid},#{odt.pnum});
+			</foreach>
+			
+		end;
+	
+	</insert>
 
 
 

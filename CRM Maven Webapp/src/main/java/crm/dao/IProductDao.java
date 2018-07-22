@@ -24,4 +24,6 @@ public interface IProductDao {
 	
 	public List<Warehouse> getAllCangKu();
 	
+	public Product getById(int id);
+	
 }
