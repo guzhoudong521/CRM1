@@ -17,7 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
+  $(function() {
+      var xx="${par.servicetyle}";
+      $("select option[value="+xx+"]").attr("selected",true);
+  })
   function search(){
      $("#searchForm").submit();
   }
@@ -37,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul class="txt">
       <li>客户名称：
         <input name="page" type="hidden" id="pages" value="1">
-        <input name="name" type="text" size="30" />
+        <input name="name" type="text" size="30"  value="${par.realname }"/>
       </li>
       <li> 服务类型：
         <select name="servicetyle">
@@ -48,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </select>
       </li>
       <li> 创建日期：
-        <input name="createtime" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
+        <input name="createtime" value="${par.createtime }" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />
       </li>
     </ul>
     </form>
