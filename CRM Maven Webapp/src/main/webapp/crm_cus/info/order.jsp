@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
           	
   </c:if>
-   <c:if test="${not empty bjcus.list}"> 
+   <c:if test="${not empty orderparam.list}"> 
   <div>
   
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >

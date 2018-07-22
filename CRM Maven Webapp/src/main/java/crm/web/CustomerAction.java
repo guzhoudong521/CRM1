@@ -202,6 +202,7 @@ public class CustomerAction {
 			System.out.println("***************");
 			System.out.println(o.getAddress());
 		}
+		
 		mod.addAttribute("orderparam", qq);
 		
 		return "crm_cus/info/order";

@@ -50,6 +50,9 @@ public class Testplan {
 			System.out.println(o.getAddress());
 		}
 		
+		
+		
+		
 		/*Product pp= pbiz.getBuId(1137);
 		
 		System.out.println(pp.getPid()+"."+pp.getPrice()+","+pp.getPname());*/
