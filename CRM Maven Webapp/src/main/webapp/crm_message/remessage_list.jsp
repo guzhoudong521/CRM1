@@ -52,8 +52,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul class="txt">
       <li>
         <input type="hidden" name="page" id="pages" value="${par.page}"/>
-        <input type="radio" name="stauts" value="已读"/>已读
-        <input type="radio" name="stauts" value="未读"/>未读
+        <input type="radio" name="zhuangtai" value="已读"/>已读
+        <input type="radio" name="zhuangtai" value="未读"/>未读
       </li>
       <li> 创建日期：
         <input name="createtime" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />

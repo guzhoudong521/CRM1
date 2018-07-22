@@ -17,7 +17,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
-
+<script type="text/javascript">
+ function page(page){
+      $("#pages").val(page);
+      $("#searchForm").submit();
+  }
+  function sub(){
+      $("#searchForm").submit();
+  }
+  function allot(){
+      $("#fenpeiForm").submit();
+  }
+  function del(id){
+      location="ser/del.action?id="+id;
+  }
+</script>
 </head>
 
 <body>
@@ -26,19 +40,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-    <a href="#" title="查询">查询</a>
+    <a href="javascript:sub()" title="查询">查询</a>
   </div>
+  <form action="ser/file.action" method="post" id="searchForm">
   <div class="search_input">
     <ul class="txt">
       <li>客户名称：
-        <input type="text" size="30" />
+        <input name="page" type="hidden" id="pages" value="1">
+        <input type="text" size="30" name="name"/>
       </li>
       <li>服务类型：
-        <select>
-            <option>全部...</option>
-            <option>咨询</option>
-            <option>投诉</option>
-            <option>建议</option>
+        <select name="servicetyle">
+            <option value="">全部...</option>
+            <option value="咨询">咨询</option>
+            <option value="投诉">投诉</option>
+            <option value="建议">建议</option>
         </select>
       </li>
       <li>创建日期：
@@ -46,6 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </li>
     </ul>
   </div>
+  </form>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>

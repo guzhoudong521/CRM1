@@ -37,6 +37,9 @@
       where t.sid=u1.userid
       and t.rid=u2.userid
       and t.rid=#{custid}
+      <if test="zhuangtai!=null">
+      and status=#{zhuangtai}
+      </if>
       <if test="chuangjianshijian1!=null">
       and createtime > #{chuangjianshijian1}
       and createtime &lt; #{chuangjianshijian1}
@@ -48,6 +51,9 @@
    <select id="getReceiveCount" parameterType="crm.util.QueryParam" resultType="int">
       select count(0) from MESSAGE 
       where  rid=#{custid}
+      <if test="zhuangtai!=null">
+      and status=#{zhuangtai}
+      </if>
       <if test="chuangjianshijian1!=null">
       and createtime > #{chuangjianshijian1}
       and createtime &lt; #{chuangjianshijian1}
@@ -61,6 +67,9 @@
       where t.sid=u1.userid
       and t.rid=u2.userid
       and t.sid=#{custid}
+      <if test="zhuangtai!=null">
+      and status=#{zhuangtai}
+      </if>
       <if test="chuangjianshijian1!=null">
       and createtime > #{chuangjianshijian1}
       and createtime &lt; #{chuangjianshijian1}
@@ -72,6 +81,9 @@
    <select id="getSendCount" parameterType="crm.util.QueryParam" resultType="int">
       select count(0) from MESSAGE
       where  sid=#{custid}
+      <if test="zhuangtai!=null">
+      and status=#{zhuangtai}
+      </if>
       <if test="chuangjianshijian1!=null">
       and createtime > #{chuangjianshijian1}
       and createtime &lt; #{chuangjianshijian1}

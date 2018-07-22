@@ -62,10 +62,11 @@ public class ServiceAction {
 				Date createtime = format.parse(par.getCreatetime());
 				Calendar ca=Calendar.getInstance();	
 				ca.setTime(createtime);
-				ca.add(ca.DATE, -1);
+				ca.add(ca.DAY_OF_MONTH, -1);
 				par.setChuangjianshijian1(ca.getTime());
 				ca.setTime(createtime);
-				ca.add(ca.DATE, +1);
+				ca.add(ca.DAY_OF_MONTH, +1);
+				System.out.println(ca.getTime());
 				par.setChuangjianshijian2(ca.getTime());	
 			} catch (ParseException e) {
 				// TODO 自动生成的 catch 块
@@ -105,12 +106,13 @@ public class ServiceAction {
 	    if(par.getCreatetime()!=null)
 		{
 	    	try {
-				Date createtime = format.parse(par.getCreatetime());
+	    		Date createtime = format.parse(par.getCreatetime());
 				Calendar ca=Calendar.getInstance();	
 				ca.setTime(createtime);
+				ca.add(ca.DAY_OF_MONTH, -1);
 				par.setChuangjianshijian1(ca.getTime());
 				ca.setTime(createtime);
-				ca.add(ca.DATE, +1);
+				ca.add(ca.DAY_OF_MONTH, +1);
 				par.setChuangjianshijian2(ca.getTime());	
 			} catch (ParseException e) {
 				// TODO 自动生成的 catch 块
@@ -148,13 +150,14 @@ public class ServiceAction {
 	    if(par.getCreatetime()!=null)
 		{
 	    	try {
-				Date createtime = format.parse(par.getCreatetime());
+	    		Date createtime = format.parse(par.getCreatetime());
 				Calendar ca=Calendar.getInstance();	
 				ca.setTime(createtime);
+				ca.add(ca.DAY_OF_MONTH, -1);
 				par.setChuangjianshijian1(ca.getTime());
 				ca.setTime(createtime);
-				ca.add(ca.DATE, +1);
-				par.setChuangjianshijian2(ca.getTime());	
+				ca.add(ca.DAY_OF_MONTH, +1);
+				par.setChuangjianshijian2(ca.getTime());		
 			} catch (ParseException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();
@@ -186,13 +189,14 @@ public class ServiceAction {
 	    if(par.getCreatetime()!=null)
 		{
 	    	try {
-				Date createtime = format.parse(par.getCreatetime());
+	    		Date createtime = format.parse(par.getCreatetime());
 				Calendar ca=Calendar.getInstance();	
 				ca.setTime(createtime);
+				ca.add(ca.DAY_OF_MONTH, -1);
 				par.setChuangjianshijian1(ca.getTime());
 				ca.setTime(createtime);
-				ca.add(ca.DATE, +1);
-				par.setChuangjianshijian2(ca.getTime());	
+				ca.add(ca.DAY_OF_MONTH, +1);
+				par.setChuangjianshijian2(ca.getTime());		
 			} catch (ParseException e) {
 				// TODO 自动生成的 catch 块
 				e.printStackTrace();

@@ -1,5 +1,8 @@
 package crm.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -40,7 +43,24 @@ public class MessageAction {
 	@RequestMapping("/getReMessage")
 	public ModelAndView getReMessage(QueryParam pa,ModelAndView mm,HttpSession sess){
 		Users us=(Users)sess.getAttribute("curruser");
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		pa.setCustid(us.getUserid());
+		if(pa.getCreatetime()!=null)
+		{
+	    	try {
+	    		Date createtime = format.parse(pa.getCreatetime());
+				Calendar ca=Calendar.getInstance();	
+				ca.setTime(createtime);
+				ca.add(ca.DAY_OF_MONTH, -1);
+				pa.setChuangjianshijian1(ca.getTime());
+				ca.setTime(createtime);
+				ca.add(ca.DAY_OF_MONTH, +1);
+				pa.setChuangjianshijian2(ca.getTime());		
+			} catch (ParseException e) {
+				// TODO 自动生成的 catch 块
+				e.printStackTrace();
+			}
+		}
 		QueryParam par=biz.getRecevieMessage(pa);
 		mm.addObject("par", par);
 		mm.setViewName("crm_message/remessage_list");
