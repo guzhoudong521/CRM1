@@ -40,25 +40,7 @@ public class CustomerAction {
 	
 	@RequestMapping(value="/dolist")
 	public String getAll(QueryParam q,Model mod){
-		
-		/*if(q.getGradeid()!=null){			
-			mod.addAttribute("Gradeid",q.getGradeid());
-		}
-		
-		if(q.getAreaid()!=null){
-			mod.addAttribute("Areaid",q.getAreaid());	
-		}
-		
-		if(q.getGonghao()!=null){			
-			mod.addAttribute("Gonghao",q.getGonghao());
-		}
-		
-		if(q.getName()!=null){
-			String name=q.getName();
-			String newname=name.replaceAll("%","");
-			mod.addAttribute("name",newname);
-		}*/
-		
+				
 		q.setPageSize(5);
 		
 		QueryParam qp= biz.getAllByPage(q);

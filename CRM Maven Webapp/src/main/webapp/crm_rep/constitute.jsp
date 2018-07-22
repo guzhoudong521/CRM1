@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <c:forEach items="${grade}" var="g">
 	      <tr>
 	          <td>${g.id }</td>
-	          <td>${g.gradename }</td>
+	          <td><a href="cust/dolist.action?gradeid=${g.otherid}">${g.gradename }</a></td>
 	          <td>${g.sum }</td>
 	      </tr>
       </c:forEach>      

@@ -29,17 +29,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#select_cangku").append("<option value='"+res[i].wareid+"'>"+res[i].warename+"</option>");
 				
 			}
+			var cangkus='${kucunparam.wid}';
+			$("#select_cangku").find("option[value='"+cangkus+"']").attr("selected",true);
 		
+			
 		},"json")
 		
 		
 	})
-	function query(){
-		
-		$("#queryform").submit();
-		
+	
+	function submits(x){
+			
+			location="pro/getallkucun.action?page="+x+"&"+$("#queryform").serialize();;
 	}
-
 	
 </script>
 <style>	
@@ -59,16 +61,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-    <a href="javascript:query()" title="查询">查询</a>
+    <a href="javascript:submits(1)" title="查询">查询</a>
   </div>
   <form id="queryform" action="pro/getallkucun.action" method="post">
   <div class="search_input">
     <ul class="txt">
       <li>产品编号：
-        <input type="text" name="id" style="width:150px" size="30" />
+        <input type="text" value="${kucunparam.id}" name="id" style="width:150px" size="30" />
       </li>
       <li>产品名称：
-        <input type="text" name="name" style="width:150px" size="30" />
+        <input type="text" value="${kucunparam.realname}" name="name" style="width:150px" size="30" />
       </li>
       <li>仓库：
         <select id="select_cangku" style="width:150px" name="wid"></select>

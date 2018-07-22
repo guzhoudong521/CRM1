@@ -21,11 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		var zhuangtai='${queryp.zhuangtai}';
 		$("#select_zhuangtai").find("option[value='"+zhuangtai+"']").attr("selected",true);
-	
-		$("#chaxun").click(function(){
-	
-			$("#queryform").submit();
-		});
+			
 	})
 	function jihua(x){
 		location="plan/getbyid.action?id="+x;
@@ -43,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function submits(x){
 			
 			location="plan/getall.action?page="+x+"&"+$("#queryform").serialize();;
-		}
+	}
 	
 </script>
 <style>	
@@ -63,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-    <a id="chaxun" href="javascript:void(0)" title="查询">查询</a>
+    <a id="chaxun" href="javascript:submits(1)" title="查询">查询</a>
   </div>
   <form id="queryform" action="plan/getall.action" method="post">
   <div class="search_input">
@@ -152,22 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </c:if>
     <a href="javascript:submits(${queryp.maxPages})" title="末页">末页&raquo;</a>
     </li>
-  </div>
-  <%-- <div class="position"> 
-  	共${queryp.maxRows}条记录&nbsp;每页${queryp.pageSize}条&nbsp;第${queryp.page}页/共${queryp.maxPages}页 
-    <a href="plan/getall.action?page=1" title="首页">&laquo;首页</a>
-    <c:if test="${queryp.page>1}">  
-    <a href="plan/getall.action?page=${queryp.page-1}" title="上一页">&laquo; 上一页</a> 
-    </c:if>
-	    <c:forEach begin="1" end="${queryp.maxPages}" var="pp">
-	    	 <a href="plan/getall.action?page=${pp}" class="${queryp.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
-	    </c:forEach>
-	<c:if test="${queryp.page<queryp.maxPages}">
-    <a href="plan/getall.action?page=${queryp.page+1}" title="下一页">下一页&raquo;</a>
-    </c:if>
-    <a href="plan/getall.action?page=${queryp.maxPages}" title="末页">末页&raquo;</a>
-    </li>
-  </div> --%>
+  </div> 
 </div>
 </body>
 </html>

@@ -19,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery-1.12.4.js"></script>
 <script>
 	$(function(){
-
 		$.post("pro/getalltype.action","",function(res){
 	
 			$("#select_type").append("<option value=''>全部</option>");
@@ -29,6 +28,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#select_type").append("<option value='"+res[i]+"'>"+res[i]+"</option>");
 				
 			}
+			
+		var types='${proparam.type}';
+		$("#select_type").find("option[value='"+types+"']").attr("selected",true);
+		
 		
 		},"json")
 		
@@ -42,16 +45,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				$("#select_grade").append("<option value='"+res[i]+"'>"+res[i]+"</option>");
 				
 			}
+			
+			var grades='${proparam.grade}';
+			$("#select_grade").find("option[value='"+grades+"']").attr("selected",true);
 		
 		},"json")
 		
 		
 	})
 	
-	function query(){
-		
-		$("#queryform").submit();
-		
+	function submits(x){
+			
+			location="pro/getall.action?page="+x+"&"+$("#queryform").serialize();;
 	}
 	
 </script>
@@ -72,13 +77,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-    <a href="javascript:query()": title="查询">查询</a>
+    <a href="javascript:submits(1)": title="查询">查询</a>
   </div>
   <form id="queryform" action="pro/getall.action" method="post">
   <div class="search_input">
     <ul class="txt">
       <li>名称：
-        <input type="text" name="name" size="30"  style="width:180px" />
+        <input type="text" value="${proparam.realname}" name="name" size="30"  style="width:180px" />
       </li>
       <li>型号：
         <select id="select_type" name="type" style="width:180px"></select>
@@ -119,7 +124,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tbody>
     </table>
   </div>
-   <div class="position"> 
+  <div class="position"> 
+  	共${proparam.maxRows}条记录&nbsp;每页${proparam.pageSize}条&nbsp;第${proparam.page}页/共${proparam.maxPages}页 
+    <a href="javascript:submits(1)" title="首页">&laquo;首页</a>
+    <c:if test="${proparam.page>1}">  
+    <a href="javascript:submits(${proparam.page-1})" title="上一页">&laquo; 上一页</a> 
+    </c:if>
+	    <c:forEach begin="1" end="${proparam.maxPages}" var="pp">
+	    	 <a href="javascript:submits(${pp})" class="${proparam.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
+	    </c:forEach>
+	<c:if test="${proparam.page<proparam.maxPages}">
+    <a href="javascript:submits(${proparam.page+1})" title="下一页">下一页&raquo;</a>
+    </c:if>
+    <a href="javascript:submits(${proparam.maxPages})" title="末页">末页&raquo;</a>
+    </li>
+  </div> 
+  <%--  <div class="position"> 
   	共${proparam.maxRows}条记录&nbsp;每页${proparam.pageSize}条&nbsp;第${proparam.page}页/共${proparam.maxPages}页 
     <a href="pro/getall.action?page=1" title="首页">&laquo;首页</a>
     <c:if test="${proparam.page>1}">  
@@ -133,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </c:if>
     <a href="pro/getall.action?page=${proparam.maxPages}" title="末页">末页&raquo;</a>
     </li>
-  </div>
+  </div> --%>
 </div>
 </body>
 </html>

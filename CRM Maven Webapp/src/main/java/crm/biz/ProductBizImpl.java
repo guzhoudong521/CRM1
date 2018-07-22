@@ -23,7 +23,9 @@ public class ProductBizImpl implements IProductBiz {
 		qq.setPageSize(q.getPageSize());
 		qq.setList(dao.getAllPro(q));
 		qq.setMaxRows(dao.getCount(q));
-		
+		qq.setName(q.getName());
+		qq.setType(q.getType());
+		qq.setGrade(q.getGrade());
 		return qq;
 	}
 
@@ -45,7 +47,9 @@ public class ProductBizImpl implements IProductBiz {
 		qq.setPageSize(q.getPageSize());
 		qq.setList(dao.getAllKucun(q));
 		qq.setMaxRows(dao.getKucunCount(q));
-				
+		qq.setId(q.getId());
+		qq.setName(q.getName());
+		qq.setWid(q.getWid());
 		return qq;
 	}
 

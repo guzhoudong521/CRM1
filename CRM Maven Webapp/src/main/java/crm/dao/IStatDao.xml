@@ -8,11 +8,12 @@
 		<id column="r" property="id"/>
 		<result column="gname" property="gradename"/>
 		<result column="gsum" property="sum"/>
+		<result column="gid" property="otherid"/>
 	</resultMap>
 	<select id="getGradeStat" resultMap="grademap">
 	select rownum r, xxx.* from (
         select * from (
-        select g.gname,nvl(x.gsum,0) gsum  from custgrade g,
+        select g.gid,g.gname,nvl(x.gsum,0) gsum  from custgrade g,
           (select count(1)  gsum ,c.gid gid from  customer  c  group by c.gid  ) x
           where x.gid(+)=g.gid  
           ) xx
