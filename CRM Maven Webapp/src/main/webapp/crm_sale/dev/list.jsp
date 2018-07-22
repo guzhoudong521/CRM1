@@ -18,6 +18,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/jquery-1.12.4.js"></script>
 <script>
 	$(function(){
+	
+		var zhuangtai='${queryp.zhuangtai}';
+		$("#select_zhuangtai").find("option[value='"+zhuangtai+"']").attr("selected",true);
+	
 		$("#chaxun").click(function(){
 	
 			$("#queryform").submit();
@@ -33,9 +37,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			location="plan/getbyid.action?id="+x;
 		}else{
 		
-		}
-		
+		}		
 	}
+	
+	function submits(x){
+			
+			location="plan/getall.action?page="+x+"&"+$("#queryform").serialize();;
+		}
 	
 </script>
 <style>	
@@ -61,14 +69,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="search_input">
     <ul class="txt">
       <li>客户名称：
-        <input type="text" name="name" size="30" />
+        <input type="text" value="${queryp.realname}" name="name" size="30" />
       </li>
       <li>联系人：
-        <input type="text" name="lianxiren" size="30" />
+        <input type="text" value="${queryp.reallianxiren }" name="lianxiren" size="30" />
       </li>
       <li>状态：
        <!--  <input type="text" name="lianxiren" size="30" /> -->
-        <select  style="width:150px;align:center" name="zhuangtai">
+        <select id="select_zhuangtai" style="width:150px;align:center" name="zhuangtai">
         	<option value="">全部</option>
         	<option value="未开发">未开发</option>
         	<option value="计划已制定">计划已制定</option>
@@ -132,6 +140,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="position"> 
   	共${queryp.maxRows}条记录&nbsp;每页${queryp.pageSize}条&nbsp;第${queryp.page}页/共${queryp.maxPages}页 
+    <a href="javascript:submits(1)" title="首页">&laquo;首页</a>
+    <c:if test="${queryp.page>1}">  
+    <a href="javascript:submits(${queryp.page-1})" title="上一页">&laquo; 上一页</a> 
+    </c:if>
+	    <c:forEach begin="1" end="${queryp.maxPages}" var="pp">
+	    	 <a href="javascript:submits(${pp})" class="${queryp.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
+	    </c:forEach>
+	<c:if test="${queryp.page<queryp.maxPages}">
+    <a href="javascript:submits(${queryp.page+1})" title="下一页">下一页&raquo;</a>
+    </c:if>
+    <a href="javascript:submits(${queryp.maxPages})" title="末页">末页&raquo;</a>
+    </li>
+  </div>
+  <%-- <div class="position"> 
+  	共${queryp.maxRows}条记录&nbsp;每页${queryp.pageSize}条&nbsp;第${queryp.page}页/共${queryp.maxPages}页 
     <a href="plan/getall.action?page=1" title="首页">&laquo;首页</a>
     <c:if test="${queryp.page>1}">  
     <a href="plan/getall.action?page=${queryp.page-1}" title="上一页">&laquo; 上一页</a> 
@@ -144,7 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </c:if>
     <a href="plan/getall.action?page=${queryp.maxPages}" title="末页">末页&raquo;</a>
     </li>
-  </div>
+  </div> --%>
 </div>
 </body>
 </html>

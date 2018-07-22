@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <td width="64%">创建时间：${currorder.ordtime }</td>
                   </tr>
                   <tr>
-                    <td>总金额：￥${currorder.sum}</td>
+                    <td>总金额：￥${currorder.sumprice}</td>
                     <td>状态：${currorder.status}</td>
                   </tr>
                 </table>

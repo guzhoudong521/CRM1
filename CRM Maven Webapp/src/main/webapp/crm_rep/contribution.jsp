@@ -36,7 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <c:forEach items="${saleparam.list}" var="s">
      	<tr>
           <td>${s.id }</td>
-          <td><a href="#">${s.name }</a></td>
+          <td><a href="cust/getallorder.action?custid=${s.otherid }">${s.name }</a></td>
           <td>${s.sum }</td>
         </tr>
       </c:forEach>

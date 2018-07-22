@@ -25,6 +25,8 @@ public class QueryParam {
 	private String grade;
 	private Integer id;
 	private Integer wid;
+	private String realname;
+	private String reallianxiren;
 	
 	
 	
@@ -127,6 +129,33 @@ public class QueryParam {
 	public void setName(String name) {
 		this.name = "%"+name+"%";
 	}
+	
+	public String getRealname() {
+		String ss=this.name.replaceAll("%", "");
+		if(ss.equals("null")){	
+			return "";
+		}else{
+				return this.name.replaceAll("%", "");
+		}	
+	}
+	
+	public void setRealname(String realname) {		
+			this.realname=realname;
+	}
+	
+	public String getReallianxiren() {
+		String ss=this.lianxiren.replaceAll("%", "");
+		if(ss.equals("null")){	
+			return "";
+		}else{
+			return this.lianxiren.replaceAll("%", "");
+		}	
+		
+	}
+	public void setReallianxiren(String reallianxiren) {
+		this.reallianxiren = reallianxiren;
+	}
+	
 	public String getLianxiren() {
 		return lianxiren;
 	}

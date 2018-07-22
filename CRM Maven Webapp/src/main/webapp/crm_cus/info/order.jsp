@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>${ords.ordtime }</td>
           <td>${ords.address }</td>
           <td>${ords.status }</td>
-          <td><img title="查看明细" src="images/document.ico" class="op_button" onclick="to('cust/getalldetail.action?gonghao=${ord.oid}')" /></td>
+          <td><img title="查看明细" src="images/document.ico" class="op_button" onclick="to('cust/getalldetail.action?gonghao=${ords.oid}')" /></td>
         </tr>
         </c:forEach>
       </tbody>

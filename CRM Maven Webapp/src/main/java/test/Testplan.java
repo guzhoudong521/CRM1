@@ -41,7 +41,7 @@ public class Testplan {
 		IProductBiz pbiz=con.getBean(IProductBiz.class);
 		
 		
-		QueryParam q=new QueryParam();
+		/*QueryParam q=new QueryParam();
 		q.setCustid(1100);
 		QueryParam qq=obiz.getOrderByCustI(q);
 		List<Orders> list=qq.getList();
@@ -49,8 +49,9 @@ public class Testplan {
 			
 			System.out.println(o.getAddress());
 		}
-		
-		
+		*/
+		Orders o=obiz.getOrderById(4338);
+		System.out.println(o.getSumprice()+","+o.getAddress());
 		
 		
 		/*Product pp= pbiz.getBuId(1137);

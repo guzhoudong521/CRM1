@@ -41,7 +41,25 @@ public class CustomerAction {
 	@RequestMapping(value="/dolist")
 	public String getAll(QueryParam q,Model mod){
 		
-		q.setPageSize(6);
+		/*if(q.getGradeid()!=null){			
+			mod.addAttribute("Gradeid",q.getGradeid());
+		}
+		
+		if(q.getAreaid()!=null){
+			mod.addAttribute("Areaid",q.getAreaid());	
+		}
+		
+		if(q.getGonghao()!=null){			
+			mod.addAttribute("Gonghao",q.getGonghao());
+		}
+		
+		if(q.getName()!=null){
+			String name=q.getName();
+			String newname=name.replaceAll("%","");
+			mod.addAttribute("name",newname);
+		}*/
+		
+		q.setPageSize(5);
 		
 		QueryParam qp= biz.getAllByPage(q);
 		mod.addAttribute("custparam", qp);		
@@ -197,11 +215,7 @@ public class CustomerAction {
 		
 		
 		QueryParam qq=obiz.getOrderByCustI(q);
-		List<Orders> list=qq.getList();
-		for(Orders o:list){
-			System.out.println("***************");
-			System.out.println(o.getAddress());
-		}
+		
 		
 		mod.addAttribute("orderparam", qq);
 		
@@ -221,8 +235,8 @@ public class CustomerAction {
 		}
 		Orders o=obiz.getOrderById(q.getGonghao());
 		mod.addAttribute("currorder", o);
-		long sum=obiz.getSumByOrder(q.getGonghao());
-		mod.addAttribute("sum", sum);
+		/*long sum=obiz.getSumByOrder(q.getGonghao());
+		mod.addAttribute("sum", sum);*/
 		QueryParam qq=obiz.getDetailById(q);
 		mod.addAttribute("currdetail", qq);
 		return "crm_cus/info/order_detail";
@@ -286,7 +300,7 @@ public class CustomerAction {
 		/*更新订单中的总价*/
 		Orders o=(Orders)session.getAttribute("currorder");
 		double price=ord.getPnum()*ord.getPro().getPrice();			
-		o.setSum(price+o.getSum());
+		o.setSumprice(price+o.getSumprice());
 		session.setAttribute("currorder", o);
 		
 		
@@ -320,6 +334,7 @@ public class CustomerAction {
 		o.setList(list);
 		o.setAddress(address);
 		obiz.addOrder(o);
+		session.setAttribute("listDetail",null);
 		return "redirect:/cust/dolist.action";
 	}
 	

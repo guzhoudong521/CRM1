@@ -27,6 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#selectid").append("<option value="+res[x].userid+">"+res[x].uname+"</option>");
 				} 
 				
+				var gonghao='${custparam.gonghao}';
+				$("#selectid").find("option[value="+gonghao+"]").attr("selected",true);
+				
 			},"json") 
 			
 			$.post("cust/getallarea.action","",function(res){
@@ -35,6 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				for(var i in res){
 					$("#areaid").append("<option value="+res[i].areaid+">"+res[i].areaname+"</option>");
 				}
+				
+				var areaid='${custparam.areaid}';
+				$("#areaid").find("option[value="+areaid+"]").attr("selected",true);
 				
 			},"json")
 			
@@ -47,13 +53,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 				}
 				
+				var gradeids='${custparam.gradeid}';
+				$("#gradeid").find("option[value="+gradeids+"]").attr("selected",true);
+				
+				
 			},"json");
 			
-			$("#chaxuna").click(function(){
+			/* $("#chaxuna").click(function(){
 				$("#queryform").submit();
-			});
+			}); */
 						
 		})
+		
+		function submits(x){
+			
+			location="cust/dolist.action?page="+x+"&"+$("#queryform").serialize();;
+		}
 	
 </script>
 
@@ -74,20 +89,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button"> 
-  <a id="chaxuna" href="javascript:void(0)" title="查询">查询</a> 
+  <a id="chaxuna" href="javascript:submits(1)" title="查询">查询</a> 
   </div>
   <div class="search_input">
   <form id="queryform" action="cust/dolist.action" method="post">
     <ul class="txt">
       <li>客户名称：
-        <input type="text" name="name" size="30" />
+        <input type="text" value="${custparam.realname}" name="name" size="30" />
       </li>
       <li>客户经理：
         <select id="selectid" name="gonghao"></select>
       </li>
       <li>地区：
         <select id="areaid" name="areaid">
-         
+         <!-- <option selected="selected"></option> -->
         </select>
       </li>
       <li>客户等级：
@@ -96,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </select>
       </li>
     </ul>
-    </form>
+   </form>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
@@ -134,20 +149,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <div class="position"> 
   	共${custparam.maxRows}条记录&nbsp;每页${custparam.pageSize}条&nbsp;第${custparam.page}页/共${custparam.maxPages}页 
-    <a href="cust/dolist.action?page=1" title="首页">&laquo;首页</a>
+    <a href="javascript:submits(1)" title="首页">&laquo;首页</a>
     <c:if test="${custparam.page>1}">  
-    <a href="cust/dolist.action?page=${custparam.page-1}" title="上一页">&laquo; 上一页</a> 
+    <a href="javascript:submits(${custparam.page-1})" title="上一页">&laquo; 上一页</a> 
     </c:if>
 	    <c:forEach begin="1" end="${custparam.maxPages}" var="pp">
-	    	 <a href="cust/dolist.action?page=${pp}" class="${custparam.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
+	    	 <a href="javascript:submits(${pp})" class="${custparam.page==pp?'number current':'number' }" title="${pp}">${pp}</a> 
 	    </c:forEach>
 	<c:if test="${custparam.page<custparam.maxPages}">
-    <a href="cust/dolist.action?page=${custparam.page+1}" title="下一页">下一页&raquo;</a>
+    <a href="javascript:submits(${custparam.page+1})" title="下一页">下一页&raquo;</a>
     </c:if>
-    <a href="cust/dolist.action?page=${custparam.maxPages}" title="末页">末页&raquo;</a>
+    <a href="javascript:submits(${custparam.maxPages})" title="末页">末页&raquo;</a>
     </li>
   </div>
-  
+   
 </div>
 </body>
 </html>

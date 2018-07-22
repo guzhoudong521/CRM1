@@ -24,13 +24,17 @@ public class CustplanBizImpl implements ICustplanBiz {
 
 	public QueryParam getAllByPage(QueryParam q) {
 		// TODO 自动生成的方法存根
-		QueryParam qp=new QueryParam();
+		QueryParam qq=new QueryParam();
 		
-		qp.setMaxRows(dao.getCount(q));
-		qp.setPage(q.getPage());
-		qp.setPageSize(q.getPageSize());
-		qp.setList(dao.getAll(q));		
-		return qp;
+		qq.setMaxRows(dao.getCount(q));
+		qq.setPage(q.getPage());
+		qq.setPageSize(q.getPageSize());
+		qq.setList(dao.getAll(q));	
+		qq.setName(q.getName());
+		qq.setLianxiren(q.getLianxiren());
+		qq.setZhuangtai(q.getZhuangtai());
+		
+		return qq;
 	}
 
 	public void addPlan(Custplan cus) {

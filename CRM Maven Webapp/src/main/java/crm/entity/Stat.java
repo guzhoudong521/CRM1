@@ -3,7 +3,7 @@ package crm.entity;
 public class Stat {
 
 	private Integer id;
-	
+	private Integer otherid;
 	private String gradename;
 	private long sum;
 	private String sertype;
@@ -11,6 +11,12 @@ public class Stat {
 	
 	
 
+	public Integer getOtherid() {
+		return otherid;
+	}
+	public void setOtherid(Integer otherid) {
+		this.otherid = otherid;
+	}
 	public String getName() {
 		return name;
 	}

@@ -18,7 +18,7 @@
 	 select count(1)from orders o 
 	  where o.custid=#{0}
 	</select>
-	
+
 	<select id="getOrderById" resultType="orders" parameterType="int">
 		select * from orders o 
 		  where o.oid=#{0}
@@ -66,7 +66,7 @@
 	
 		begin
 			
-			insert into orders values(order_seq.nextval+3333,#{cust.custid},#{ordtime},#{address},#{status},#{sum});
+			insert into orders values(order_seq.nextval+3333,#{cust.custid},#{ordtime},#{address},#{status},#{sumprice});
 			<foreach collection="list" item="odt">
 				insert into orderdetail values(quanju_seq.nextval+1111,order_seq.currval+3333,#{odt.pro.pid},#{odt.pnum});
 			</foreach>

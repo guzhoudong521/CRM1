@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td width="100" align="center">送货地址：</td>
           <td width="200">${currorder.address }</td>
           <td width="100" align="center">总金额（元）：</td>
-          <td width="200">${sum }</td>
+          <td width="200">${currorder.sumprice}</td>
         </tr>
         <tr>
           <td width="100" align="center">状态：</td>

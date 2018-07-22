@@ -10,17 +10,18 @@ public class Orders {
 	private String ordtime;
 	private String address;
 	private String status;
-	private double sum;
+	private double sumprice;
 	private List<OrderDetail> list;
 	
 	
 	
 	
-	public double getSum() {
-		return sum;
+	
+	public double getSumprice() {
+		return sumprice;
 	}
-	public void setSum(double sum) {
-		this.sum = sum;
+	public void setSumprice(double sumprice) {
+		this.sumprice = sumprice;
 	}
 	public List<OrderDetail> getList() {
 		return list;

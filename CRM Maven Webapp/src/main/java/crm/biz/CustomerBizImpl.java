@@ -24,11 +24,14 @@ public class CustomerBizImpl implements ICustomerBiz {
 		// TODO 自动生成的方法存根
 		QueryParam qq=new QueryParam();
 		qq.setPageSize(q.getPageSize());
+		qq.setAreaid(q.getAreaid());		
 		qq.setPage(q.getPage());
 		qq.setMaxRows(dao.getCount(q));
 		qq.setList(dao.getAll(q));
-		
-		
+		qq.setName(q.getName());
+		qq.setGonghao(q.getGonghao());
+		qq.setAreaid(q.getAreaid());
+		qq.setGradeid(q.getGradeid());
 		return qq;
 	}
 
