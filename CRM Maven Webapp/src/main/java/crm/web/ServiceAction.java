@@ -62,6 +62,7 @@ public class ServiceAction {
 				Date createtime = format.parse(par.getCreatetime());
 				Calendar ca=Calendar.getInstance();	
 				ca.setTime(createtime);
+				ca.add(ca.DATE, -1);
 				par.setChuangjianshijian1(ca.getTime());
 				ca.setTime(createtime);
 				ca.add(ca.DATE, +1);

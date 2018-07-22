@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div class="operation_button">
-    <form action="message/getSdMessage.action" method="post" id="searchForm">
+    <form action="notice/getAll.action" method="post" id="searchForm">
         <input type="hidden" name="page" id="pages" value="${par.page}"/>
      
     </form>

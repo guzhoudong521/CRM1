@@ -44,11 +44,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
         <tr>
           <td>标题：</td>
-          <td><input type="text" name="title"/></td>
+          <td><input type="text" name="title" id="title"/></td>
         </tr>
         <tr>
           <td>内容：</td>
-          <td><textarea rows="5" cols="40" name="content"></textarea></td>
+          <td><textarea rows="5" cols="40" name="content"  id="title"></textarea></td>
         </tr>
         <tr>
           <td>发送给：</td>
