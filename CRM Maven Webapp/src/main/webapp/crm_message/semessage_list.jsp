@@ -18,6 +18,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<style>
+#chaxundiv{
+		
+		position:absolute;
+		top:55px;
+		left:500px;	
+	}
+#nulldiv{
+		position:absolute;
+		top:200px;
+		left:300px;
+		font-size: 20px;
+	}		
+</style>
 <script type="text/javascript">
   $(function(){
      var ck="${par.zhuangtai}"; 
@@ -41,10 +55,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：消息管理&nbsp;&gt;&nbsp;发出的消息
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
-    <a href="javascript:sub()" title="查询">查询</a>
-    <a href="message/getReMessage.action">我的消息</a>
-  </div>
+  <c:if test="${par.maxRows==0}">
+    <div id="nulldiv">暂无消息</div>
+  </c:if>
+  <c:if test="${par.maxRows!=0}">
   <div class="search_input">
      <form action="message/getSdMessage.action" method="post" id="searchForm">
     <ul class="txt">
@@ -59,6 +73,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </li>
     </ul>
     </form>
+  </div>
+  <div class="operation_button" id="chaxundiv">
+    <a href="javascript:sub()" title="查询">查询</a>
+    <a href="message/getReMessage.action">我的消息</a>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
@@ -94,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
  <div class="position"> 
   	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
-    <a href="javascript:page(1)" title="首页">&laquo;首页</a>
+    <c:if test="${par.page!=1}"><a href="javascript:page(1)" title="首页">&laquo;首页</a></c:if>
      <c:if test="${par.page>1}">  
     <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
     </c:if>
@@ -104,8 +122,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <c:if test="${par.page<par.maxPages}">
     <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
      </c:if>
-    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a>
+     <c:if test="${par.page!=par.maxPages}"><a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a></c:if>
   </div>
+  </c:if>
 </div>
 </body>
 </html>

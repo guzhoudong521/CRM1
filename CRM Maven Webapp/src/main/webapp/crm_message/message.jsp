@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
           <td>内容：</td>
-          <td><textarea rows="5" cols="40" name="content" >${mess.content } disabled="disabled" </textarea></td>
+          <td><textarea rows="5" cols="40" name="content" disabled="disabled" >${mess.content }</textarea></td>
         </tr>
         <tr>
           <td>发送给：</td>

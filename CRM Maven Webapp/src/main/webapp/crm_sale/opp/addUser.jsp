@@ -37,13 +37,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      };
      
      function check(){
-        var na=$("#name").val().length;
+        var na=$("#name").val();
         var pwd=$("#pwd").val().length;
+        var te=/^[\u4e00-\u9fa5]{2,4}$/;
        /*  alert(na); */
         $("#nameSpan").html("");
         $("#pwdSpan").html("");
-       if(na>16||na<3){
-           $("#nameSpan").html("名字长度应在3~16之间");
+       if(te.test(na)){
+           $("#nameSpan").html("名字长度应在2~6之间");
            return false;
         }
         if(pwd>16||pwd<6){
