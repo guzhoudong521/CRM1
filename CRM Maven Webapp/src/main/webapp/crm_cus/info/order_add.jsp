@@ -45,9 +45,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				
 				
-				$("#addimg").click(function(){
+				 $("#addimg").click(function(){
 					$("#cdlistform").submit();
-				});
+				}); 
 			
 				$(".delimg").click(function(){
 					var x=$(this).next("input").val();
@@ -56,12 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				});
 				
 				
-				
-				/* $("#buttonsave").click(function(){
-				
-					$("#eventform").submit();
-				
-				}); */
+										
 				
 			})
 			
@@ -80,7 +75,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 			
 			function submits(){
+				var xx=$("#address").val();
+				if(xx==''){
+					alert("地址不能为空");
+				}else{
 				$("#eventform").submit();
+				}
+				
 			}
 		 
 </script>
@@ -132,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                
                   <thead>
 	                  <tr>
-	                    <td  width="30%" align="center">选择商品</td>
+	                    <td width="30%" align="center">选择商品</td>
 	                    <td width="30%"  align="center">单价</td>
 	                    <td width="20%"  align="center">数量</td>
 	                    <td width="20%"  align="left">&nbsp;</td>
@@ -159,11 +160,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input id="price" class="input_01"  type="text"  disabled="disabled"  name="pro.price"/>
 						</td>	                
 		                <td align="center">
-		                 <input type="number"   name="pnum" id="textfield2" class="input_01" />		
-		               		              		 		               		 		               	
+		                 <input type="number" required="required"  min="1" max="100" value="1"   name="pnum" id="textfield2" class="input_01" />				               		              		 		               		 		               	
 		                </td>
 		                <td>		              		
-		              		  <img id="addimg" title="增加" src="images/add_detail.png" class="op_button" />  
+		              		  <img id="addimg" title="增加" src="images/add_detail.png" class="op_button" /> 
 		                </td>
 	                  </tr>
                   </form>
@@ -171,8 +171,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                    <tr>
                    <form id="eventform" action="cust/addorder.action" method="post">
                   	 <td colspan="4" class="event">
-                  		    <label>收货地址：</label>                   
-                   	 		<textarea  style="resize:none;" name="address" id="textarea" cols="60" rows="10"></textarea>
+                  		    <label>收货地址：</label>    
+                  		              
+                   	 		<textarea id="address"  style="resize:none;" name="address" id="textarea" cols="60" rows="10"></textarea>
                   	 </td>
                   	</form>
                    </tr>    

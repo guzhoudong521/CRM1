@@ -105,7 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <tr>
           <td>${cus.planid }</td>
-          <td><a href="#">${cus.gongsi }</a></td>
+          <td><a href="javascript:void(0)">${cus.gongsi }</a></td>
           <td>${cus.gaiyao }</td>
           <td>${cus.lianxiren }</td>
           <td>${cus.dianhua }</td>
@@ -136,7 +136,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="position"> 
   	共${queryp.maxRows}条记录&nbsp;每页${queryp.pageSize}条&nbsp;第${queryp.page}页/共${queryp.maxPages}页 
+    <c:if test="${queryp.page!=1}">
     <a href="javascript:submits(1)" title="首页">&laquo;首页</a>
+     </c:if>
     <c:if test="${queryp.page>1}">  
     <a href="javascript:submits(${queryp.page-1})" title="上一页">&laquo; 上一页</a> 
     </c:if>
@@ -146,7 +148,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:if test="${queryp.page<queryp.maxPages}">
     <a href="javascript:submits(${queryp.page+1})" title="下一页">下一页&raquo;</a>
     </c:if>
+   <c:if test="${queryp.page!=queryp.maxPages}">
     <a href="javascript:submits(${queryp.maxPages})" title="末页">末页&raquo;</a>
+    </c:if>
     </li>
   </div> 
 </div>

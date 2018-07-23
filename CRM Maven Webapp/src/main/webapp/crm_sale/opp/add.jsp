@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;<a href="list.html">销售机会</a>&nbsp;&gt;&nbsp;新建销售机会
+  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;销售机会&nbsp;&gt;&nbsp;新建销售机会
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
@@ -55,13 +55,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td width="126">编号</td>
           <td width="411"><input type="text" disabled="disabled" /></td>
           <td width="126">机会来源</td>
-          <td width="442"><input type="text" name="laiyuan" /></td>
+          <td width="442"><input type="text" name="laiyuan" required="required"  /></td>
         </tr>
         <tr>
           <td>客户名称</td>
-          <td><input id="changeid" type="text" name="gongsi" /></td>
+          <td><input id="changeid" type="text" name="gongsi" required="required" /></td>
           <td>成功几率</td>
-          <td><input type="text" name="jilv"/></td>
+          <td><input type="text" name="jilv" required="required"/></td>
         </tr>
         <tr>
           <td>概要</td>
@@ -71,26 +71,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
           <td>联系人</td>
-          <td><input type="text" name="lianxiren" /></td>
+          <td><input type="text" name="lianxiren" required="required"/></td>
           <td>联系人电话</td>
-          <td><input type="text"  name="dianhua"/></td>
+          <td><input type="text"  name="dianhua" required="required"/></td>
         </tr>
         <tr style="padding:0px;">
           <td valign="top">机会描述</td>
-          <td><textarea rows="6" cols="40" name="miaoshu" /></textarea></td>
+          <td><textarea rows="6" cols="40" name="miaoshu"  required="required"/></textarea></td>
           <td>&nbsp;</td>
           <td>&nbsp;</td>
         </tr>
        <tr>
-       <td>指派给</td>
-          <td>
-          	<select id="selectid" style="width:311px;height:30px;" name="zhixingren.userid" ></select>
-           </td>          
-        </tr>
-        <tr>
-          
-         <!--  <td>指派时间</td>
-          <td><input type="text" disabled="disabled"/></td> -->
         </tr>
         <tr >
           

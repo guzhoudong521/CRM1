@@ -38,19 +38,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <input type="hidden" name="cust.custid" value="${bjcus.custid}">
         <tr>
           <td width="126">时间</td>
-          <td width="411"><input type="datetime-local" name="meetime" /></td>
+          <td width="411"><input type="datetime-local" name="meetime" required="required"/></td>
           <td width="126">地点</td>
-          <td width="442"><input type="text" name="meetaddress"  /></td>
+          <td width="442"><input type="text" name="meetaddress"  required="required" /></td>
         </tr>
         <tr>
           <td>概要</td>
-          <td><input type="text" name="summary" /></td>
+          <td><input type="text" name="summary" required="required" /></td>
           <td>备注</td>
           <td><input type="text" name="meetnotes" /></td>
         </tr>
         <tr>
           <td valign="top">详细信息</td>
-          <td><textarea rows="6" cols="36" name="meetinfo" /></textarea></td>
+          <td><textarea rows="6" cols="36" name="meetinfo" required="required" /></textarea></td>
           <td></td>
           <td></td>
         </tr>

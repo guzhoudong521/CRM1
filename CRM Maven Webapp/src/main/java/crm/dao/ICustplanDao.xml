@@ -83,7 +83,7 @@
 	<insert id="add" parameterType="crm.entity.Custplan">
 		insert into custplan values(quanju_seq.nextval,#{gongsi},#{gaiyao},
 		#{lianxiren},#{miaoshu},#{chuangjianren.userid},#{laiyuan},#{jilv},#{dianhua},#{chuangjianshijian},
-		null,#{zhixingren.userid},'未开发')
+		null,null,'未开发')
 	</insert>
 	
 	<update id="mod" parameterType="crm.entity.Custplan">

@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-   	<a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单" >增加订单</a>
+   <%-- 	<a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单" >增加订单</a> --%>
     <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -65,9 +65,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
         <tr>
-          <th width="5%"><input type="checkbox" class="check-all"/></th>
+          <!-- <th width="5%"><input type="checkbox" class="check-all"/></th> -->
           <th width="15%">订单编号</th>
-          <th width="15%">日期</th>
+          <th width="20%">日期</th>
           <th width="30%">送货地址</th>
           <th width="10%">状态</th>
           <th width="20%">操作</th>
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <tbody>
       <c:forEach items="${orderparam.list}" var="ords">
         <tr>
-          <td><input type="checkbox" /></td>
+        <!--   <td><input type="checkbox" /></td> -->
           <td>${ords.oid }</td>
           <td>${ords.ordtime }</td>
           <td>${ords.address }</td>
@@ -89,7 +89,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <div class="position"> 
   	共${orderparam.maxRows}条记录&nbsp;每页${orderparam.pageSize}条&nbsp;第${orderparam.page}页/共${orderparam.maxPages}页 
+    <c:if test="${orderparam.page!=1}">
     <a href="cust/getallorder.action?page=1" title="首页">&laquo;首页</a>
+      </c:if>
     <c:if test="${orderparam.page>1}">  
     <a href="cust/getallorder.action?page=${orderparam.page-1}" title="上一页">&laquo; 上一页</a> 
     </c:if>
@@ -99,7 +101,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:if test="${orderparam.page<orderparam.maxPages}">
     <a href="cust/getallorder.action?page=${orderparam.page+1}" title="下一页">下一页&raquo;</a>
     </c:if>
+     <c:if test="${orderparam.page!=orderparam.maxPages}">
     <a href="cust/getallorder.action?page=${orderparam.maxPages}" title="末页">末页&raquo;</a>
+    </c:if>
     </li>
   </div>
 </div>

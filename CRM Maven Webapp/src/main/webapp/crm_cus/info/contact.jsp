@@ -39,19 +39,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	#adddiv{
 		position:absolute;
 		top:50px;
-		left:500px;
+		left:580px;
 	}
 </style>
 </head>
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;<a href="list.html">客户信息</a>&nbsp;&gt;&nbsp;交往记录
+  <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;客户信息&nbsp;&gt;&nbsp;交往记录
     <hr class="hr1" />
   </div>
   <div id="adddiv" class="operation_button">
  	<a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
-    <a href="crm_cus/info/contact_add.jsp" title="新建">新建</a>
+   
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
         <tr>
@@ -102,7 +102,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
     <div class="position"> 
   	共${currmeet.maxRows}条记录&nbsp;每页${currmeet.pageSize}条&nbsp;第${currmeet.page}页/共${currmeet.maxPages}页 
+    <c:if test="${currmeet.page!=1}">
     <a href="cust/getmeet.action?page=1&custid=${bjcus.custid}" title="首页">&laquo;首页</a>
+    </c:if>
     <c:if test="${currmeet.page>1}">  
     <a href="cust/getmeet.action?page=${currmeet.page-1}&custid=${bjcus.custid}" title="上一页">&laquo; 上一页</a> 
     </c:if>
@@ -112,7 +114,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:if test="${currmeet.page<currmeet.maxPages}">
     <a href="cust/getmeet.action?page=${currmeet.page+1}&custid=${bjcus.custid}" title="下一页">下一页&raquo;</a>
     </c:if>
+     <c:if test="${currmeet.page!=currmeet.maxPages}">
     <a href="cust/getmeet.action?page=${currmeet.maxPages}&custid=${bjcus.custid}" title="末页">末页&raquo;</a>
+    </c:if>
     </li>
   </div>
 </div>

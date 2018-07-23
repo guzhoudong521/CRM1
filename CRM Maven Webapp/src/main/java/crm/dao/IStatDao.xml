@@ -40,17 +40,15 @@
 	</resultMap>
 	
 	<select id="getSale" resultMap="salemap" parameterType="crm.util.QueryParam">
-	
-    select xx.*,rownum r from (
-  select * from (
-    select x.*,rownum rr from (
-      select c.cname,c.custid,nvl(dd.sumprice,0)  sumprice from customer c,
-      (select d.custid ids,sum(d.sumprice) sumprice from orders  d  group by d.custid   ) dd
-      where c.custid=dd.ids(+)
-     ) x)
- 	 where rr>(#{page}-1)*#{pageSize} and rr&lt;=#{page}*#{pageSize}
-      order by sumprice desc ) xx
-     
+	select * from (
+	       select xx.*,rownum r from (
+	    select * from (
+	      select c.cname,c.custid,nvl(dd.sumprice,0)  sumprice from customer c,
+	      (select d.custid ids,sum(d.sumprice) sumprice from orders  d  group by d.custid   ) dd
+	      where c.custid=dd.ids(+)
+	     ) 
+	 	 order by sumprice desc ) xx)
+      where r>(#{page}-1)*#{pageSize} and r&lt;=#{page}*#{pageSize}
 	</select>
 	
 	

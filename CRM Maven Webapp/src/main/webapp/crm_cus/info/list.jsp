@@ -131,8 +131,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <tr>
           
           <td>${cus.custid }</td>
-          <td colspan="2"><a href="#">${cus.cname }</a></td>
-          <td>${cus.area.areaname }</td>
+       <td colspan="2"><a href="javascript:void(0)">${cus.cname }</a></td>
+       <td>${cus.area.areaname }</td>
           <td>${cus.mgr.uname }</td>
           <td>${cus.custgrade.gname}</td>
           <td>
@@ -146,10 +146,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tbody>
     </table>
   </div>
-  
+
   <div class="position"> 
   	共${custparam.maxRows}条记录&nbsp;每页${custparam.pageSize}条&nbsp;第${custparam.page}页/共${custparam.maxPages}页 
+  	<c:if test="${custparam.page!=1}">
     <a href="javascript:submits(1)" title="首页">&laquo;首页</a>
+    </c:if>
     <c:if test="${custparam.page>1}">  
     <a href="javascript:submits(${custparam.page-1})" title="上一页">&laquo; 上一页</a> 
     </c:if>
@@ -159,7 +161,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<c:if test="${custparam.page<custparam.maxPages}">
     <a href="javascript:submits(${custparam.page+1})" title="下一页">下一页&raquo;</a>
     </c:if>
+    <c:if test="${custparam.page!=custparam.maxPages}">
     <a href="javascript:submits(${custparam.maxPages})" title="末页">末页&raquo;</a>
+    </c:if>
     </li>
   </div>
    

@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;<a href="list.html">客户信息</a>&nbsp;&gt;&nbsp;联系人&nbsp;&gt;&nbsp;新建联系人
+  <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;客户信息&nbsp;&gt;&nbsp;联系人&nbsp;&gt;&nbsp;新建联系人
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <input type="hidden" name="customer.custid" value="${bjcus.custid}">
         <tr>
           <td width="126">姓名</td>
-          <td width="411"><input type="text" name="coname" /></td>
+          <td width="411"><input type="text" name="coname" required="required" /></td>
           <td width="126">性别</td>
           <td width="442">
 	          <input type="radio" name="cosex" value="男" checked="checked" id="radio" />男
@@ -58,13 +58,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
           <td>职位</td>
-          <td><input type="text" name="cojob"/></td>
+          <td><input type="text" name="cojob" required="required" /></td>
           <td>办公电话</td>
-          <td><input type="text" name="workphone"/></td>
+          <td><input type="text" name="workphone" required="required"/></td>
         </tr>
         <tr>
           <td>手机</td>
-          <td><input type="text" name="cophone"/></td>
+          <td><input type="text" name="cophone" required="required" /></td>
           <td>备注</td>
           <td><input type="text" name="notes"/></td>
         </tr>

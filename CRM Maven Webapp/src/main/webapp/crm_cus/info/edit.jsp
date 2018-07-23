@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：<a href="JavaScript:void(0)">客户开发计划</a>&nbsp;&gt;&nbsp;<a href="JavaScript:void(0)">客户信息管理</a>&nbsp;&gt;&nbsp;<a href="JavaScript:void(0)">编辑客户信息</a>&nbsp;&gt;&nbsp;
+  <div class="txt" style="padding-top:3px;" >当前位置：客户开发计划&nbsp;&gt;&nbsp;客户信息管理&nbsp;&gt;&nbsp;编辑客户信息&nbsp;&gt;&nbsp;
     <hr class="hr1" />
   </div>
   <div class="operation_button">
