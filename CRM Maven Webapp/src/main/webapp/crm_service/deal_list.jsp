@@ -18,6 +18,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<style type="text/css">
+#nulldiv{
+		position:absolute;
+		top:200px;
+		left:300px;
+		font-size: 20px;
+	}
+#chaxundiv{		
+		position:absolute;
+		top:55px;
+		left:800px;	
+	}
+</style>
 <script type="text/javascript">
   $(function() {
       var xx="${par.servicetyle}";
@@ -41,9 +54,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户服务管理&nbsp;&gt;&nbsp;服务处理列表
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
-    <a href="javascript:sub()" title="查询">查询</a>
-  </div>
+  <c:if test="${par.maxRows==0}">
+           <div id="nulldiv">暂无服务可处理</div>
+  </c:if>
+  <c:if test="${par.maxRows!=0 }">
   <div class="search_input">
     <form action="ser/getAllById.action" method="post" id="searchForm">
     <ul class="txt">
@@ -64,6 +78,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </li>
     </ul>
     </form>
+  </div>
+  <div class="operation_button" id="chaxundiv">
+    <a href="javascript:sub()" title="查询">查询</a>
   </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
@@ -118,6 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     </li>
   </div>
+  </c:if>
 </div>
 </body>
 </html>

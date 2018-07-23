@@ -14,6 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<style type="text/css">
+   span{
+     color:red;
+   }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script>
      $(function(){
         $.getJSON("role/getAll.action","",function(res){
@@ -22,16 +28,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                $("#roleSelect").append("<option value="+res[x].roleid+">"+res[x].rolename+"</option>")
             }
         })
-     })
+     });
      
-     function saveUser(){
-          $("#form").submit();
-     }
+     function saveUser() {
+		if(check()){
+		 $("#form").submit();
+		}
+     };
+     
+     function check(){
+        var na=$("#name").val().length;
+        var pwd=$("#pwd").val().length;
+       /*  alert(na); */
+        $("#nameSpan").html("");
+        $("#pwdSpan").html("");
+       if(na>16||na<3){
+           $("#nameSpan").html("名字长度应在3~16之间");
+           return false;
+        }
+        if(pwd>16||pwd<6){
+           $("#pwdSpan").html("密码长度应在6~16之间");
+           return false;
+        }
+        return true;
+     };
 </script>
 </head>
 <body>
 <div style="padding:5px;">
-  <div class="txt" style="padding-top:3px;" >当前位置：营销管理&nbsp;&gt;&nbsp;销售机会管理&nbsp;&gt;&nbsp;<a href="list.html">销售机会</a>&nbsp;&gt;&nbsp;新建销售机会
+  <div class="txt" style="padding-top:3px;" >当前位置：员工管理&nbsp;&gt;&nbsp;新建员工
     <hr class="hr1" />
   </div>
   <div class="operation_button">
@@ -44,11 +69,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
         <tr>
           <td>员工姓名</td>
-          <td><input type="text" name="uname"/></td>
+          <td><input type="text" name="uname" id="name"/><span id="nameSpan"></span></td>
         </tr>
         <tr>
           <td>密码</td>
-          <td><input type="text" name="pwd" /></td>
+          <td><input type="text" name="pwd" id="pwd"/><span id="pwdSpan"></span></td>
           
         </tr>
         <tr>

@@ -18,6 +18,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<style type="text/css">
+#nulldiv{
+		position:absolute;
+		top:200px;
+		left:300px;
+		font-size: 20px;
+	}
+#chaxundiv{
+		
+		position:absolute;
+		top:50px;
+		left:800px;	
+	}	
+</style>
 <script type="text/javascript">
   $(function() {
       var xx="${par.servicetyle}";
@@ -44,7 +58,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户服务管理&nbsp;&gt;&nbsp;服务归档列表
     <hr class="hr1" />
   </div>
-  <div class="operation_button">
+  <c:if test="${par.maxRows==0}">
+           <div id="nulldiv">暂无归档的服务</div>
+  </c:if>
+  <c:if test="${par.maxRows!=0 }">
+  <div class="operation_button" id="chaxundiv">
     <a href="javascript:sub()" title="查询">查询</a>
   </div>
   <form action="ser/file.action" method="post" id="searchForm">
@@ -114,6 +132,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
     </li>
   </div>
+  </div>
+  </c:if>
 </div>
 </body>
 </html>

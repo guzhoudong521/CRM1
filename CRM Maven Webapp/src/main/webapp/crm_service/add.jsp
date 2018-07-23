@@ -15,10 +15,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript">
-   function add(){
-      $("#addform").submit();
+<style type="text/css">
+   span{
+     color:red;
    }
+</style>
+<script type="text/javascript">
+   function add() {
+      if(check()){
+        $("#addform").submit();
+      }
+   }
+   function check(){
+       var cust=$("#cust").val();
+        var des=$("#des").val();
+       /*  alert(na); */
+        $("#custSpan").html("");
+        $("#desSpan").html("");
+       if(cust==null||cust==""){
+           $("#custSpan").html("请输入客户");
+           return false;
+        }
+        if(des==null||des==""){
+           $("#desSpan").html("请输入服务请求");
+           return false;
+        }
+        return true;
+     };
 </script>
 </head>
 <body>
@@ -43,18 +66,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td>状态</td>
           <td>新创建</td>
           <td>客户</td>
-          <td><input name="customer" type="text" /></td>
+          <td><input name="customer" type="text" id="cust"/><span id="custSpan"></span></td>
         </tr>
         <tr>
           <td>服务类型</td>
           <td><select name="servicetyle">
-				<option>请选择...</option>
 				<option value="咨询">咨询</option>
 				<option value="投诉">投诉</option>
 				<option value="建议">建议</option>
 			</select></td>
 		  <td valign="top">服务请求</td>
-          <td><textarea rows="6" cols="36" name="des"/></textarea></td>
+          <td><textarea rows="6" cols="36" name="des" id="des"/></textarea><span id="desSpan"></span></td>
         </tr>
       </table>
      </form>
