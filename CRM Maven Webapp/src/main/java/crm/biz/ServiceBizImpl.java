@@ -49,6 +49,7 @@ public class ServiceBizImpl implements IServiceBiz {
 		q.setPage(par.getPage());
 		q.setName(par.getName());
 		q.setServicetyle(par.getServicetyle());
+		q.setCreatetime(par.getCreatetime());
 		q.setChuangjianshijian1(par.getChuangjianshijian1());
 		q.setMaxRows(dao.getCount(par));
 		q.setList(dao.getAll(par));
@@ -75,6 +76,7 @@ public class ServiceBizImpl implements IServiceBiz {
 		q.setPage(par.getPage());
 		q.setName(par.getName());
 		q.setServicetyle(par.getServicetyle());
+		q.setCreatetime(par.getCreatetime());
 		q.setChuangjianshijian1(par.getChuangjianshijian1());
 		q.setMaxRows(dao.getCountById(par));
 		q.setList(dao.getAllById(par));
@@ -100,6 +102,7 @@ public class ServiceBizImpl implements IServiceBiz {
 		q.setPage(par.getPage());
 		q.setName(par.getName());
 		q.setServicetyle(par.getServicetyle());
+		q.setCreatetime(par.getCreatetime());
 		q.setChuangjianshijian1(par.getChuangjianshijian1());
 		q.setMaxRows(dao.getCountPro(par));
 		q.setList(dao.getAllPro(par));
@@ -119,6 +122,7 @@ public class ServiceBizImpl implements IServiceBiz {
 		q.setPage(par.getPage());
 		q.setName(par.getName());
 		q.setServicetyle(par.getServicetyle());
+		q.setCreatetime(par.getCreatetime());
 		q.setChuangjianshijian1(par.getChuangjianshijian1());
 		q.setMaxRows(dao.getCountRes(par));
 		q.setList(dao.getAllRes(par));

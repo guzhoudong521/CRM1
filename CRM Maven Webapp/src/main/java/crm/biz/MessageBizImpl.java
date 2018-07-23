@@ -32,6 +32,8 @@ public class MessageBizImpl implements IMessageBiz {
 	public QueryParam getRecevieMessage(QueryParam par) {
 		// TODO 自动生成的方法存根
 		QueryParam qq=new QueryParam();
+		qq.setZhuangtai(par.getZhuangtai());
+		qq.setCreatetime(par.getCreatetime());
 		qq.setPage(par.getPage());
 		qq.setMaxRows(dao.getReceiveCount(par));
 		qq.setList(dao.getReceiveMessageById(par));
@@ -42,6 +44,8 @@ public class MessageBizImpl implements IMessageBiz {
 		// TODO 自动生成的方法存根
 		QueryParam qq=new QueryParam();
 		qq.setPage(par.getPage());
+		qq.setZhuangtai(par.getZhuangtai());
+		qq.setCreatetime(par.getCreatetime());
 		qq.setMaxRows(dao.getSendCount(par));
 		qq.setList(dao.getSendMessageById(par));
 		return qq;

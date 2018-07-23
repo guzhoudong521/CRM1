@@ -62,10 +62,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul class="txt">
       <li>工号：
         <input type="hidden" name="page" id="pages" value="${par.page}"/>
-        <input type="text" name="gonghao" size="30"/>
+        <input type="text" name="gonghao" size="30" value="${par.gonghao }"/>
       </li>
       <li>员工姓名：
-        <input type="text" name="name" size="30" />
+        <input type="text" name="name" size="30" value="${par.realname}"/>
       </li>
     </ul>
       </form>

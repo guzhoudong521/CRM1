@@ -17,7 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/simpla.jquery.configuration.js"></script>
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script type="text/javascript">
+  $(function(){
+     var ck="${par.zhuangtai}"; 
+     $("input[value="+ck+"]").attr("checked","checked");
+  })
   function page(page){
       $("#pages").val(page);
       $("#searchForm").submit();
@@ -52,8 +57,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <ul class="txt">
       <li>
         <input type="hidden" name="page" id="pages" value="${par.page}"/>
-        <input type="radio" name="zhuangtai" value="已读"/>已读
-        <input type="radio" name="zhuangtai" value="未读"/>未读
+        <input type="radio" name="zhuangtai"  value=""/>全部
+        <input type="radio" name="zhuangtai"  value="已读"/>已读
+        <input type="radio" name="zhuangtai"  value="未读"/>未读
       </li>
       <li> 创建日期：
         <input name="createtime" type="text" size="30" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy-MM-dd'})" />

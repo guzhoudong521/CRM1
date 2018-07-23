@@ -14,6 +14,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<style type="text/css">
+   span{
+     color:red;
+   }
+</style>
 <script>
      $(function(){
         $.getJSON("us/ajaxlist.action","",function(res){
@@ -22,10 +27,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                $("#userSelect").append("<option value="+res[x].userid+">"+res[x].uname+"</option>")
             }
         })
-     })
+     });
      
-     function saveUser(){
-          $("#form").submit();
+     function saveUser() {
+        if(check()){
+           $("#form").submit(); 
+        }   
+     };
+     
+     function check(){
+         var tit=$("#title").val();
+         var con=$("#content").val();
+         /* var sel=$("#userSelect").html(); */
+         if(tit==null||tit==''){
+             $("#titleSpan").html("标题不能为空");
+             return false;
+         }else if(con==null||con==''){
+             $("#contentSpan").html('内容不能为空');
+             return false;
+         }/* else if(sel==null&&sel==''){
+             $("#selectSpan").html('请选择');
+         } */
+         return true;
      }
 </script>
 </head>
@@ -44,11 +67,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <table border="0" cellpadding="0" cellspacing="0" class="table_input txt">
         <tr>
           <td>标题：</td>
-          <td><input type="text" name="title" id="title"/></td>
+          <td><input type="text" name="title" id="title"/><span id="titleSpan"></span></td>
         </tr>
         <tr>
           <td>内容：</td>
-          <td><textarea rows="5" cols="40" name="content"  id="title"></textarea></td>
+          <td><textarea rows="5" cols="40" name="content"  id="content"></textarea><span id="contentSpan"></span></td>
         </tr>
         <tr>
           <td>发送给：</td>
@@ -56,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	<select style="width:200px;height:30px;" name="ruser.userid" id="userSelect">
 				<option>请选择...</option>
 				<option>小明</option>
-			</select>
+			</select><span id="selectSpan"></span>
            </td>
         </tr>
       </table>
