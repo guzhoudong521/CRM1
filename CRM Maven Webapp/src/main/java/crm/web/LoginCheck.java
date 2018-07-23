@@ -1,8 +1,13 @@
 package crm.web;
 
+
+
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.orm.hibernate3.LocalCacheProviderProxy;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import crm.entity.Users;
@@ -17,7 +22,15 @@ public class LoginCheck extends HandlerInterceptorAdapter{
 		
 		if(us==null){
 			
-			response.sendRedirect(request.getContextPath()+"/login.jsp");
+			PrintWriter out=response.getWriter();
+
+		    out.println("<html>");    
+		    out.println("<script>");  
+		    out.println("window.open ('"+request.getContextPath()+"/login.jsp','_top')"); 
+			//response.sendRedirect(request.getContextPath()+"/login.jsp");
+		    out.println("</script>");    
+		    out.println("</html>");  
+			
 			return false;
 		}else{
 			

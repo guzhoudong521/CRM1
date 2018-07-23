@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -18,9 +19,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div>
   <div id="loader"><img src="images/1d_2.gif"/></div>
   <div class="current_user attention"">
-    <div> 欢迎您，<strong>${sessionScope.curruser.uname }</strong><br />
-      [${sessionScope.curruser.role.rolename }，<a href="us/exit.action" target="_parent">退出</a>] </div>
+  <c:if test="${curruser!=null}">
+  	<div> 欢迎您，<strong>${curruser.uname}</strong><br />
+      [${curruser.role.rolename}，<a href="us/exit.action" target="_parent">退出</a>] </div>
   </div>
+  </c:if>
+     <c:if test="${curruser==null}">
+  	<div> <strong>请登录！！</strong></div>
+  </div>
+  </c:if>
   <div id="sidebar">
     <div id="sidebar-wrapper">
       <ul id="main-nav">

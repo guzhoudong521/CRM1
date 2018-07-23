@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form role="form" action="us/login.action" method="post" class="login-form">
+			                    <form role="form" action="us/login.action" method="post"  target="_parent" class="login-form">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="form-username">Username</label>
 			                        	<input type="text" name="uname" placeholder="用户名" class="form-username form-control" id="form-username"/>

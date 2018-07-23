@@ -12,6 +12,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/javascript.js"></script>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+	
+	$(function(){
+		
+		/* $("#names").change(function(){
+			var xx=$("#names").val();
+		
+			
+			
+		}) */
+		
+	})
+	
+	function checknames(){
+	
+		var xx=$("#names").val();
+		
+		
+		if(xx.length>20){
+		
+			$("#names").val("");
+		}
+		
+	}
+	
+		
+</script>
 <style>
 
 
@@ -49,7 +77,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <input type="hidden" name="customer.custid" value="${bjcus.custid}">
         <tr>
           <td width="126">姓名</td>
-          <td width="411"><input type="text" name="coname" required="required" /></td>
+          <td width="411"><input type="text" id="names" onchange="javascript:checknames()"    required="required" name="coname"  /></td>
           <td width="126">性别</td>
           <td width="442">
 	          <input type="radio" name="cosex" value="男" checked="checked" id="radio" />男
