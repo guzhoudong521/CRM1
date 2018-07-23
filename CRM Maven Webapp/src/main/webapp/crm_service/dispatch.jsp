@@ -19,6 +19,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/javascript.js"></script>
 <script type="text/javascript" src="datepicker/WdatePicker.js"> </script>
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<style type="text/css">
+#nulldiv{
+		position:absolute;
+		top:200px;
+		left:300px;
+		font-size: 20px;
+	}
+</style>
 <script type="text/javascript">
   $(function() {
       var xx="${par.servicetyle}";
@@ -35,8 +43,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       $("#fenpeiForm").submit();
   }
   function del(id){
+      if(confirm("确认删除？")){
       location="ser/del.action?id="+id;
-  }
+  }}
 </script>
 </head>
 <body>
@@ -44,7 +53,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div class="txt" style="padding-top:3px;" >当前位置：客户服务管理</a>&nbsp;&gt;&nbsp;服务分配
     <hr class="hr1" />
   </div>
-  <div class="operation_button"> <a href="javascript:sub()" title="查询">查询</a> </div>
+  <c:if test="${par.maxRows==0}">
+      <div id="nulldiv">暂无服务可分配，<a href=""crm_service/add.jsp>去创建个新的</a></div>
+  </c:if>
+  <c:if test="${par.maxRows!=0}">
   <div class="search_input">
   <form action="ser/getAll.action" method="post" id="searchForm">
     <ul class="txt">
@@ -66,6 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </ul>
     </form>
   </div>
+  <div class="operation_button"><a href="javascript:sub()" title="查询">查询</a> </div>
   <div>
     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table_list" >
       <thead>
@@ -87,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
           <td><input type="checkbox" /></td>
           <td>${ser.id}</td>
-          <td><a href="#">${ser.customer}</a></td>
+          <td>${ser.customer}</td>
           <td>${ser.des}</td>
           <td>${ser.servicetyle}</td>
           <td>${ser.createuser.uname }</td>
@@ -124,6 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     </li>
   </div>
+  </c:if>
 </div>
 </body>
 </html>

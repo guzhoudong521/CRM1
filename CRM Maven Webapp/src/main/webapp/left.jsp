@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CRM_Left</title>
+<title>CRM_Left</title> 
 <link rel="stylesheet" href="css/stylesheet.css" type="text/css"  />
 <link rel="stylesheet" href="css/sidebar.css" type="text/css"  />
 <script type="text/javascript" src="js/javascript.js"></script>
@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div id="loader"><img src="images/1d_2.gif"/></div>
   <div class="current_user attention"">
     <div> 欢迎您，<strong>${sessionScope.curruser.uname }</strong><br />
-      [${sessionScope.curruser.role.rolename }，<a href="us/exit.action">退出</a>] </div>
+      [${sessionScope.curruser.role.rolename }，<a href="us/exit.action" target="_parent">退出</a>] </div>
   </div>
   <div id="sidebar">
     <div id="sidebar-wrapper">
