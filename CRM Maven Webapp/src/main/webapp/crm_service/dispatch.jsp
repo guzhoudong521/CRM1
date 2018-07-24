@@ -123,7 +123,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div class="position"> 
   	共${par.maxRows}条记录&nbsp;每页${par.pageSize}条&nbsp;第${par.page}页/共${par.maxPages}页 
-    <a href="javascript:page(1)" title="首页">&laquo;首页</a>
+    <c:if test="${par.page!=1}"><a href="javascript:page(1)" title="首页">&laquo;首页</a></c:if>
      <c:if test="${par.page>1}"> 
     <a href="javascript:page(${par.page-1})" title="上一页">&laquo; 上一页</a> 
      </c:if>
@@ -133,8 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <c:if test="${par.page<par.maxPages}">
     <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
     </c:if>
-    <a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;
-    
+    <c:if test="${par.page!=par.maxPages}"><a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</c:if>
     </li>
   </div>
   </c:if>
