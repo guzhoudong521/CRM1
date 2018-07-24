@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <hr class="hr1" />
   </div>
   <div id="chaxundiv" class="operation_button">
-   <%-- 	<a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单" >增加订单</a> --%>
+   <a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单" >增加订单</a>
     <a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <c:if test="${empty orderparam.list}">
 	 
           <div id="nulldiv">
-             	还没有订单，<a href="cust/addorder1.action?id=${bjcus.custid }" title="增加订单">去添加</a>
+             	还没有订单，去添加
           </div>
           	
   </c:if>

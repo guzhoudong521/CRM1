@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
   <div id="adddiv" class="operation_button">
  	<a href="javascript:void(0)" title="返回" onclick="back()">返回</a>
-   
+   <a href="crm_cus/info/contact_add.jsp" title="返回" >新建</a>
   </div>
   <table border="0" cellpadding="0" cellspacing="0" class="table_show txt">
         <tr>
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <c:if test="${empty currmeet.list}">
 	 
           <div id="nulldiv">
-             	还没有交往记录，<a href="crm_cus/info/contact_add.jsp" title="添加交往记录">去添加</a>
+             	还没有交往记录，去添加
           </div>
           	
   </c:if>
