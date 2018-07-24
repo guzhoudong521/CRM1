@@ -135,7 +135,7 @@
       select * from 
          (select t.*,u.uname creatname,rownum r 
           from SERVICE t,users u 
-          where t.createuser=u.userid
+          where t.createuser=#{u.userid}
           and t.status ='已处理'
           and t.result is null
           <if test="name!=null">
@@ -155,6 +155,7 @@
    <select id="getCountPro" resultType="int" parameterType="crm.util.QueryParam">
           select count(0) from SERVICE t
           where t.status ='已处理'
+          and t.createuser=#{u.userid}
           and t.result is null
           <if test="name!=null">
           and t.customer like #{name}

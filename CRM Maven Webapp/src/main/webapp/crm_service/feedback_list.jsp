@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <c:if test="${par.maxRows==0}">
            <div id="nulldiv">暂无服务可进行反馈</div>
   </c:if>
-  <c:if test="${par.maxRows!=0 }">
+  <%-- <c:if test="${par.maxRows!=0 }"> --%>
   <div class="search_input">
      <form action="ser/getAllPro.action" method="post" id="searchForm">
     <ul class="txt">
@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </c:if>
     <c:if test="${par.page!=par.maxPages}"><a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</a></c:if>
   </div>
-  </c:if>
+ <%--  </c:if> --%>
 </div>
 </body>
 </html>

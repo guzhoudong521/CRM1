@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="javascript:page(${par.page+1})" title="下一页">下一页&raquo;</a>
     </c:if>
     <c:if test="${par.page!=par.maxPages}"><a href="javascript:page(${par.maxPages})" title="末页">末页&raquo;</c:if>
-    </li>
+   
   </div>
   </c:if>
 </div>
