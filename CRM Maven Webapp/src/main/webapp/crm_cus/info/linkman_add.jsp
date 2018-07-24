@@ -16,28 +16,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 	
 	$(function(){
+	
+	
 		
-		/* $("#names").change(function(){
-			var xx=$("#names").val();
 		
-			
-			
-		}) */
+		
+	
 		
 	})
+	
+	function checkzuoji(){
+	var xx=$("#input_dianhua").val();
+			var str=/^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$|(^(13[0-9]|15[0|3|6|7|8|9]|18[8|9])\d{8}$)/;
+			if(!str.test(xx)){							
+				$("#input_dianhua").val("");
+				$("#input_dianhua").attr("placeholder","格式不正确！！！");		
+			}else{
+			}	
+	}
+	
+	function checkphone(){
+	
+		var xx=$("#input_phone").val();			
+			var str=/^(13[0-9]|14[579]|15[0-3,5-9]|16[6]|17[0135678]|18[0-9]|19[89])\d{8}$/;	
+			if(!str.test(xx)){			
+				$("#input_phone").val("");
+				$("#input_phone").attr("placeholder","格式不正确！！！");		
+			}else{
+			}
+	}
 	
 	function checknames(){
 	
 		var xx=$("#names").val();
+		var str=/^[u4e00-u9fa5]/;
 		
-		
-		if(xx.length>20){
-		
+		if(str.test(xx)){		
 			$("#names").val("");
+			$("#names").attr("placeholder","格式不正确！！！");			
+		}else if(xx.length>6){
+			alert(xx.length);
+			$("#names").val("");
+			$("#names").attr("placeholder","名称过长！！！");	
 		}
 		
 	}
 	
+	function checkjob(){
+	
+		var xx=$("#jobs").val();
+		var str=/^[u4e00-u9fa5]/;
+		
+		if(str.test(xx)){		
+			$("#jobs").val("");
+			$("#jobs").attr("placeholder","格式不正确！！！");			
+		}else if(xx.length>7){
+		alert(xx.length);
+		$("#jobs").val("");
+			$("#jobs").attr("placeholder","工作名称过长！！！");		
+		}
+		
+	}
 		
 </script>
 <style>
@@ -77,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <input type="hidden" name="customer.custid" value="${bjcus.custid}">
         <tr>
           <td width="126">姓名</td>
-          <td width="411"><input type="text" id="names" onchange="javascript:checknames()"    required="required" name="coname"  /></td>
+          <td width="411"><input type="text" id="names" onchange="checknames()"    required="required" name="coname"  /></td>
           <td width="126">性别</td>
           <td width="442">
 	          <input type="radio" name="cosex" value="男" checked="checked" id="radio" />男
@@ -86,20 +125,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
         <tr>
           <td>职位</td>
-          <td><input type="text" name="cojob" required="required" /></td>
+          <td><input type="text" id="jobs" onchange="javascript:checkjob()" name="cojob" required="required" /></td>
           <td>办公电话</td>
-          <td><input type="text" name="workphone" required="required"/></td>
+          <td><input id="input_dianhua" onchange="javascript:checkzuoji()"   placeholder="例如：0591-7654321" type="text" name="workphone" required="required"/></td>
         </tr>
         <tr>
           <td>手机</td>
-          <td><input type="text" name="cophone" required="required" /></td>
+          <td><input id="input_phone" onchange="javascript:checkphone()"     type="text" name="cophone" required="required" /></td>
           <td>备注</td>
           <td><input type="text" name="notes"/></td>
         </tr>
          <tr>
           
           <td colspan="4" align="center" style="height:60px">
-	          <input style="height:30px;width:120px" type="submit" value="提交" />
+	          <input style="height:30px;width:120px" id="submit_but" type="submit" value="提交" />
 	          <input style="height:30px;width:120px" type="reset" value="重置" />
           </td>
           
